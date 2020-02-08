@@ -3,19 +3,15 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-
+import { userRouter } from './router';
 
 const app = express();
-const port = 3000;
-
-const handleListening = () => console.log(`Listening on http://localhost:${port}`);
 
 const handleHome = (req, res) => res.send('Welcome Home!!');
 
 const handleProfile = (req, res) => res.send('Hi My name is CMY');
 
 //use middleware : morgan / body-parser /cookie-parser / helmet 
-
 app.use(morgan('dev')); //morgan is logger middleware
 app.use(helmet()); //helmet is help secure my express app
 app.use(bodyParser.json());
@@ -26,6 +22,8 @@ app.get('/', handleHome);
 
 app.get('/profile', handleProfile);
 
-app.listen(port, handleListening);
+app.use('/user', userRouter);
 
-
+export default app;
+//-> 외부에서 이 모듈을 요청할 때 [app object]로 내보내겠다는 의미
+//-> ES6 JavaScript module
