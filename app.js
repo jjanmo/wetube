@@ -12,7 +12,10 @@ import routes from './routes';
 
 const app = express();
 
-//app.use() :  to use middleware 
+//app.set() : 
+app.set('view engine', 'pug');
+
+//app.use() : to use middleware 
 app.use(morgan('dev')); //morgan is logger middleware
 app.use(helmet());      //helmet is help secure my express app
 app.use(bodyParser.json());
