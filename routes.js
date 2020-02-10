@@ -1,7 +1,6 @@
 //url mapping을 위한 js파일
 //-> 어디서든 이 파일만 import하여 쉽게 url을 맵핑하기 위한 것
 
-
 // Global
 const HOME = '/';
 const JOIN = '/join';
@@ -18,10 +17,9 @@ const CHANGE_PASSWORD = '/change-password';
 // Video
 const VIDEOS = '/videos';
 const UPLOAD = '/upload';
-const VIDEO_DETAIL = '/:id'
+const VIDEO_DETAIL = '/:id';
 const EDIT_VIDEO = '/:id/edit';
 const DELETE_VIDEO = '/:id/delete';
-
 
 const routes = {
     home: HOME,
@@ -38,9 +36,6 @@ const routes = {
     videoDetail: VIDEO_DETAIL,
     editVideo: EDIT_VIDEO,
     deleteVideo: DELETE_VIDEO
-}
-
+};
 
 export default routes;
-
-

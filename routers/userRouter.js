@@ -8,9 +8,9 @@ import { users } from '../controllers/userController';
 const userRouter = express.Router();
 //-> userRouter is middleware
 
-userRouter.get(routes.users, users);
-userRouter.get(routes.userDetail, (req, res) => res.send('User Detail'));
-userRouter.get(routes.editProfile, (req, res) => res.send('User Edit Profile'));
-userRouter.get(routes.changePassword, (req, res) => res.send('Change User Password'));
+userRouter.get('/', users);
+userRouter.get(routes.changePassword, (req, res) => res.render('changePassword'));
+userRouter.get(routes.editProfile, (req, res) => res.render('editProfile'));
+userRouter.get(routes.userDetail, (req, res) => res.render('userDetail'));
 
-export default userRouter; 
+export default userRouter;
