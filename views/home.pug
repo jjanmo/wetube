@@ -1,5 +1,13 @@
 extends ./layouts/main
+include ./mixins/videoBlock
 
 block content   
-    h1 WeTube
-    p This is Home! Video List Here!
+    .videos-container
+        each video in videos
+            +videoBlock({
+                file : video.file,
+                title : video.title,
+                description : video.description,
+                views : video.views
+            })
+        
