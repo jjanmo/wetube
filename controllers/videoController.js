@@ -1,4 +1,5 @@
 import { videos } from '../db.js';
+import routes from '../routes';
 
 // Home
 export const home = (req, res) => res.render('home', { pageName: 'HOME', videos });
@@ -11,8 +12,13 @@ export const search = (req, res) => {
     res.render('search', { pageName: 'SEARCH', term, videos }); //term : term => term으로 한 번에 사용가능
 }
 
+// Upload
+export const getUpload = (req, res) => res.render('upload', { pageName: 'UPLOAD' });
+export const postUpload = (req, res) => {
+    //영상 등록
+    res.redirect(`${routes.videos}${routes.videoDetail(123123)}`); //등록한 영상의 상세페이지로 이동
+}
 
-export const upload = (req, res) => res.render('upload', { pageName: 'UPLOAD' });
 export const videoDetail = (req, res) => res.render('videoDetail', { pageName: 'VIDEO NAME' });
 export const editVideo = (req, res) => res.render('editVideo', { pageName: 'EDIT VIDEO' });
 export const deleteVideo = (req, res) => res.render('deleteVideo', { pageName: 'DELETE VIDEO' });
