@@ -22,8 +22,13 @@ export const postJoin = (req, res) => {
     }
 }
 
+// Login
+export const getLogin = (req, res) => res.render('login', { pageName: 'LOGIN' });
+export const postLogin = (req, res) => {
+    res.render('login', { pageName: 'LOGIN' });
+}
 
-export const login = (req, res) => res.render('login', { pageName: 'LOGIN' });
+
 export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
 export const users = (req, res) => res.render('users', { pageName: 'USERS' });
 export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER NAME' });
