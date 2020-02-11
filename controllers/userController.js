@@ -25,12 +25,14 @@ export const postJoin = (req, res) => {
 // Login
 export const getLogin = (req, res) => res.render('login', { pageName: 'LOGIN' });
 export const postLogin = (req, res) => {
-    res.render('login', { pageName: 'LOGIN' });
+    //db에 가서 password가 맞는지 확인해줘야함
+    //이름을 들고가서 로그인했는지를 찍어줘야함
+    res.redirect(routes.home);
 }
 
 
-export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
 export const users = (req, res) => res.render('users', { pageName: 'USERS' });
-export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER NAME' });
+export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
 export const editProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
+export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER PROFILE' });

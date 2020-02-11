@@ -11,7 +11,16 @@ header.header
                     i.fas.fa-search
     .header_column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) LogIn    
+            if (!user.isAuthenticated)
+                li
+                    a(href=routes.join) Join
+                li
+                    a(href=routes.login) LogIn
+            else 
+                li 
+                    a(href=`${routes.videos}${routes.upload}`) Upload
+                li 
+                    a(href=`${routes.users}${routes.userDetail(user.id)}`) Profile
+                li 
+                    a(href=routes.logout) LogOut
+                

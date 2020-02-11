@@ -3,13 +3,14 @@
 
 import express from 'express';
 import routes from '../routes';
-import { users } from '../controllers/userController';
+import { users, userDetail, changePassword, editProfile } from '../controllers/userController';
 
 const userRouter = express.Router();
 //-> userRouter is middleware
 
-userRouter.get(routes.changePassword, (req, res) => res.render('changePassword'));
-userRouter.get(routes.editProfile, (req, res) => res.render('editProfile'));
-userRouter.get(routes.userDetail, (req, res) => res.render('userDetail'));
+userRouter.get('/', users);
+userRouter.get(routes.changePassword, changePassword);
+userRouter.get(routes.editProfile, editProfile);
+userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter;
