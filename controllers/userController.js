@@ -1,4 +1,28 @@
-export const join = (req, res) => res.render('join', { pageName: 'JOIN' });
+import routes from '../routes'
+
+// Join 
+export const getJoin = (req, res) => res.render('join', { pageName: 'JOIN' });
+export const postJoin = (req, res) => {
+    const { body: {
+        name,
+        email,
+        password,
+        verifyPassword
+    } } = req;
+    if (password !== verifyPassword) {
+        res.status(400);
+        res.render('join', { pageName: 'JOIN' });
+    }
+    else {
+        //추가
+        //1)유저의 정보를 db에 등록(register)
+        //2)유저는 자동 로그인
+        //3)유저 이름(이메일)은 들고가서 home에 뿌려줘야함(로그인했음을 알려줌)
+        res.redirect(routes.home);
+    }
+}
+
+
 export const login = (req, res) => res.render('login', { pageName: 'LOGIN' });
 export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
 export const users = (req, res) => res.render('users', { pageName: 'USERS' });

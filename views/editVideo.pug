@@ -1,10 +1,10 @@
 extends ./layouts/main
 
 block content   
-    .edit-video-container
+    .editVideoContainer
         form(action=`${routes.videos}${routes.editVideo}` method="post")
         input(type="file" name="video-file") 
         input(type="text" name="title" placeholder="Title")
         input(type="text" name="description" placeholder="Description")
         input(type="submit" value="SAVE")
-    a.delete-video-link(href=`${routes.videos}${routes.deleteVideo}`) Delete Video
+    a.deleteVideoLink(href=`${routes.videos}${routes.deleteVideo}`) Delete Video

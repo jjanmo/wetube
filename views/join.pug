@@ -1,11 +1,11 @@
 extends ./layouts/main
 
 block content   
-    .form-container
+    .formContainer
         form(action=routes.join, method="post")
             input(type="text" name="name" placeholder="Name")
             input(type="email" name="email" placeholder="Email")
             input(type="password" name="password" placeholder="Password")
-            input(type="password" name="verify-password" placeholder="Verify Password")
+            input(type="password" name="verifyPassword" placeholder="Verify Password")
             input(type="submit" value="JOIN US")
             include ./partials/socialButtons    

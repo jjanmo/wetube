@@ -2,7 +2,7 @@ extends ./layouts/main
 include ./mixins/videoBlock
 
 block content   
-    .videos-container
+    .videosContainer
         each video in videos
             +videoBlock({
                 file : video.file,

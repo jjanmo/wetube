@@ -4,13 +4,20 @@
 import express from 'express';
 import routes from '../routes';
 import { home, search } from '../controllers/videoController';
-import { join, login, logout } from '../controllers/userController';
+import { login, logout, getJoin, postJoin } from '../controllers/userController';
 
 const globalRouter = express.Router();
 
+// Home
 globalRouter.get(routes.home, home);
+
+// Search
 globalRouter.get(routes.search, search);
-globalRouter.get(routes.join, join);
+
+// Join
+globalRouter.get(routes.join, getJoin);
+globalRouter.post(routes.join, postJoin);
+
 globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 

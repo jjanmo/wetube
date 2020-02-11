@@ -1,11 +1,11 @@
 extends ./layouts/main
 
 block content   
-    .form-container
+    .formContainer
         form(action=`${routes.users}${routes.editProfile}` method="post")
             label(for="avater") Change your Avatar
             input(type="file" name="avatar")
             input(type="text" name="name" placeholder="Name")
             input(type="email" name="email" placeholder="Email")
             input(type="submit" value="SAVE")
-    a.change-password-link(href=`${routes.users}${routes.changePassword}`) Change Password 
+    a.changePasswordLink(href=`${routes.users}${routes.changePassword}`) Change Password 
