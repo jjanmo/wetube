@@ -1,11 +1,11 @@
 import routes from '../routes';
-import model from '../models/Video';
+import Video from '../models/Video';
 
 // Home
 export const home = async (req, res) => {
     try {
-        const videos = await model.find();
-        //console.log(videos); // []
+        const videos = await Video.find({});
+        console.log(videos); // []
         res.render('home', { pageName: 'HOME', videos });
     } catch (error) {
         console.log(error);
@@ -25,9 +25,19 @@ export const search = (req, res) => {
 
 // Upload
 export const getUpload = (req, res) => res.render('upload', { pageName: 'UPLOAD' });
-export const postUpload = (req, res) => {
-    //영상 등록
-    res.redirect(`${routes.videos}${routes.videoDetail(123123)}`); //등록한 영상의 상세페이지로 이동
+export const postUpload = async (req, res) => {
+    //db와 연결후 영상 등록을 해야함!
+    const {
+        body: { title, description },
+        file: { path }
+    } = req;
+    const newVideo = await Video.create({
+        title,
+        description,
+        fileUrl: path
+    });
+    //newVideo.id : document가 생성되면서 자동으로 부여되는듯...
+    res.redirect(`${routes.videos}${routes.videoDetail(newVideo.id)}`); //등록한 영상의 상세페이지로 이동
 };
 
 export const videoDetail = (req, res) => res.render('videoDetail', { pageName: 'VIDEO NAME' });
