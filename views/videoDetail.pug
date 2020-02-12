@@ -1,4 +1,11 @@
 extends ./layouts/main
 
 block content   
-    h1 Video Detail
+    .videoContainer
+        .videoWatch
+            video(src=`/${video.fileUrl}` controls=true)
+        .videoInfo
+            a(href=`${routes.videos}${routes.editVideo}`) Edit Video
+            h3.videoTitle= video.title
+            span.videoViews= video.views
+            h4.video.description= video.description

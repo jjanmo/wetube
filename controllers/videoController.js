@@ -40,6 +40,16 @@ export const postUpload = async (req, res) => {
     res.redirect(`${routes.videos}${routes.videoDetail(newVideo.id)}`); //등록한 영상의 상세페이지로 이동
 };
 
-export const videoDetail = (req, res) => res.render('videoDetail', { pageName: 'VIDEO NAME' });
+// Video Detail
+export const videoDetail = async (req, res) => {
+    console.log(req.params);
+    const {
+        params: { id }
+    } = req;
+    const video = await Video.findById(id);
+    console.log(video);
+    res.render('videoDetail', { pageName: 'VIDEO NAME', video });
+};
+
 export const editVideo = (req, res) => res.render('editVideo', { pageName: 'EDIT VIDEO' });
 export const deleteVideo = (req, res) => res.render('deleteVideo', { pageName: 'DELETE VIDEO' });
