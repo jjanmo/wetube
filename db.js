@@ -1,10 +1,19 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+// 1) .env에 있는 파일을 모두 불러움
+// 2) process.env.key 형태로 모두 저장
+// -> process.env.key형태로 원하는 값을 불러올수있음
 
-mongoose.connect('mongodb://localhost:27017/wetube', {
-    //mongodb://localhost:포트번호/프로젝트이름
-    userNewUrlParser: true,
-    useFindAndModify: false
-});
+mongoose.connect(
+    process.env.MONGO_URL,
+    //(.env에 넣기 전) [mongodb://localhost:포트번호/프로젝트이름]
+    {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    }
+);
 
 const db = mongoose.connection;
 
