@@ -5,7 +5,7 @@ block content
         .videoWatch
             video(src=`/${video.fileUrl}` controls=true)
         .videoInfo
-            a(href=`${routes.videos}${routes.editVideo}`) Edit Video
+            a(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
             h3.videoTitle= video.title
             span.videoViews= video.views
             h4.video.description= video.description

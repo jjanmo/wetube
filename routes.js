@@ -28,17 +28,19 @@ const routes = {
     logout: LOGOUT,
     search: SEARCH,
     users: USERS,
-    userDetail: (id) => {
+    userDetail: id => {
         return id ? `/${id}` : USER_DETAIL;
     },
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
     videos: VIDEOS,
     upload: UPLOAD,
-    videoDetail: (id) => {
+    videoDetail: id => {
         return id ? `/${id}` : VIDEO_DETAIL;
     },
-    editVideo: EDIT_VIDEO,
+    editVideo: id => {
+        return id ? `/${id}/edit` : EDIT_VIDEO;
+    },
     deleteVideo: DELETE_VIDEO
 };
 
