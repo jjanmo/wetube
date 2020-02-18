@@ -8,4 +8,4 @@ block content
             textarea(name="description", cols="30", rows="10")=video.description
             br
             input(type="submit" value="SAVE")
-    a.deleteVideoLink(href=`${routes.videos}${routes.deleteVideo}`) Delete Video
+    a.deleteVideoLink(href=`${routes.videos}${routes.deleteVideo(video.id)}`) Delete Video
