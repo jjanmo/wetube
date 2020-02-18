@@ -4,29 +4,38 @@ import Video from '../models/Video';
 // Home
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({});
+        const videos = await Video.find({}).sort({ _id: -1 });
         console.log(videos); // []
         res.render('home', { pageName: 'HOME', videos });
     } catch (error) {
         console.log(error);
-        res.render('home', { pageName: 'HOME', videos });
+        res.render('home', { pageName: 'HOME' });
     }
 };
 
 // Search
-export const search = (req, res) => {
-    // const term = req.query.term;
-    //-> 아래처럼 사용하는 것이 더 섹쉬함! ES6
+export const search = async (req, res) => {
     const {
         query: { term }
     } = req;
-    res.render('search', { pageName: 'SEARCH', term, videos }); //term : term => term으로 한 번에 사용가능
+    let videos = [];
+    try {
+        videos = await Video.find({
+            title: { $regex: term, $options: 'i' }
+        });
+        res.render('search', { pageName: 'SEARCH', term, videos });
+    } catch (error) {
+        console.log(error);
+    }
+    res.render('search', { pageName: 'SEARCH', term, videos });
 };
 
 // Upload
 export const getUpload = (req, res) => res.render('upload', { pageName: 'UPLOAD' });
 export const postUpload = async (req, res) => {
     //db와 연결후 영상 등록을 해야함!
+    //-> 실제로직 : 영상을 직접 업로드하는것이 아니고
+    //영상은 서버에 있고 그 서버의 url을 가지고 와서 연결시키는것
     const {
         body: { title, description },
         file: { path }
