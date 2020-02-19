@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+
 dotenv.config();
 // 1) .env에 있는 파일을 모두 불러움
 // 2) process.env.key 형태로 모두 저장

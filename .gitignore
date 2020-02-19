@@ -1,5 +1,6 @@
 /node_modules
 /uploads/videos
+/static
 
 # Logs
 logs
