@@ -1,13 +1,14 @@
 .header {
     margin-bottom: 50px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.23);
-    padding: 10px;
+    //box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 7px;
     font-family: 'Roboto', sans-serif;
     .headerWrapper {
         padding: 5px 0px;
         width: 100%;
         margin: 0 auto;
-        max-width: 1700px;
+        max-width: 1500px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         align-items: center;
@@ -43,35 +44,38 @@
             }
             form {
                 width: 100%;
-                input {
-                    padding: 5.5px 10px;
-                    width: 80%;
-                    border: 1px solid #d3d3d3;
-                    border-radius: 5px;
-                    font-size: 16px;
-                    font-family: 'Roboto', sans-serif;
-                    color: $black;
-                    &::placeholder {
-                        font-weight: 600px;
-                        color: rgba(0, 0, 0, 0.6);
-                    }
-                }
-                button {
-                    all: unset;
-                    width: 65px;
-                    height: 32px;
+                .searchingBar {
                     text-align: center;
-                    background-color: rgba(223, 230, 233, 0.5);
-                    border: 1px solid #d3d3d3;
-                    border-radius: 5px;
-                    color: rgba(0, 0, 0, 0.5);
-                    cursor: pointer;
-                    i {
-                        font-size: 14px;
+                    input {
+                        padding: 5.5px 10px;
+                        width: 60%;
+                        border: 1px solid #d3d3d3;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        font-family: 'Roboto', sans-serif;
+                        color: $black;
+                        &::placeholder {
+                            font-weight: 600px;
+                            color: rgba(0, 0, 0, 0.6);
+                        }
                     }
-                    &:hover {
-                        background-color: rgba(223, 230, 233, 1);
-                        color: rgba(0, 0, 0, 1);
+                    button {
+                        all: unset;
+                        width: 65px;
+                        height: 32px;
+                        text-align: center;
+                        background-color: rgba(223, 230, 233, 0.5);
+                        border: 1px solid #d3d3d3;
+                        border-radius: 5px;
+                        color: rgba(0, 0, 0, 0.5);
+                        cursor: pointer;
+                        i {
+                            font-size: 14px;
+                        }
+                        &:hover {
+                            background-color: rgba(223, 230, 233, 1);
+                            color: rgba(0, 0, 0, 1);
+                        }
                     }
                 }
             }
