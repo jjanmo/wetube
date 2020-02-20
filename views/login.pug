@@ -1,9 +1,10 @@
 extends ./layouts/main
 
-block content   
+block content
     .formContainer
+        h2 LOGIN
         form(action=routes.login, method="get" required)
             input(type="email" name="email" placeholder="Email" required)
             input(type="password" name="password" placeholder="Password" required)
-            input(type="submit" value="LOGIN")
-            include ./partials/socialButtons
+            input(type="submit" value="LOGIN NOW")
+        include ./partials/socialButtons

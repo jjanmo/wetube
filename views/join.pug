@@ -2,10 +2,11 @@ extends ./layouts/main
 
 block content   
     .formContainer
+        h2 JOIN US
         form(action=routes.join, method="post")
-            input(type="text" name="name" placeholder="Name" required)
+            input(type="text" name="name" placeholder="Full Name" required)
             input(type="email" name="email" placeholder="Email" required)
             input(type="password" name="password" placeholder="Password" required)
             input(type="password" name="verifyPassword" placeholder="Verify Password" required)
-            input(type="submit" value="JOIN US")
-            include ./partials/socialButtons    
+            input(type="submit" value="JOIN NOW")
+        include ./partials/socialButtons    
