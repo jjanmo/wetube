@@ -1,7 +1,32 @@
 mixin videoBlock( video = {})
     .videoBlock
         a(href=`${routes.videos}${routes.videoDetail(video.id)}`)
-            video.videoBlock-thumbnail(src=video.file controls=true)
-            h3.videoBlock-title= video.title
-            h4.videoBlock-description= video.description
-            h5.videoBlock-views= video.views
+            video.videoBlockThumbnail(src=video.file controls=true)
+            h3.videoBlockTitle= video.title
+            h4.videoBlockCreator jjanmo
+            h4 
+                span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`
+
+    .videoBlock
+        a(href=`${routes.videos}${routes.videoDetail(video.id)}`)
+            video.videoBlockThumbnail(src=video.file controls=true)
+            h3.videoBlockTitle= video.title
+            h4.videoBlockCreator jjanmo
+            h4 
+                span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`
+
+    .videoBlock
+        a(href=`${routes.videos}${routes.videoDetail(video.id)}`)
+            video.videoBlockThumbnail(src=video.file controls=true)
+            h3.videoBlockTitle= video.title
+            h4.videoBlockCreator jjanmo  
+            h4 
+                span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`
+    
+    .videoBlock
+        a(href=`${routes.videos}${routes.videoDetail(video.id)}`)
+                video.videoBlockThumbnail(src=video.file controls=true)
+                h3.videoBlockTitle= video.title
+                h4.videoBlockCreator jjanmo
+                h4 
+                    span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`

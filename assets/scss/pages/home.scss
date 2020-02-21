@@ -1,0 +1,7 @@
+.videosContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 40px 50px;
+    grid-column-gap: 30px;
+    grid-row-gap: 7rem;
+}

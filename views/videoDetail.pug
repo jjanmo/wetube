@@ -4,7 +4,8 @@ block content
     .videoWrapper   
         .videoColumn
             .videoContainer
-                video(src=`/${video.fileUrl}` controls=true)
+                .videoPlayer
+                    video(src=`/${video.fileUrl}` controls=true)
                 .videoInfo
                     a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
                     h3.info.videoTitle= video.title
