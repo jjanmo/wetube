@@ -1,11 +1,10 @@
 extends ./layouts/main
 
-block content   
+block content
+    h2 Update Your Video😎
     .editVideoContainer
         form(action=`${routes.videos}${routes.editVideo(video.id)}` method="post")
-            input(type="text" name="title" value=video.title)
-            br
+            input(type="text" name="title" value=video.title)           
             textarea(name="description", cols="30", rows="10")=video.description
-            br
             input(type="submit" value="SAVE")
-    a.deleteVideoLink(href=`${routes.videos}${routes.deleteVideo(video.id)}`) Delete Video
+    a.deleteVideoLink(href=`${routes.videos}${routes.deleteVideo(video.id)}`) DELETE

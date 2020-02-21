@@ -1,0 +1,51 @@
+h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #c0392b;
+}
+.editVideoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    form {
+        * {
+            display: block;
+            margin-bottom: 20px;
+            width: 300px;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+        textarea {
+            resize: none;
+        }
+        textarea,
+        input[type='text'] {
+            box-sizing: content-box;
+            outline: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            padding: 3px 4px;
+        }
+        input[type='submit'] {
+            background-color: #c0392b;
+            color: $white;
+            height: 25px;
+            margin-left: 5px;
+        }
+    }
+}
+a.deleteVideoLink {
+    display: block;
+    width: 300px;
+    height: 25px;
+    line-height: 25px;
+    margin: auto;
+    background-color: #2980b9;
+    color: $white;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+}
