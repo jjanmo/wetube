@@ -1,11 +1,15 @@
 extends ./layouts/main
 
-block content   
-    .videoContainer
-        .videoWatch
-            video(src=`/${video.fileUrl}` controls=true)
-        .videoInfo
-            a(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
-            h3.videoTitle= video.title
-            span.videoViews= video.views
-            h4.video.description= video.description
+block content
+    .videoWrapper   
+        .videoColumn
+            .videoContainer
+                video(src=`/${video.fileUrl}` controls=true)
+                .videoInfo
+                    a(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
+                    h3.videoTitle= video.title
+                    span.videoViews= video.views
+                    h4.video.description= video.description
+                .videoCreator    
+        .videoColumn 관련 영상 리스트
+         

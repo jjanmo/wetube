@@ -1,0 +1,17 @@
+.videoWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 30px;
+    margin: auto;
+    &:first-child {
+        width: 100%;
+        video {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &:last-child {
+        width: 100%;
+    }
+}
