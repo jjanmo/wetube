@@ -1,17 +1,61 @@
 .videoWrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     column-gap: 30px;
-    margin: auto;
+    margin: 0 auto 30px;
     &:first-child {
-        width: 100%;
+        width: 90%;
+        margin: auto;
         video {
             width: 100%;
             height: auto;
+            margin-bottom: 20px;
+        }
+        .videoInfo {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            .info {
+                margin-bottom: 10px;
+                display: inline-block;
+            }
+            a {
+                background-color: #c0392b;
+                color: $white;
+                width: 90px;
+                height: 20px;
+                font-size: 15px;
+                padding: 2px 0 2px;
+                border-radius: 10px;
+                text-decoration: none;
+                line-height: 20px;
+                text-align: center;
+            }
+            .videoTitle {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .videoViews {
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.6);
+            }
+            .videoDescription {
+                font-size: 14px;
+            }
+        }
+        .videoCreator {
+            padding: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
         }
     }
     &:last-child {
-        width: 100%;
+        width: 90%;
+        margin: auto;
     }
+}
+.commentWrapper {
+    margin: 20px auto 20px;
 }

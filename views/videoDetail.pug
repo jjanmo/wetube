@@ -6,10 +6,10 @@ block content
             .videoContainer
                 video(src=`/${video.fileUrl}` controls=true)
                 .videoInfo
-                    a(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
-                    h3.videoTitle= video.title
-                    span.videoViews= video.views
-                    h4.video.description= video.description
-                .videoCreator    
-        .videoColumn 관련 영상 리스트
-         
+                    a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
+                    h3.info.videoTitle= video.title
+                    span.info.videoViews= `VIEWS ${video.views} • ${video.createdAt}`
+                    h4.info.video.description= video.description
+                .videoCreator jjanmo
+        .videoColumn related video list
+    .commentWrapper comment     
