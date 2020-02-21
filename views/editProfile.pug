@@ -1,10 +1,13 @@
 extends ./layouts/main
 
-block content   
+block content
+    h2 Edit Your Profile  
     .formContainer
         form(action=`${routes.users}${routes.editProfile}` method="post")
-            label(for="avater") Change your Avatar
-            input(type="file" name="avatar")
+            .fileContainer
+                label(for="avatar") Change your Avatar
+                input(type="file" name="avatar" id="avatar" accept="image/*")
+                input(type="text" name="fileName" readonly)
             input(type="text" name="name" placeholder="Name")
             input(type="email" name="email" placeholder="Email")
             input(type="submit" value="SAVE")

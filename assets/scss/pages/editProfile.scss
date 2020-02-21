@@ -1,0 +1,51 @@
+// .formContainer {
+//     text-align: center;
+//     .fileContainer label {
+//         padding: 0.5em 0.75em;
+//         color: #999;
+//         font-size: inherit;
+//         line-height: normal;
+//         vertical-align: middle;
+//         background-color: #fdfdfd;
+//         cursor: pointer;
+//         border: 1px solid #ebebeb;
+//         border-bottom-color: #e2e2e2;
+//         border-radius: 0.25em;
+//         #avatar {
+//             color: $red;
+//         }
+//     }
+// }
+
+.formContainer {
+    form {
+        .fileContainer {
+            label {
+                display: block;
+            }
+            input[type='file'] {
+                position: absolute;
+                top: 0px;
+                left: -10000px;
+                width: 1px;
+                height: 1px;
+            }
+            input[type='text'] {
+            }
+        }
+    }
+}
+
+a.changePasswordLink {
+    display: block;
+    width: 340px;
+    height: 30px;
+    line-height: 28px;
+    margin: auto;
+    background-color: #3498db;
+    color: $white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+}

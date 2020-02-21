@@ -4,8 +4,6 @@ import routes from '../routes'
 export const getJoin = (req, res) => res.render('join', { pageName: 'JOIN' });
 export const postJoin = (req, res) => {
     const { body: {
-        name,
-        email,
         password,
         verifyPassword
     } } = req;
@@ -31,8 +29,7 @@ export const postLogin = (req, res) => {
 }
 
 
-export const users = (req, res) => res.render('users', { pageName: 'USERS' });
 export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
+export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER PROFILE' });
 export const editProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
-export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER PROFILE' });

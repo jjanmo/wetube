@@ -1,7 +1,7 @@
 extends ./layouts/main
 
 block content
-    h2 Update Your Video😎
+    h2 Edit Your Video
     .editVideoContainer
         form(action=`${routes.videos}${routes.editVideo(video.id)}` method="post")
             input(type="text" name="title" value=video.title)           
