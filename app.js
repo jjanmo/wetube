@@ -1,17 +1,25 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import passport from 'passport';
+import session from 'express-session';
+import mongoose from 'mongoose';
+import MongoStore from 'connect-mongo';
 import helmet from 'helmet';
 import { localsMiddleware } from './middlewares';
 import morgan from 'morgan';
 //import { userRouter } from './routers/userRouter';
 //-> named export했을 경우에는 import 방식이 다르다!
+
 import routes from './routes';
 import userRouter from './routers/userRouter';
 import videoRouter from './routers/videoRouter';
 import globalRouter from './routers/globalRouter';
 
 const app = express();
+
+//cookiestore for mongodb/cookie connection
+const CookieStore = MongoStore(session);
 
 //app.use() : to use middleware
 app.use(helmet()); //helmet is help secure my express app
@@ -27,15 +35,28 @@ app.use('/uploads', express.static('uploads'));
 //-> 우선 이렇게 만들고 추후에 변경 : 예를 들어 아마존서버에 저장하고 그곳에서 파일url만 받아오도록 만든다
 app.use('/static', express.static('static'));
 
-
 //bodyparser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
+//express-session
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        store: new CookieStore({ mongooseConnection: mongoose.connection }) //mongodb/cookie connection
+    })
+);
+
 //morgan is logger middleware
 app.use(morgan('dev'));
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //locals
 app.use(localsMiddleware);

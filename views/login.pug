@@ -3,7 +3,7 @@ extends ./layouts/main
 block content
     .formContainer
         h2 LOGIN
-        form(action=routes.login, method="get" required)
+        form(action=routes.login, method="post" required)
             input(type="email" name="email" placeholder="Email" required)
             input(type="password" name="password" placeholder="Password" required)
             input(type="submit" value="LOGIN NOW")

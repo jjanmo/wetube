@@ -14,10 +14,16 @@ export const uploadVideo = multerVideo.single('videoFile');
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = 'WeTube';
     res.locals.routes = routes;
-    //fake data of user
-    res.locals.user = {
-        isAuthenticated: false,
-        id: 13
-    };
+    res.locals.user = req.user || null;
     next();
+};
+
+//로그인 한 유저는 접속하지 못하게하는 미들웨어
+export const onlyPublic = (req, res, next) => {
+    req.user ? res.redirect(routes.home) : next();
+};
+
+//로그인 한 유저만 접속가능하게 하는 미들웨어
+export const onlyPrivate = (req, res, next) => {
+    req.user ? next() : res.redirect(routes.join);
 };
