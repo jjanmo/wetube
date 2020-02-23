@@ -17,6 +17,8 @@ const CHANGE_PASSWORD = '/change-password';
 // Social Login
 const GITHUB_LOGIN = '/auth/github';
 const GITHUB_CALLBACK = '/auth/github/callback';
+const GOOGLE_LOGIN = '/auth/google';
+const GOOGLE_CALLBACK = '/auth/google/callback';
 
 // Video
 const VIDEOS = '/videos';
@@ -49,7 +51,9 @@ const routes = {
         return id ? `/${id}/delete` : DELETE_VIDEO;
     },
     githubLogin: GITHUB_LOGIN,
-    githubCallback: GITHUB_CALLBACK
+    githubCallback: GITHUB_CALLBACK,
+    googleLogin: GOOGLE_LOGIN,
+    googleCallback: GOOGLE_CALLBACK
 };
 
 export default routes;
