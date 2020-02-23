@@ -1,13 +1,16 @@
 .socialButtons
     button.googleBtn
         .googleContainer
-           img(src="uploads/socialButtonLogos/googleLogo.png")
-           span Continue with Google
+            a(href=routes.googleLogin)
+                img(src="uploads/socialButtonLogos/googleLogo.png")
+                span Continue with Google
     button.facebookBtn
         .facebookContainer
-            img(src="uploads/socialButtonLogos/facebookLogo.png")
-            span Continue with FaceBook
+            a(href=routes.facebookLogin)    
+                img(src="uploads/socialButtonLogos/facebookLogo.png")
+                span Continue with FaceBook
     button.githubBtn
         .githubContainer
-            img(src="uploads/socialButtonLogos/githubLogo.png")
-            span Continue with Github
+            a(href=routes.githubLogin)
+                img(src="uploads/socialButtonLogos/githubLogo.png")
+                span Continue with Github

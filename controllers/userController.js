@@ -38,7 +38,47 @@ export const postLogin = passport.authenticate('local', {
     failureRedirect: routes.login
 });
 
-export const logout = (req, res) => res.render('logout', { pageName: 'LOGOUT' });
+// Github Login
+export const githubCallback = async (_, __, profile, cb) => {
+    //github의 정보를 요청한 웹서버로 넘겨주는 과정
+    const {
+        _json: { id, avatar_url, name, email }
+    } = profile;
+    try {
+        const user = await User.findOne({ email });
+        console.log(user);
+        if (user) {
+            user.avatarUrl = avatar_url;
+            user.githubId = id;
+            user.save();
+            return cb(null, user);
+        }
+        const newUser = await User.create({
+            name,
+            email,
+            githubId: id,
+            avatarUrl: avatar_url
+        });
+        return cb(null, newUser);
+    } catch (error) {
+        console.log(error);
+        return cb(error);
+    }
+};
+
+export const getGithubLogin = passport.authenticate('github');
+//->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
+
+export const postGithubLogin = function(req, res) {
+    res.redirect(routes.home);
+};
+
+// Logout
+export const logout = (req, res) => {
+    req.logout();
+    res.redirect(routes.home);
+};
+
 export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER PROFILE' });
 export const editProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
