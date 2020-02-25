@@ -39,6 +39,9 @@ export const postLogin = passport.authenticate('local', {
 });
 
 // Github Login
+export const getGithubLogin = passport.authenticate('github');
+//->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
+
 export const githubCallback = async (_, __, profile, cb) => {
     //github의 정보를 요청한 웹서버로 넘겨주는 과정
     const {
@@ -65,29 +68,29 @@ export const githubCallback = async (_, __, profile, cb) => {
     }
 };
 
-export const getGithubLogin = passport.authenticate('github');
-//->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
-
 export const postGithubLogin = (req, res) => {
     res.redirect(routes.home);
 };
 
 // Google Login
+export const getGoogleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
+
 export const googleCallback = async (_, __, profile, cb) => {
     const {
-        _json: { sub, name, picture }
+        _json: { sub, name, picture, email }
     } = profile;
-    console.log(profile);
     try {
-        const user = await User.findOne({ googleId: sub });
+        const user = await User.findOne({ email });
         console.log(user);
         if (user) {
-            user.avatarUrl = picture;
+            user.googleId = sub;
+            user.avatarUrl = user.avatarUrl || picture;
             user.save();
             return cb(null, user);
         }
         const newUser = await User.create({
             name,
+            email,
             googleId: sub,
             avatarUrl: picture
         });
@@ -98,7 +101,6 @@ export const googleCallback = async (_, __, profile, cb) => {
     }
 };
 
-export const getGoogleLogin = passport.authenticate('google', { scope: ['profile'] });
 export const postGoogleLogin = (req, res) => {
     res.redirect(routes.home);
 };
