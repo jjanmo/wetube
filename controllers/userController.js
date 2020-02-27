@@ -68,9 +68,8 @@ export const githubCallback = async (_, __, profile, cb) => {
     }
 };
 
-export const postGithubLogin = (req, res) => {
-    res.redirect(routes.home);
-};
+export const postGithubLogin = (req, res) => res.redirect(routes.home);
+
 
 // Google Login
 export const getGoogleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
@@ -101,9 +100,33 @@ export const googleCallback = async (_, __, profile, cb) => {
     }
 };
 
-export const postGoogleLogin = (req, res) => {
-    res.redirect(routes.home);
-};
+export const postGoogleLogin = (req, res) => res.redirect(routes.home);
+
+
+// Naver Login
+export const getNaverLogin = passport.authenticate('naver');
+
+export const naverCallback = (accessToken, refreshToken, profile, done) => {
+    console.log(profile);
+    // try {
+    //     const user = await User.findOne({ 'naverId': profile.id });
+    //     if (user) {
+    //         user.name = profile.displayName;
+    //         user.save();
+    //         return done(null, user);
+    //     }
+    //     const newUser = await User.create({
+    //         name: profile.displayName,
+    //         email: profile.email[0],
+    //         naverId: profile.id,
+    //     });
+    //     return done(null, newUser);
+    // } catch (error) {
+    //     console.log(error)
+    // }
+}
+
+export const postNaverLogin = (req, res) => res.redirect(routes.home);
 
 // Logout
 export const logout = (req, res) => {

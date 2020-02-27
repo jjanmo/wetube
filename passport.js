@@ -1,8 +1,9 @@
 import passport from 'passport';
 import GithubStrategy from 'passport-github';
 import GoogleStrategy from 'passport-google-oauth20';
+import NaverStrategy from 'passport-naver';
 import User from './models/User';
-import { githubCallback, googleCallback } from './controllers/userController';
+import { githubCallback, googleCallback, naverCallback } from './controllers/userController';
 import routes from './routes';
 
 //local strategy 설정
@@ -35,3 +36,12 @@ passport.use(
         googleCallback
     )
 );
+
+passport.use(new NaverStrategy(
+    {
+        clientID: process.env.NAVER_ID,
+        clientSecret: process.env.NAVER_SERCERT,
+        callbackURL: `http://localhost:3000${routes.naverCallback}`
+    },
+    naverCallback
+));

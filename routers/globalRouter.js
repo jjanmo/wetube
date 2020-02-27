@@ -13,7 +13,9 @@ import {
     getGithubLogin,
     postGithubLogin,
     getGoogleLogin,
-    postGoogleLogin
+    postGoogleLogin,
+    getNaverLogin,
+    postNaverLogin
 } from '../controllers/userController';
 import { onlyPublic, onlyPrivate } from '../middlewares';
 import passport from 'passport';
@@ -41,6 +43,10 @@ globalRouter.get(routes.githubCallback, passport.authenticate('github', { failur
 // Google Login
 globalRouter.get(routes.googleLogin, getGoogleLogin);
 globalRouter.get(routes.googleCallback, passport.authenticate('google', { failureRedirect: routes.login }), postGoogleLogin);
+
+// Naver Login
+globalRouter.get(routes.naverLogin, getNaverLogin);
+globalRouter.get(routes.naverCallback, passport.authenticate('naver', { failureRedirect: routes.login }), postNaverLogin);
 
 // Logout
 globalRouter.get(routes.logout, onlyPrivate, logout);

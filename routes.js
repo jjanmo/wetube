@@ -19,6 +19,8 @@ const GITHUB_LOGIN = '/auth/github';
 const GITHUB_CALLBACK = '/auth/github/callback';
 const GOOGLE_LOGIN = '/auth/google';
 const GOOGLE_CALLBACK = '/auth/google/callback';
+const NAVER_LOGIN = '/auth/naver';
+const NAVER_CALLBACK = '/auth/naver/callback';
 
 // Video
 const VIDEOS = '/videos';
@@ -53,7 +55,9 @@ const routes = {
     githubLogin: GITHUB_LOGIN,
     githubCallback: GITHUB_CALLBACK,
     googleLogin: GOOGLE_LOGIN,
-    googleCallback: GOOGLE_CALLBACK
+    googleCallback: GOOGLE_CALLBACK,
+    naverLogin: NAVER_LOGIN,
+    naverCallback: NAVER_CALLBACK
 };
 
 export default routes;
