@@ -13,6 +13,7 @@ const USERS = '/users';
 const USER_DETAIL = '/:id';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
+const MYPROFILE = '/myprofile';
 
 // Social Login
 const GITHUB_LOGIN = '/auth/github';
@@ -36,6 +37,7 @@ const routes = {
     logout: LOGOUT,
     search: SEARCH,
     users: USERS,
+    myProfile: MYPROFILE,
     userDetail: id => {
         return id ? `/${id}` : USER_DETAIL;
     },

@@ -1,0 +1,10 @@
+extends ./layouts/main
+
+block content   
+    h1.profileTitle My Profile
+    .profileContainer
+        .avatarBox
+            img.avatar(src=`${myProfile.avatarUrl}`)
+        h3.name= myProfile.name
+        h3.email= myProfile.email
+        a(href=`${routes.user}${routes.editProfile}`) EDIT

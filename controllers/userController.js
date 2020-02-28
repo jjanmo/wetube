@@ -134,6 +134,11 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 };
 
-export const userDetail = (req, res) => res.render('userDetail', { pageName: 'USER PROFILE' });
+// My Profile page
+export const getMyProfile = async (req, res) => {
+    const { user: { _id: id } } = req;
+    const myProfile = await User.findById(id);
+    res.render('userProfile', { pageName: 'My Profile', myProfile });
+}
 export const editProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });

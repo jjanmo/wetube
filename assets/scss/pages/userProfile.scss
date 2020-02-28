@@ -1,0 +1,50 @@
+h1.profileTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.8em;
+    color: #c0392b;
+}
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 2%;
+    width: 25%;
+    // height: 50%;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    margin: auto;
+
+    & > *:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    .avatarBox {
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+        }
+    }
+    h3 {
+    }
+    .name {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .email {
+        color: rgba(0, 0, 0, 0.7);
+    }
+    a {
+        display: inline-block;
+        background-color: #c0392b;
+        color: $white;
+        width: 60px;
+        height: 20px;
+        padding: 2px 0 2px;
+        border-radius: 10px;
+        text-decoration: none;
+        line-height: 20px;
+        text-align: center;
+    }
+}
