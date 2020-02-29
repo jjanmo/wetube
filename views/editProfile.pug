@@ -1,14 +1,12 @@
 extends ./layouts/main
 
 block content
-    h2 Edit Your Profile  
+    h2 Edit Profile  
     .formContainer
-        form(action=`${routes.users}${routes.editProfile}` method="post")
+        form(action=`${routes.users}${routes.editProfile}` method="post" enctype="multipart/form-data")
             .fileContainer
-                label(for="avatar") Change your Avatar
-                input(type="file" name="avatar" id="avatar" accept="image/*")
-                input(type="text" name="fileName" readonly)
-            input(type="text" name="name" placeholder="Name")
-            input(type="email" name="email" placeholder="Email")
-            input(type="submit" value="SAVE")
+                input(type="file" name="avatarFile" id="avatar" accept="image/*" )
+            input(type="text" name="name" value=loggedUser.name)
+            input(type="email" name="email" value=loggedUser.email)
+            input(type="submit" value="Edit now")
     a.changePasswordLink(href=`${routes.users}${routes.changePassword}`) Change Password 

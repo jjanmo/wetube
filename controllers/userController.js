@@ -76,7 +76,11 @@ export const getGoogleLogin = passport.authenticate('google', { scope: ['profile
 
 export const googleCallback = async (_, __, profile, cb) => {
     const {
-        _json: { sub, name, picture, email }
+        _json: {
+            sub,
+            name,
+            picture,
+            email }
     } = profile;
     try {
         const user = await User.findOne({ email });
@@ -134,11 +138,40 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 };
 
-// My Profile page
+// My Profile 
 export const getMyProfile = async (req, res) => {
-    const { user: { _id: id } } = req;
-    const myProfile = await User.findById(id);
-    res.render('userProfile', { pageName: 'My Profile', myProfile });
+    res.render('userProfile', { pageName: 'My Profile', user: req.user }); //여기서 user는 로그인한 유저
 }
-export const editProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
+
+// UserDetail
+export const userDetail = async (req, res) => {
+    const { params: { id } } = req;
+    try {
+        const user = await User.findById(id);
+
+        res.render('userProfile', { pageName: 'Profile', user }); //여기서 user는 다른 유저를 찾는 경우
+    } catch (error) {
+        console.log(error);
+        res.redirect(routes.home);
+    }
+}
+
+// EditProfile
+export const getEditProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
+export const postEditProfile = async (req, res) => {
+    const { body: { name, email }, file } = req;
+    try {
+        await User.findByIdAndUpdate(req.user.id,
+            {
+                name,
+                email,
+                avatarUrl: file ? `/${file.path}` : req.user.avatarUrl
+            });
+        res.redirect(`${routes.users}${routes.myProfile}`);
+    } catch (error) {
+        console.log(error);
+        res.redirect(`${routes.users}${routes.editProfile}`);
+    }
+}
+//ChangePassword
 export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });

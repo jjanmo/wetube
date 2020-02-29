@@ -4,7 +4,9 @@ block content
     h1.profileTitle My Profile
     .profileContainer
         .avatarBox
-            img.avatar(src=`${myProfile.avatarUrl}`)
-        h3.name= myProfile.name
-        h3.email= myProfile.email
-        a(href=`${routes.user}${routes.editProfile}`) EDIT
+            img.avatar(src=`${user.avatarUrl}`)
+        h3.name= user.name
+        h3.email= user.email
+        if user.id === loggedUser.id
+            a.editBtn(href=`${routes.users}${routes.editProfile}`) EDIT PROFILE
+            a.changeBtn(href=`${routes.users}${routes.changePassword}`) CHANGE PASSWORD      
