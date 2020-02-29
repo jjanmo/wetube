@@ -173,5 +173,10 @@ export const postEditProfile = async (req, res) => {
         res.redirect(`${routes.users}${routes.editProfile}`);
     }
 }
+
 //ChangePassword
-export const changePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
+export const getChangePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
+export const postChangePassword = (req, res) => {
+
+    res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
+}
