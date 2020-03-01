@@ -1,9 +1,10 @@
 extends ./layouts/main
 
 block content
-    .uploadContainer
+    h2 Upload Video
+    .formContainer
         form(action=`${routes.videos}${routes.upload}` method="post" enctype="multipart/form-data")
-            label(for="videoFile") Choose File
+            label(for="videoFile")
             input(type="file" name="videoFile" accept="video/*" required) 
             input(type="text" name="title" placeholder="Title" required)
             input(type="text" name="description" placeholder="Description" required)

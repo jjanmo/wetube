@@ -4,7 +4,7 @@ import Video from '../models/Video';
 // Home
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({}).sort({ _id: -1 });
+        const videos = await Video.find({}).populate('creator').sort({ _id: -1 });
         // console.log(videos); // []
         res.render('home', { pageName: 'HOME', videos });
     } catch (error) {
@@ -43,8 +43,11 @@ export const postUpload = async (req, res) => {
     const newVideo = await Video.create({
         title,
         description,
-        fileUrl: path
+        fileUrl: path,
+        creator: req.user.id
     });
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     //newVideo.id : document가 생성되면서 자동으로 부여되는듯...
     res.redirect(`${routes.videos}${routes.videoDetail(newVideo.id)}`); //등록한 영상의 상세페이지로 이동
 };
@@ -55,7 +58,7 @@ export const videoDetail = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const video = await Video.findById(id);
+        const video = await Video.findById(id).populate('creator');
         res.render('videoDetail', { pageName: video.title, video });
     } catch (error) {
         res.redirect(routes.home);

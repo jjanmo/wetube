@@ -20,6 +20,13 @@
     }
     h4.videoBlockCreator {
         margin-bottom: 5px;
+        a {
+            color: rgba(108, 92, 231, 0.6);
+            text-decoration: none;
+        }
+        a:hover {
+            color: rgba(108, 92, 231, 1);
+        }
     }
     .videoBlockTitle {
         font-size: 18px;

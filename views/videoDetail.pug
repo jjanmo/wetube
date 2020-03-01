@@ -7,10 +7,13 @@ block content
                 .videoPlayer
                     video(src=`/${video.fileUrl}` controls=true)
                 .videoInfo
-                    a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
+                    if video.creator.id === loggedUser.id
+                        a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
                     h3.info.videoTitle= video.title
                     span.info.videoViews= `VIEWS ${video.views} • ${video.createdAt}`
                     h4.info.video.description= video.description
-                .videoCreator jjanmo
+                    h4.videoBlockCreator 
+                .videoCreator Uploaded by 
+                    a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name
         .videoColumn related video list
     .commentWrapper comment     
