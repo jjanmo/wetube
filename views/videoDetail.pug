@@ -7,7 +7,7 @@ block content
                 .videoPlayer
                     video(src=`/${video.fileUrl}` controls=true)
                 .videoInfo
-                    if video.creator.id === loggedUser.id
+                    if loggedUser && video.creator.id === loggedUser.id
                         a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
                     h3.info.videoTitle= video.title
                     span.info.videoViews= `VIEWS ${video.views} • ${video.createdAt}`
