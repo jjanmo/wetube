@@ -1,11 +1,15 @@
 extends ./layouts/main
+include ./mixins/videoPlayer
 
 block content
     .videoWrapper   
         .videoColumn
             .videoContainer
-                .videoPlayer
-                    video(src=`/${video.fileUrl}` controls=true)
+                //- .videoPlayer
+                //-     video(src=`/${video.fileUrl}` controls=true)
+                +videoPlayer({
+                    file : video.fileUrl
+                })
                 .videoInfo
                     if loggedUser && video.creator.id === loggedUser.id
                         a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video

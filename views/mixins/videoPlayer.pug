@@ -1,0 +1,17 @@
+mixin videoPlayer( video = {})
+    .videoPlayer
+        video(src=`/${video.file}` )
+        .progressBar
+        .videoPlayerControl
+            .videoPlayerColumn
+                span
+                    i.fas.fa-play
+                span 0:00 / 20:00
+            .videoPlayerColumn
+                span
+                    i.fas.fa-volume-up
+            .videoPlayerColumn
+                span
+                    i.fas.fa-expand
+
+    
