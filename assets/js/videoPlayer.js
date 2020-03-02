@@ -7,6 +7,8 @@ const volumeBar = document.getElementById('jsVolumeBar');
 const fullScreenBtn = document.getElementById('jsFullScreenBtn');
 const totalTimeSpan = document.getElementById('jsTotalTime');
 const currentTimeSpan = document.getElementById('jsCurrentTime');
+let player; //setInterval : print currentTime 
+let restart = false;
 
 function handleVolumeBtn() {
     const currentVolume = video.volume;
@@ -55,9 +57,10 @@ function handleVolumeBar(e) {
 
 function handleVideoPlay() {
     if (video.paused) {
-        //initialization
-        currentTimeSpan.innerHTML = '00:00:00 /';
-
+        if (restart) {
+            currentTimeSpan.innerHTML = '00:00:00 / ';  //initialization
+            restart = false;
+        }
         video.play();
         playBtn.innerHTML = '<i class="fas fa-pause"></i>'
     }
@@ -85,24 +88,26 @@ function handlePlaytime() {
     const totalPlaytime = playtimeFormatter(video.duration);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
-    const player = setInterval(() => {
+    player = setInterval(() => {
         currentPlaytime = playtimeFormatter(video.currentTime)
         currentTimeSpan.innerHTML = `${currentPlaytime} / `;
-        if (totalPlaytime === currentPlaytime) {
-            clearInterval(player);
-            playBtn.innerHTML = '<i class="fas fa-undo-alt"></i>';
-        }
-    }, 1000);
+    }, 900);
 }
 
+function handleEndtime() {
+    // clearInterval(player);
+    playBtn.innerHTML = '<i class="fas fa-undo-alt"></i>';
+    restart = true;
+}
 
 function init() {
     playBtn.addEventListener('click', handleVideoPlay);
+    video.addEventListener('click', handleVideoPlay);
     volumeBtn.addEventListener('click', handleVolumeBtn);
     volumeBar.addEventListener('input', handleVolumeBar);
     fullScreenBtn.addEventListener('click', handleFullScreen);
     video.addEventListener('loadedmetadata', handlePlaytime);
-
+    video.addEventListener('ended', handleEndtime);
 }
 
 if (videoPlayer) {
