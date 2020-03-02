@@ -18,6 +18,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = 'WeTube';
     res.locals.routes = routes;
     res.locals.loggedUser = req.user || null;
+    res.locals.dateFormatter = dateFormatter;
     next();
 };
 
@@ -30,3 +31,10 @@ export const onlyPublic = (req, res, next) => {
 export const onlyPrivate = (req, res, next) => {
     req.user ? next() : res.redirect(routes.join);
 };
+
+
+//date formatter
+const dateFormatter = (dateStr) => {
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}.${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`;
+}
