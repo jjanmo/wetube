@@ -1,0 +1,30 @@
+.recordContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    video {
+        width: 100%;
+        margin-bottom: 10px;
+        max-width: 340px;
+        border-radius: 10px;
+        height: auto;
+        margin: 0 auto 15px;
+        background-color: $black;
+    }
+    button {
+        all: unset;
+        width: 100%;
+        max-width: 320px;
+        background-color: #3498db;
+        color: white;
+        box-sizing: content-box;
+        padding: 7px 10px 7px 10px;
+        font-size: 15px;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        margin-bottom: 15px;
+        text-align: center;
+        cursor: pointer;
+    }
+}

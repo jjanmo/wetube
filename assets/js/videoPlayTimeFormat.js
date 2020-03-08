@@ -1,4 +1,4 @@
-
+// const videoPlayer = document.getElementById('jsVideoPlayer');
 export const playtimeFormatter = (playtime) => {
     let hour, min, sec;
     if (playtime >= 3600) { //hour:min:sec
@@ -18,3 +18,12 @@ export const playtimeFormatter = (playtime) => {
         return `00:00:${sec < 10 ? `0${sec}` : sec}`;
     }
 }
+
+// function init() {
+//     playtimeFormatter();
+
+// }
+
+// if (videoPlayer) {
+//     init();
+// } 

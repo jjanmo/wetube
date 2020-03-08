@@ -3,6 +3,9 @@ extends ./layouts/main
 block content
     h2 Upload Video
     .formContainer
+        .recordContainer#recorderContainer
+            video#jsVideoPreview
+            button#jsRecorderBtn START RECORDING
         form(action=`${routes.videos}${routes.upload}` method="post" enctype="multipart/form-data")
             label(for="videoFile")
             input(type="file" name="videoFile" accept="video/*" required) 
