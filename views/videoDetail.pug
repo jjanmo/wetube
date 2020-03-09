@@ -5,19 +5,40 @@ block content
     .videoWrapper   
         .videoColumn
             .videoContainer
-                //- .videoPlayer
-                //-     video(src=`/${video.fileUrl}` controls=true)
                 +videoPlayer({
                     file : video.fileUrl
                 })
                 .videoInfo
                     if loggedUser && video.creator.id === loggedUser.id
-                        a.info(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
+                        a.editBtn(href=`${routes.videos}${routes.editVideo(video.id)}`) Edit Video
                     h3.info.videoTitle= video.title
-                    span.info.videoViews= `VIEWS ${video.views} • ${dateFormatter(video.createdAt)}`
-                    h4.info.video.description= video.description
-                    h4.videoBlockCreator 
-                .videoCreator Uploaded by 
-                    a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name
-        .videoColumn related video list
-    .commentWrapper comment     
+                    .info
+                        .infoColumn
+                            span.videoViews= `VIEWS ${video.views} • ${dateFormatter(video.createdAt)}`
+                        .infoColumn    
+                            span.like#jsLikeBtn
+                                button
+                                    i.fas.fa-thumbs-up  
+                                span.cnt#jsLikeCount=video.like
+                            span.dislike#jsDislikeBtn
+                                button
+                                    i.fas.fa-thumbs-down  
+                                span.cnt#jsDislikeCount=video.dislike
+                .videoDescription                                
+                    .videoCreator Uploaded by 
+                        a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name
+                    p.description Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quam repellendus totam ad ipsum quidem nam harum! Tempore, reiciendis tenetur asperiores neque doloremque, voluptatem aut in ab obcaecati, rerum qui?Perspiciatis recusandae beatae earum corporis.
+            .commentContainer
+                .commentHeader
+                    if video.comment.length === 1
+                        h3.commentCount #{video.comment.length} Comment
+                    else
+                        h3.commentCount #{video.comment.length} Comments
+                    form(action="#" method="post")
+                        img(src="/uploads/avatar/avatar.png")
+                        input(type="text" name="comment" placeholder="Add a public comment.....")
+                        .btnBox
+                            button#commentCancelBtn CANCEL
+                            button#commentSubmitBtn COMMENT
+                .commentList making comment block & using comment block    
+        .videoColumn related video list     

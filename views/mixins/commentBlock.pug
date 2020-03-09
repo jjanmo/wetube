@@ -1,0 +1,22 @@
+mixin commentBlock(comment= {})
+    .commentBlock
+        .imageBox
+            img(src="#")
+        .header
+            span.name=comment.creator.name
+            span.date=comment.createdAt
+        .content=comment.text
+        .buttonBox
+            span.like#jsCommentLikeBtn
+                button
+                    i.fas.fa-thumbs-up  
+                span.cnt#jsCommentLikeCount=comment.like
+            span.dislike#jsCommentDislikeBtn
+                button
+                    i.fas.fa-thumbs-down  
+                span.cnt#jsCommentDislikeCount=comment.dislike
+            span.reply#jsReplyBtn
+                button
+                    i.fas.fa-reply
+        .replyBox            
+
