@@ -19,4 +19,5 @@ videoRouter.post(routes.editVideo(), onlyPrivate, postEditVideo);
 // Video Delete
 videoRouter.get(routes.deleteVideo(), onlyPrivate, deleteVideo);
 
+
 export default videoRouter;

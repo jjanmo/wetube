@@ -17,7 +17,7 @@ const handleVideoData = e => {
 
 const startRecording = () => {
     videoRecorder = new MediaRecorder(streamObject);
-    console.log(videoRecorder);
+    // console.log(videoRecorder);
     videoRecorder.start();
     videoRecorder.addEventListener('dataavailable', handleVideoData);
     //-> 이벤트가 끝날 때(녹화가 끝날때) 녹화한 내용을 얻을 수 있음

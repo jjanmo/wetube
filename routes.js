@@ -23,6 +23,10 @@ const GOOGLE_CALLBACK = '/auth/google/callback';
 const NAVER_LOGIN = '/auth/naver';
 const NAVER_CALLBACK = '/auth/naver/callback';
 
+// API
+const API = '/api';
+const REGISTER_VIEW = '/:id/view';
+
 // Video
 const VIDEOS = '/videos';
 const UPLOAD = '/upload';
@@ -59,7 +63,9 @@ const routes = {
     googleLogin: GOOGLE_LOGIN,
     googleCallback: GOOGLE_CALLBACK,
     naverLogin: NAVER_LOGIN,
-    naverCallback: NAVER_CALLBACK
+    naverCallback: NAVER_CALLBACK,
+    api: API,
+    registerView: REGISTER_VIEW
 };
 
 export default routes;

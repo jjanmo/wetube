@@ -10,6 +10,13 @@ const currentTimeSpan = document.getElementById('jsCurrentTime');
 let player; //setInterval : print currentTime 
 let restart = false;
 
+// Register video view
+const registerView = () => {
+    const id = window.location.pathname.split('/')[2]
+    console.log(id);
+    fetch(`/api/${id}/view`, { method: 'POST' });
+}
+
 function handleVolumeBtn() {
     const currentVolume = video.volume;
     console.log(currentVolume);
@@ -95,6 +102,7 @@ function handlePlaytime() {
 }
 
 function handleEndtime() {
+    registerView();
     // clearInterval(player);
     playBtn.innerHTML = '<i class="fas fa-undo-alt"></i>';
     restart = true;
