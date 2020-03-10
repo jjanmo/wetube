@@ -13,7 +13,7 @@ let restart = false;
 // Register video view
 const registerView = () => {
     const id = window.location.pathname.split('/')[2]
-    console.log(id);
+    // console.log(id);
     fetch(`/api/${id}/view`, { method: 'POST' });
 }
 

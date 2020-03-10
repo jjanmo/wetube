@@ -28,7 +28,7 @@ const VideoSchema = new mongoose.Schema({
     },
     //video와 comment의 연결 방법2)
     //video안에 달린 comment의 아이디를 배열로 저장시켜 놓는 것
-    comment: [
+    comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'

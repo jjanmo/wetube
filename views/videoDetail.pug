@@ -28,17 +28,17 @@ block content
                     .videoCreator Uploaded by 
                         a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name
                     p.description Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quam repellendus totam ad ipsum quidem nam harum! Tempore, reiciendis tenetur asperiores neque doloremque, voluptatem aut in ab obcaecati, rerum qui?Perspiciatis recusandae beatae earum corporis.
-            .commentContainer
+            .commentContainer#jsCommentContainer
                 .commentHeader
-                    if video.comment.length === 1
-                        h3.commentCount #{video.comment.length} Comment
+                    if video.comments.length === 1
+                        h3.commentCount #{video.comments.length} Comment
                     else
-                        h3.commentCount #{video.comment.length} Comments
-                    form(action="#" method="post")
+                        h3.commentCount #{video.comments.length} Comments
+                    form#jsCommentForm
                         img(src="/uploads/avatar/avatar.png")
-                        input(type="text" name="comment" placeholder="Add a public comment.....")
+                        input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment.....")
                         .btnBox
-                            button#commentCancelBtn CANCEL
-                            button#commentSubmitBtn COMMENT
-                .commentList making comment block & using comment block    
+                            button#jsCommentCancelBtn CANCEL
+                            button#jsCommentSubmitBtn COMMENT
+                .commentList#jsCommentList 
         .videoColumn related video list     
