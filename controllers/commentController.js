@@ -1,18 +1,18 @@
 import Video from '../models/Video';
 import Comment from '../models/Comment';
 
-export const postAddComment = (req, res) => {
+export const postAddComment = async (req, res) => {
     const {
         params: { id },
         body: { comment },
         user
     } = req;
     try {
-        const newComment = Comment.create({
+        const newComment = await Comment.create({
             text: comment,
             creator: user.id
         });
-        const video = Video.findById(id);
+        const video = await Video.findById(id);
         video.comments.push(newComment._id);
         video.save();
     } catch (error) {

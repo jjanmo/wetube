@@ -14,10 +14,10 @@ function printComment(comment) {
 
 
 
-async function sendComment(comment) {
+const sendComment = async (comment) => {
     const id = window.location.pathname.split('/')[2];
     const result = await axios({
-        method: 'POST',
+        method: 'post',
         url: `/api/${id}/addComment`,
         data: {
             comment
@@ -31,7 +31,6 @@ async function sendComment(comment) {
 
 function handleSubmit(e) {
     e.preventDefault();
-    console.log(window);
     const commentInput = document.getElementById('jsCommentInput');
     const comment = commentInput.value;
     sendComment(comment);
