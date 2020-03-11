@@ -8,7 +8,7 @@ const apiRouter = express.Router();
 // Register video view
 apiRouter.post(routes.registerView, postRegisterView);
 
-// Comment
+// Add Comment
 apiRouter.post(routes.addComment, postAddComment);
 
 export default apiRouter;

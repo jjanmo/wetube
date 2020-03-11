@@ -1,0 +1,72 @@
+.commentList {
+    .commentBlock {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        .imageBox {
+            float: left;
+            width: 10%;
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+        }
+        .rightBox {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            width: 85%;
+            .commentInfo {
+                padding-left: 20px;
+                margin-bottom: 8px;
+                span {
+                    display: inline-block;
+                    margin-right: 10px;
+                    font-size: 15px;
+                    &:last-child {
+                        color: rgba(53, 59, 72, 1);
+                    }
+                }
+            }
+            .content {
+                padding-left: 20px;
+                margin-bottom: 8px;
+            }
+            .buttonBox {
+                padding-top: 5px;
+                padding-left: 20px;
+                vertical-align: bottom;
+                span {
+                    display: inline-block;
+                    color: #b2bec3;
+                    margin-right: 10px;
+                    button {
+                        all: unset;
+
+                        i {
+                            font-size: 13px;
+                        }
+                    }
+                    span.cnt {
+                        display: inline-block;
+                        font-size: 14px;
+                        margin-left: 10px;
+                        color: black;
+                    }
+                    &:nth-child(3) {
+                        margin-right: 20px;
+                        i {
+                            font-size: 16px;
+                        }
+                    }
+                    &:last-child {
+                        i {
+                            font-size: 16px;
+                            color: rgba(44, 62, 80, 0.8);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

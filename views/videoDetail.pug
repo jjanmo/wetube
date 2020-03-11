@@ -1,5 +1,6 @@
 extends ./layouts/main
 include ./mixins/videoPlayer
+include ./mixins/commentBlock
 
 block content
     .videoWrapper   
@@ -31,14 +32,27 @@ block content
             .commentContainer#jsCommentContainer
                 .commentHeader
                     if video.comments.length === 1
-                        h3.commentCount #{video.comments.length} Comment
+                        h3.commentCount
+                            span#jsCommnetCount #{video.comments.length} 
+                            |  Comment
                     else
-                        h3.commentCount #{video.comments.length} Comments
+                        h3.commentCount
+                            span#jsCommnetCount #{video.comments.length} 
+                            |  Comments
                     form#jsCommentForm
                         img(src="/uploads/avatar/avatar.png")
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment.....")
                         .btnBox
                             button#jsCommentCancelBtn CANCEL
                             button#jsCommentSubmitBtn COMMENT
-                .commentList#jsCommentList 
+                .commentList#jsCommentList
+                    each item in video.comments
+                        +commentBlock({
+                            creator : item.creator,
+                            avatarUrl : item.creator,
+                            createdAt : dateFormatter(item.createdAt),
+                            text : item.text,
+                            like : item.like,
+                            dislike : item.dislike
+                        })
         .videoColumn related video list     

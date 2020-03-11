@@ -34,7 +34,7 @@ export const onlyPrivate = (req, res, next) => {
 
 
 //date formatter
-const dateFormatter = (dateStr) => {
+export const dateFormatter = (dateStr) => {
     const date = new Date(dateStr);
     return `${date.getFullYear()}.${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`;
 }
