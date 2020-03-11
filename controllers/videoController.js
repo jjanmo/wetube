@@ -23,11 +23,12 @@ export const search = async (req, res) => {
         videos = await Video.find({
             title: { $regex: term, $options: 'i' }
         });
+        console.log(videos);
         res.render('search', { pageName: 'SEARCH', term, videos });
     } catch (error) {
         console.log(error);
+        res.render('search', { pageName: 'SEARCH', term, videos });
     }
-    res.render('search', { pageName: 'SEARCH', term, videos });
 };
 
 // Upload

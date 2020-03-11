@@ -7,11 +7,13 @@ block content
         if videos.length !== 0
             each video in videos
                 +videoBlock({
+                    id : video.id,
                     file : video.fileUrl,
                     title : video.title,
                     description : video.description,
                     views : video.views,
-                    id : video.id
+                    createdAt : dateFormatter(video.createdAt),
+                    creator : video.creator
                 })
         else 
             h3 No results found
