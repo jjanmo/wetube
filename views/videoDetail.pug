@@ -17,14 +17,14 @@ block content
                         .infoColumn
                             span.videoViews= `VIEWS ${video.views} • ${dateFormatter(video.createdAt)}`
                         .infoColumn    
-                            span.like#jsLikeBtn
+                            span.like#jsVideoLikeBtn
                                 button
                                     i.fas.fa-thumbs-up  
-                                span.cnt#jsLikeCount=video.like
-                            span.dislike#jsDislikeBtn
+                                span.cnt#jsVideoLikeCount=video.like
+                            span.dislike#jsVideoDislikeBtn
                                 button
                                     i.fas.fa-thumbs-down  
-                                span.cnt#jsDislikeCount=video.dislike
+                                span.cnt#jsVideoDislikeCount=video.dislike
                 .videoDescription                                
                     .videoCreator Uploaded by 
                         a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name

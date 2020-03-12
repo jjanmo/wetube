@@ -97,7 +97,7 @@ const sendComment = async (comment) => {
         }
     });
     if (response.status === 200) {
-        console.log(response.data);
+        //console.log(response.data);
         makeCommentBlock(response.data);
     }
 }

@@ -20,8 +20,22 @@ const UserSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
-    ]
+    ],
     //각각의 유저마다 자신이 작성한 댓글 정보를 저장하는 스키마
+
+    likeVideos: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Video'
+        }
+    ],
+    dislikeVideos: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Video'
+        }
+    ]
+    //유저가 마음에 듭니다 혹은 마음에 들지 않습니다 한 비디오 배열
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

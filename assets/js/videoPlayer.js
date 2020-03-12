@@ -1,4 +1,5 @@
 import { playtimeFormatter } from './videoPlayTimeFormat';
+
 const videoPlayer = document.getElementById('jsVideoPlayer');
 const video = document.getElementById('jsVideo');
 const playBtn = document.getElementById('jsPlayBtn');
