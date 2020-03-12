@@ -3,7 +3,8 @@ include ./mixins/videoPlayer
 include ./mixins/commentBlock
 
 block content
-    .videoWrapper   
+    .videoWrapper
+        input#jsHiddenInput(type="hidden" value=loggedUser)
         .videoColumn
             .videoContainer
                 +videoPlayer({
@@ -16,15 +17,27 @@ block content
                     .info
                         .infoColumn
                             span.videoViews= `VIEWS ${video.views} • ${dateFormatter(video.createdAt)}`
-                        .infoColumn    
-                            span.like#jsVideoLikeBtn
-                                button
-                                    i.fas.fa-thumbs-up  
-                                span.cnt#jsVideoLikeCount=video.like
-                            span.dislike#jsVideoDislikeBtn
-                                button
-                                    i.fas.fa-thumbs-down  
-                                span.cnt#jsVideoDislikeCount=video.dislike
+                        .infoColumn
+                            if loggedUser.likeVideos.includes(video.id)
+                                span.like.selected#jsVideoLikeBtn
+                                    button
+                                        i.fas.fa-thumbs-up  
+                                    span.cnt#jsVideoLikeCount=video.like
+                            else 
+                                span.like#jsVideoLikeBtn
+                                    button
+                                        i.fas.fa-thumbs-up  
+                                    span.cnt#jsVideoLikeCount=video.like
+                            if loggedUser.dislikeVideos.includes(video.id)
+                                span.dislike.selected#jsVideoDislikeBtn
+                                    button
+                                        i.fas.fa-thumbs-down  
+                                    span.cnt#jsVideoDislikeCount=video.dislike
+                            else
+                                span.dislike#jsVideoDislikeBtn     
+                                    button
+                                        i.fas.fa-thumbs-down  
+                                    span.cnt#jsVideoDislikeCount=video.dislike
                 .videoDescription                                
                     .videoCreator Uploaded by 
                         a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name

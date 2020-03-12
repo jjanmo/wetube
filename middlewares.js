@@ -32,7 +32,6 @@ export const onlyPrivate = (req, res, next) => {
     req.user ? next() : res.redirect(routes.join);
 };
 
-
 //date formatter
 export const dateFormatter = (dateStr) => {
     const date = new Date(dateStr);

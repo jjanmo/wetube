@@ -20,12 +20,14 @@ export const postAddComment = async (req, res) => {
 
         //send new comment
         const user = await User.findById(newComment.creator);
+        user.comments.push(newComment.id);
         const parsedInfo = {
             name: user.name,
             date: dateFormatter(newComment.createdAt),
             avatarUrl: user.avatarUrl,
             comment
         }
+        user.save();
         res.json(parsedInfo);
     } catch (error) {
         console.log(error);
@@ -40,33 +42,54 @@ export const postChangeVideoLiking = async (req, res) => {
         body: {
             isLikeBtn,
             isSelected,
-            isSwitching
+            isSwitching,
+            userId
         }
     } = req;
     // console.log(id, isLikeBtn, isSelected, isSwitching);
     try {
         const video = await Video.findById(id);
+        const user = await User.findById(userId);
+        const likeVideos = user.likeVideos;
+        const dislikeVideos = user.dislikeVideos;
         if (isLikeBtn) {
-            if (isSelected) video.like--;
+            if (isSelected) {
+                video.like--;
+                likeVideos.splice(likeVideos.indexOf(id), 1);
+            }
             else {
                 if (isSwitching) {
                     video.like++;
                     video.dislike--;
+                    if (likeVideos.indexOf(id) === -1) likeVideos.push(id);
+                    dislikeVideos.splice(dislikeVideos.indexOf(id), 1);
                 }
-                else video.like++;
+                else {
+                    video.like++;
+                    if (likeVideos.indexOf(id) === -1) likeVideos.push(id);
+                }
             }
         }
         else {
-            if (isSelected) video.dislike--;
+            if (isSelected) {
+                video.dislike--;
+                dislikeVideos.splice(dislikeVideos.indexOf(id), 1);
+            }
             else {
                 if (isSwitching) {
                     video.dislike++;
                     video.like--;
+                    if (dislikeVideos.indexOf(id) === -1) dislikeVideos.push(id);
+                    likeVideos.splice(likeVideos.indexOf(id), 1);
                 }
-                else video.like++;
+                else {
+                    video.dislike++;
+                    if (dislikeVideos.indexOf(id) === -1) dislikeVideos.push(id);
+                }
             }
         }
         video.save();
+        user.save();
     } catch (error) {
         console.log(error);
         res.status(400);
