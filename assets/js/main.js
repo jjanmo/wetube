@@ -4,3 +4,4 @@ import './videoRecoder';
 import './videoPlayTimeFormat'
 import './addComment';
 import './changeVideoLiking';
+import './fixHeader';

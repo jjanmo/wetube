@@ -1,9 +1,27 @@
 .header {
+    width: 100%;
     margin-bottom: 30px;
-    //box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 6px rgba(0, 0, 0, 0.23);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    // border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     padding: 7px;
     font-family: 'Roboto', sans-serif;
+    background-color: #eee;
+    z-index: 5;
+    top: 0;
+    &.headerFixed {
+        position: fixed;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 5px 10px rgba(0, 0, 0, 0.23);
+        animation: smoothScroll 0.3s ease-in-out;
+    }
+
+    @keyframes smoothScroll {
+        0% {
+            transform: translateY(-40px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
     .headerWrapper {
         padding: 5px 0px;
         width: 100%;

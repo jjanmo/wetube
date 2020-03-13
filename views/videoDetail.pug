@@ -18,7 +18,7 @@ block content
                         .infoColumn
                             span.videoViews= `VIEWS ${video.views} • ${dateFormatter(video.createdAt)}`
                         .infoColumn
-                            if loggedUser.likeVideos.includes(video.id)
+                            if loggedUser && loggedUser.likeVideos.includes(video.id)
                                 span.like.selected#jsVideoLikeBtn
                                     button
                                         i.fas.fa-thumbs-up  
@@ -28,7 +28,7 @@ block content
                                     button
                                         i.fas.fa-thumbs-up  
                                     span.cnt#jsVideoLikeCount=video.like
-                            if loggedUser.dislikeVideos.includes(video.id)
+                            if loggedUser && loggedUser.dislikeVideos.includes(video.id)
                                 span.dislike.selected#jsVideoDislikeBtn
                                     button
                                         i.fas.fa-thumbs-down  
