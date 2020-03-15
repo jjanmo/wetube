@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const user = document.getElementById('jsHiddenInput');
 const commentContainer = document.getElementById('jsCommentContainer');
 const commentForm = document.getElementById('jsCommentForm');
 const commentSubmitBtn = document.getElementById('jsCommentSubmitBtn')
@@ -105,6 +106,7 @@ const sendComment = async (comment) => {
 
 function handleSubmit(e) {
     e.preventDefault();
+    if (!user.value) return
     const commentInput = document.getElementById('jsCommentInput');
     const comment = commentInput.value;
     sendComment(comment);

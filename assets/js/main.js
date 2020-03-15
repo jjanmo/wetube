@@ -5,3 +5,4 @@ import './videoPlayTimeFormat'
 import './addComment';
 import './changeVideoLiking';
 import './fixHeader';
+import './modalBlock';

@@ -1,10 +1,13 @@
 extends ./layouts/main
 include ./mixins/videoPlayer
 include ./mixins/commentBlock
+include ./mixins/modalBlock
 
 block content
     .videoWrapper
         input#jsHiddenInput(type="hidden" value=loggedUser)
+        if !loggedUser
+            +modalBlock
         .videoColumn
             .videoContainer
                 +videoPlayer({
@@ -54,7 +57,7 @@ block content
                             |  Comments
                     form#jsCommentForm
                         img(src="/uploads/avatar/avatar.png")
-                        input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment.....")
+                        input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off")
                         .btnBox
                             button#jsCommentCancelBtn CANCEL
                             button#jsCommentSubmitBtn COMMENT

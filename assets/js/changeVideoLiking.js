@@ -90,8 +90,8 @@ function paintLiking() {
 
 const changeLiking = async () => {
     const id = window.location.pathname.split('/')[2];
-    let parsedUserId;
-    if (user) parsedUserId = JSON.parse(user.value)._id;
+
+    const parsedUserId = user && JSON.parse(user.value._id);
     const response = await axios({
         method: 'post',
         url: `/api/${id}/changeVideoLiking`,
@@ -139,8 +139,10 @@ function handleOut(e) {
 }
 
 function init() {
-    videoLikeBtn.addEventListener('click', clickLikingBtn);
-    videoDislikeBtn.addEventListener('click', clickLikingBtn);
+    if (user.value) {
+        videoLikeBtn.addEventListener('click', clickLikingBtn);
+        videoDislikeBtn.addEventListener('click', clickLikingBtn);
+    }
     videoLikeBtn.addEventListener('mouseover', handleOver);
     videoLikeBtn.addEventListener('mouseout', handleOut);
     videoDislikeBtn.addEventListener('mouseover', handleOver)
