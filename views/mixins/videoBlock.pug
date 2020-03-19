@@ -2,8 +2,9 @@ mixin videoBlock( video = {})
     .videoBlock
         a(href=`${routes.videos}${routes.videoDetail(video.id)}`)
             video.videoBlockThumbnail(src=video.file)
-        h3.videoBlockTitle= video.title
-        h4.videoBlockCreator Uploaded by 
-            a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)= video.creator.name
-        h4 
-            span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`
+        .videoInfo
+            h3.videoBlockTitle= video.title
+            h4.videoBlockCreator Uploaded by 
+                a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)= video.creator.name
+            h4 
+                span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`

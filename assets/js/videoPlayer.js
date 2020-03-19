@@ -8,15 +8,15 @@ const volumeBar = document.getElementById('jsVolumeBar');
 const fullScreenBtn = document.getElementById('jsFullScreenBtn');
 const totalTimeSpan = document.getElementById('jsTotalTime');
 const currentTimeSpan = document.getElementById('jsCurrentTime');
-let player; //setInterval : print currentTime 
+let player; //setInterval : print currentTime
 let restart = false;
 
 // Register video view
 const registerView = () => {
-    const id = window.location.pathname.split('/')[2]
+    const id = window.location.pathname.split('/')[2];
     // console.log(id);
     fetch(`/api/${id}/view`, { method: 'POST' });
-}
+};
 
 function handleVolumeBtn() {
     const currentVolume = video.volume;
@@ -25,19 +25,15 @@ function handleVolumeBtn() {
         video.muted = false;
         if (currentVolume >= 0.6) {
             volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-        else if (currentVolume >= 0.2) {
+        } else if (currentVolume >= 0.2) {
             volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-        }
-        else if (currentVolume > 0) {
+        } else if (currentVolume > 0) {
             volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
-        }
-        else {
+        } else {
             volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
         }
         volumeBar.value = currentVolume;
-    }
-    else {
+    } else {
         video.muted = true;
         volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
         volumeBar.value = 0;
@@ -51,14 +47,11 @@ function handleVolumeBar(e) {
     video.volume = currentVolume;
     if (currentVolume >= 0.6) {
         volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-    }
-    else if (currentVolume >= 0.2) {
+    } else if (currentVolume >= 0.2) {
         volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-    }
-    else if (currentVolume > 0) {
+    } else if (currentVolume > 0) {
         volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
-    }
-    else {
+    } else {
         volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
     }
 }
@@ -66,13 +59,12 @@ function handleVolumeBar(e) {
 function handleVideoPlay() {
     if (video.paused) {
         if (restart) {
-            currentTimeSpan.innerHTML = '00:00:00 / ';  //initialization
+            currentTimeSpan.innerHTML = '00:00:00 / '; //initialization
             restart = false;
         }
         video.play();
-        playBtn.innerHTML = '<i class="fas fa-pause"></i>'
-    }
-    else {
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    } else {
         video.pause();
         playBtn.innerHTML = '<i class="fas fa-play"></i>';
     }
@@ -97,7 +89,7 @@ function handlePlaytime() {
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {
-        currentPlaytime = playtimeFormatter(video.currentTime)
+        currentPlaytime = playtimeFormatter(video.currentTime);
         currentTimeSpan.innerHTML = `${currentPlaytime} / `;
     }, 900);
 }

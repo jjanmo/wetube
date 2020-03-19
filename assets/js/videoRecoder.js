@@ -5,8 +5,7 @@ const recorderBtn = document.getElementById('jsRecorderBtn');
 let streamObject;
 let videoRecorder;
 
-const handleVideoData = e => {
-    console.log(e);
+const handleVideoData = event => {
     const { data: videoFile } = event; //data is blob
     const link = document.createElement('a');
     link.href = URL.createObjectURL(videoFile);
@@ -22,14 +21,14 @@ const startRecording = () => {
     videoRecorder.addEventListener('dataavailable', handleVideoData);
     //-> 이벤트가 끝날 때(녹화가 끝날때) 녹화한 내용을 얻을 수 있음
     recorderBtn.addEventListener('click', stopRecording);
-}
+};
 
 const stopRecording = () => {
     videoRecorder.stop();
     recorderBtn.removeEventListener('click', stopRecording);
     recorderBtn.addEventListener('click', getVideo);
     recorderBtn.innerHTML = 'START RECORDING';
-}
+};
 
 const getVideo = async () => {
     try {
@@ -48,16 +47,15 @@ const getVideo = async () => {
         startRecording();
     } catch (error) {
         console.log(error);
-        recorderBtn.innerHTML = 'Can NOT record'
+        recorderBtn.innerHTML = 'Can NOT record';
     } finally {
         recorderBtn.removeEventListener('click', getVideo);
     }
-}
+};
 
 function init() {
     recorderBtn.addEventListener('click', getVideo);
 }
-
 
 if (recorderContainer) {
     init();
