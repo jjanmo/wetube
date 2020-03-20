@@ -50,11 +50,11 @@ block content
                     if video.comments.length === 1
                         h3.commentCount
                             span#jsCommentCount #{video.comments.length} 
-                            |  Comment
+                            span#jsLiteralComment  Comment
                     else
                         h3.commentCount
                             span#jsCommentCount #{video.comments.length} 
-                            |  Comments
+                            span#jsLiteralComment Comments
                     form#jsCommentForm(data-user=loggedUser)
                         img(src="/uploads/avatar/avatar.png")
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off")

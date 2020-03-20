@@ -106,8 +106,13 @@ function plusViewCount() {
     const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount++;
+    if (commentCount === 1) {
+        document.getElementById('jsLiteralComment').textContent = ' Comment';
+    }
+    else {
+        document.getElementById('jsLiteralComment').textContent = ' Comments';
+    }
     document.getElementById('jsCommentCount').textContent = commentCount;
-    console.log(document.querySelector('.commentCount').lastChild);
 }
 
 const sendComment = async comment => {

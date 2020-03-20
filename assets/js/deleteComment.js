@@ -10,6 +10,16 @@ function minusViewCount() {
     const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount--;
+    if (commentCount < 0) {
+        commentCount = 0;
+        document.getElementById('jsLiteralComment').textContent = ' Comments';
+    }
+    else if (commentCount === 1) {
+        document.getElementById('jsLiteralComment').textContent = ' Comment';
+    }
+    else {
+        document.getElementById('jsLiteralComment').textContent = ' Comments';
+    }
     document.getElementById('jsCommentCount').textContent = commentCount;
 }
 
