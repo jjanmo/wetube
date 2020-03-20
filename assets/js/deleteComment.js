@@ -7,17 +7,15 @@ function deleteCommentInPage(commentBlock) {
 }
 
 function minusViewCount() {
-    const commentCountSpan = document.getElementById('jsCommnetCount');
+    const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount--;
-    document.getElementById('jsCommnetCount').textContent = commentCount;
+    document.getElementById('jsCommentCount').textContent = commentCount;
 }
 
 async function deleteData(commentId) {
-
     const videoId = document.getElementById('jsVideo').dataset.id;
     const userId = JSON.parse(document.getElementById('jsCommentForm').dataset.user)._id;
-    console.log(commentId, videoId, userId);
     const response = await axios({
         method: 'post',
         url: `/api/${commentId}/delete-comment`,
@@ -33,7 +31,6 @@ async function deleteData(commentId) {
 
 export function handleDelete(e) {
     const target = e.target;
-    console.log(target);
     if (target.className.includes('delete')) {
         const commentId = target.parentElement.parentElement.parentElement.dataset.id;
         const commentBlock = document.getElementById(`${commentId}`);

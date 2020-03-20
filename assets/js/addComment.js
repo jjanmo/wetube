@@ -103,10 +103,11 @@ function makeCommentBlock(parsedInfo) {
 // Add comment
 
 function plusViewCount() {
-    const commentCountSpan = document.getElementById('jsCommnetCount');
+    const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount++;
-    document.getElementById('jsCommnetCount').textContent = commentCount;
+    document.getElementById('jsCommentCount').textContent = commentCount;
+    console.log(document.querySelector('.commentCount').lastChild);
 }
 
 const sendComment = async comment => {
