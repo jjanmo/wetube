@@ -5,13 +5,13 @@ include ./mixins/modalBlock
 
 block content
     .videoWrapper
-        input#jsHiddenInput(type="hidden" value=loggedUser)
         if !loggedUser
             +modalBlock
         .videoColumn
             .videoContainer
                 +videoPlayer({
-                    file : video.fileUrl
+                    file : video.fileUrl,
+                    id : video.id
                 })
                 .videoInfo
                     if loggedUser && video.creator.id === loggedUser.id
@@ -55,7 +55,7 @@ block content
                         h3.commentCount
                             span#jsCommnetCount #{video.comments.length} 
                             |  Comments
-                    form#jsCommentForm
+                    form#jsCommentForm(data-user=loggedUser)
                         img(src="/uploads/avatar/avatar.png")
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off")
                         .btnBox
@@ -64,6 +64,7 @@ block content
                 .commentList#jsCommentList
                     each item in video.comments
                         +commentBlock({
+                            id : item.id,
                             creator : item.creator,
                             avatarUrl : item.creator,
                             createdAt : dateFormatter(item.createdAt),

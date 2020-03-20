@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { handleDelete } from './deleteComment';
 
-const user = document.getElementById('jsHiddenInput');
 const commentContainer = document.getElementById('jsCommentContainer');
 const commentForm = document.getElementById('jsCommentForm');
-const commentSubmitBtn = document.getElementById('jsCommentSubmitBtn')
+const commentSubmitBtn = document.getElementById('jsCommentSubmitBtn');
 const commentList = document.getElementById('jsCommentList');
 
+let deleteBtn;
 
 function makeCommentBlock(parsedInfo) {
     const commentBlock = document.createElement('div');
@@ -17,7 +18,7 @@ function makeCommentBlock(parsedInfo) {
     imageBox.append(image);
     commentBlock.append(imageBox);
     const rightBox = document.createElement('div');
-    rightBox.classList.add('rightBox')
+    rightBox.classList.add('rightBox');
     commentBlock.append(rightBox);
     const commentInfo = document.createElement('div');
     commentInfo.classList.add('commentInfo');
@@ -70,29 +71,33 @@ function makeCommentBlock(parsedInfo) {
     reply.append(button3);
     buttonBox.append(reply);
     const _delete = document.createElement('span');
+    deleteBtn = _delete;
+    //_delete.addEventListener('click', handleDelete);
     _delete.classList.add('delete');
     _delete.id = 'jsDeleteBtn';
+    _delete.dataset.id = parsedInfo.commentId;
     const button4 = document.createElement('button');
-    button4.innerHTML = '<i class="fas fa-minus-circle"></i>'
+    button4.innerHTML = '<i class="fas fa-minus-circle"></i>';
     _delete.append(button4);
     buttonBox.append(_delete);
     rightBox.append(buttonBox);
     commentList.append(commentBlock);
-    changeViewCount();
+    plusViewCount();
+    console.log(deleteBtn);
 }
 
-function changeViewCount() {
+function plusViewCount() {
     const commentCountSpan = document.getElementById('jsCommnetCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount++;
     document.getElementById('jsCommnetCount').textContent = commentCount;
 }
 
-const sendComment = async (comment) => {
-    const id = window.location.pathname.split('/')[2];
+const sendComment = async comment => {
+    const videoId = window.location.pathname.split('/')[2];
     const response = await axios({
         method: 'post',
-        url: `/api/${id}/addComment`,
+        url: `/api/${videoId}/add-comment`,
         data: {
             comment
         }
@@ -101,16 +106,16 @@ const sendComment = async (comment) => {
         //console.log(response.data);
         makeCommentBlock(response.data);
     }
-}
-
+};
 
 function handleSubmit(e) {
     e.preventDefault();
-    if (!user.value) return
+    const isLogged = commentForm.dataset.user;
+    if (!isLogged) return;
     const commentInput = document.getElementById('jsCommentInput');
     const comment = commentInput.value;
     sendComment(comment);
-    commentInput.value = "";
+    commentInput.value = '';
 }
 
 function init() {
@@ -120,4 +125,8 @@ function init() {
 
 if (commentContainer) {
     init();
+}
+
+if (deleteBtn) {
+    deleteBtn.addEventListener('click', handleDelete);
 }

@@ -26,8 +26,9 @@ const NAVER_CALLBACK = '/auth/naver/callback';
 // API
 const API = '/api';
 const REGISTER_VIEW = '/:id/view';
-const ADD_COMMENT = '/:id/addComment';
-const CHANGE_VIDEO_LIKING = '/:id/changeVideoLiking';
+const ADD_COMMENT = '/:id/add-comment';
+const DELETE_COMMENT = '/:id/delete-comment';
+const CHANGE_VIDEO_LIKING = '/:id/change-video-liking';
 
 // Video
 const VIDEOS = '/videos';
@@ -69,6 +70,7 @@ const routes = {
     api: API,
     registerView: REGISTER_VIEW,
     addComment: ADD_COMMENT,
+    deleteComment: DELETE_COMMENT,
     changeVideoLiking: CHANGE_VIDEO_LIKING
 };
 

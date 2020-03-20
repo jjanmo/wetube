@@ -1,5 +1,5 @@
 mixin commentBlock(comment= {})
-    .commentBlock
+    .commentBlock#jsCommentBlock
         .imageBox
             img(src=comment.creator.avatarUrl)
         .rightBox    
@@ -21,7 +21,7 @@ mixin commentBlock(comment= {})
                     button
                         i.fas.fa-reply
                 if loggedUser && comment.creator.id === loggedUser.id
-                    span.delete#jsDeleteBtn
+                    span.delete#jsDeleteBtn(data-id=comment.id)
                         button
                             i.fas.fa-minus-circle
 

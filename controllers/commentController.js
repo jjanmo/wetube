@@ -6,7 +6,7 @@ import { dateFormatter } from '../middlewares';
 export const postAddComment = async (req, res) => {
     const {
         params: { id },
-        body: { comment },
+        body: { comment }
     } = req;
     try {
         //add comment
@@ -25,26 +25,44 @@ export const postAddComment = async (req, res) => {
             name: user.name,
             date: dateFormatter(newComment.createdAt),
             avatarUrl: user.avatarUrl,
-            comment
-        }
+            comment,
+            commentId: newComment.id
+        };
         user.save();
         res.json(parsedInfo);
     } catch (error) {
         console.log(error);
-        res.status(400)
+        res.status(400);
+    } finally {
+        res.end();
+    }
+};
+
+export const postDeleteComment = async (req, res) => {
+    const {
+        params: { id: commentId },
+        body: { userId, videoId }
+    } = req;
+    //console.log('1', commentId, '2', userId, '3', videoId);
+    try {
+        //delete Comment db
+        await Comment.findByIdAndDelete(commentId);
+        //delete Video db
+        await Video.updateOne({ _id: videoId }, { $pull: { comments: commentId } });
+        //delete User db
+        await User.updateOne({ _id: userId }, { $pull: { comments: commentId } });
+    } catch (error) {
+        console.log(error);
+        res.status(400);
     } finally {
         res.end();
     }
 };
 
 export const postChangeVideoLiking = async (req, res) => {
-    const { params: { id },
-        body: {
-            isLikeBtn,
-            isSelected,
-            isSwitching,
-            userId
-        }
+    const {
+        params: { id },
+        body: { isLikeBtn, isSelected, isSwitching, userId }
     } = req;
     // console.log(id, isLikeBtn, isSelected, isSwitching);
     try {
@@ -56,33 +74,28 @@ export const postChangeVideoLiking = async (req, res) => {
             if (isSelected) {
                 video.like--;
                 likeVideos.splice(likeVideos.indexOf(id), 1);
-            }
-            else {
+            } else {
                 if (isSwitching) {
                     video.like++;
                     video.dislike--;
                     if (likeVideos.indexOf(id) === -1) likeVideos.push(id);
                     dislikeVideos.splice(dislikeVideos.indexOf(id), 1);
-                }
-                else {
+                } else {
                     video.like++;
                     if (likeVideos.indexOf(id) === -1) likeVideos.push(id);
                 }
             }
-        }
-        else {
+        } else {
             if (isSelected) {
                 video.dislike--;
                 dislikeVideos.splice(dislikeVideos.indexOf(id), 1);
-            }
-            else {
+            } else {
                 if (isSwitching) {
                     video.dislike++;
                     video.like--;
                     if (dislikeVideos.indexOf(id) === -1) dislikeVideos.push(id);
                     likeVideos.splice(likeVideos.indexOf(id), 1);
-                }
-                else {
+                } else {
                     video.dislike++;
                     if (dislikeVideos.indexOf(id) === -1) dislikeVideos.push(id);
                 }

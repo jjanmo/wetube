@@ -1,13 +1,22 @@
 import axios from 'axios';
 
 const videoPlayer = document.getElementById('jsVideoPlayer');
-const user = document.getElementById('jsHiddenInput');
 const videoLikeBtn = document.getElementById('jsVideoLikeBtn');
 const videoDislikeBtn = document.getElementById('jsVideoDislikeBtn');
-let isLikeBtn,      //현재 클릭한 버튼이 무엇인지?
-    isSelected,     //클릭한 버튼이 눌려있는지?
-    isSwitching = false;    //교차 클릭여부?  
+let user;
+let isLikeBtn, //현재 클릭한 버튼이 무엇인지?
+    isSelected, //클릭한 버튼이 눌려있는지?
+    isSwitching = false; //교차 클릭여부?
 
+function parseUser() {
+    const userObj = document.getElementById('jsCommentForm').dataset.user;
+    //console.log(userObj);
+    if (userObj) {
+        const tmpObj = JSON.parse(userObj);
+        //console.log(tmpObj);
+        user = tmpObj._id;
+    } else user = null;
+}
 
 function paintLiking() {
     const videoLikeCountBox = document.getElementById('jsVideoLikeCount');
@@ -24,8 +33,7 @@ function paintLiking() {
             videoLikeCountBox.innerHTML = videoLikeCount;
             //hover event
             videoLikeBtn.addEventListener('mouseover', handleOver);
-        }
-        else {
+        } else {
             if (isSwitching) {
                 //색변경
                 videoLikeBtn.classList.add('selected');
@@ -38,9 +46,7 @@ function paintLiking() {
                 //hover event
                 videoLikeBtn.removeEventListener('mouseover', handleOver);
                 videoDislikeBtn.addEventListener('mouseover', handleOver);
-
-            }
-            else {
+            } else {
                 //색변경
                 videoLikeBtn.classList.add('selected');
                 //숫자변경
@@ -50,8 +56,7 @@ function paintLiking() {
                 videoLikeBtn.removeEventListener('mouseover', handleOver);
             }
         }
-    }
-    else {
+    } else {
         if (isSelected) {
             //색변경
             videoDislikeBtn.classList.remove('selected');
@@ -60,8 +65,7 @@ function paintLiking() {
             videoDislikeCountBox.innerHTML = videoDislikeCount;
             //hover event
             videoDislikeBtn.addEventListener('mouseover', handleOver);
-        }
-        else {
+        } else {
             if (isSwitching) {
                 //색변경
                 videoLikeBtn.classList.remove('selected');
@@ -74,8 +78,7 @@ function paintLiking() {
                 //hover event
                 videoLikeBtn.addEventListener('mouseover', handleOver);
                 videoDislikeBtn.removeEventListener('mouseover', handleOver);
-            }
-            else {
+            } else {
                 //색변경
                 videoDislikeBtn.classList.add('selected');
                 //숫자변경
@@ -89,24 +92,22 @@ function paintLiking() {
 }
 
 const changeLiking = async () => {
-    const id = window.location.pathname.split('/')[2];
-
-    const parsedUserId = user && JSON.parse(user.value._id);
+    const videoId = window.location.pathname.split('/')[2];
     const response = await axios({
         method: 'post',
-        url: `/api/${id}/changeVideoLiking`,
+        url: `/api/${videoId}/change-video-liking`,
         data: {
             isLikeBtn,
             isSelected,
             isSwitching,
-            userId: parsedUserId
+            userId: user
         }
     });
-    // console.log(response);
-    if (user && response.status === 200) {
+    //console.log(response);
+    if (response.status === 200) {
         paintLiking();
     }
-}
+};
 
 function clickLikingBtn(e) {
     const clickedBtn = e.currentTarget;
@@ -117,8 +118,7 @@ function clickLikingBtn(e) {
         if (!isSelected) {
             isSwitching = videoDislikeBtn.className.includes('selected') ? true : false;
         }
-    }
-    else {
+    } else {
         isSelected = videoDislikeBtn.className.includes('selected');
         if (!isSelected) {
             isSwitching = videoLikeBtn.className.includes('selected') ? true : false;
@@ -139,17 +139,17 @@ function handleOut(e) {
 }
 
 function init() {
-    if (user.value) {
+    parseUser();
+    if (user) {
         videoLikeBtn.addEventListener('click', clickLikingBtn);
         videoDislikeBtn.addEventListener('click', clickLikingBtn);
     }
     videoLikeBtn.addEventListener('mouseover', handleOver);
     videoLikeBtn.addEventListener('mouseout', handleOut);
-    videoDislikeBtn.addEventListener('mouseover', handleOver)
-    videoDislikeBtn.addEventListener('mouseout', handleOut)
+    videoDislikeBtn.addEventListener('mouseover', handleOver);
+    videoDislikeBtn.addEventListener('mouseout', handleOut);
 }
 
 if (videoPlayer) {
     init();
-
 }
