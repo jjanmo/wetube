@@ -10,6 +10,7 @@
     }
     video {
         margin-bottom: 10px;
+        overflow: hidden;
         @media (min-width: 1281px) {
             max-width: 375px;
         }
