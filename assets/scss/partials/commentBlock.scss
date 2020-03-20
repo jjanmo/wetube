@@ -22,23 +22,30 @@
                 span {
                     display: inline-block;
                     margin-right: 10px;
-                    font-size: 15px;
+                    font-size: 14px;
+                    &:first-child {
+                        font-weight: 600;
+                    }
                     &:last-child {
-                        color: rgba(53, 59, 72, 1);
+                        color: #030303;
+                        font-size: 13px;
                     }
                 }
             }
             .content {
                 padding-left: 20px;
                 margin-bottom: 8px;
+                font-size: 16px;
             }
             .buttonBox {
-                padding-top: 5px;
                 padding-left: 20px;
-                vertical-align: bottom;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+
                 span {
                     display: inline-block;
-
                     margin-right: 10px;
                     button {
                         all: unset;
@@ -53,13 +60,10 @@
                         margin-left: 10px;
                         color: black;
                     }
-                    &:nth-child(3) {
-                        margin-right: 20px;
-                        i {
-                            font-size: 16px;
-                        }
-                    }
-                    &:last-child {
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        margin-right: 15px;
                         i {
                             font-size: 16px;
                             color: rgba(44, 62, 80, 0.8);

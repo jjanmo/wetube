@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { handleDelete } from './deleteComment';
 
 const commentContainer = document.getElementById('jsCommentContainer');
 const commentForm = document.getElementById('jsCommentForm');
 const commentSubmitBtn = document.getElementById('jsCommentSubmitBtn');
 const commentList = document.getElementById('jsCommentList');
 
-let deleteBtn;
+let deleteBtn, editBtn;
 
 function makeCommentBlock(parsedInfo) {
     const commentBlock = document.createElement('div');
     commentBlock.classList.add('commentBlock');
+    commentBlock.id = parsedInfo.commentId;
     const imageBox = document.createElement('div');
     imageBox.classList.add('imageBox');
     const image = document.createElement('img');
@@ -37,54 +37,70 @@ function makeCommentBlock(parsedInfo) {
     text.textContent = parsedInfo.comment;
     content.append(text);
     rightBox.append(content);
+
+    //button box
     const buttonBox = document.createElement('div');
     buttonBox.classList.add('buttonBox');
+    buttonBox.dataset.id = parsedInfo.commentId;
+
+    //like comment button
     const like = document.createElement('span');
-    like.classList.add('like');
-    like.id = 'jsCommentLikeBtn';
+    like.classList.add('likeCommentBtn');
     const button1 = document.createElement('button');
     button1.innerHTML = '<i class="fas fa-thumbs-up"></i>';
     const cnt1 = document.createElement('span');
     cnt1.classList.add('cnt');
-    cnt1.id = 'jsCommentLikeCount';
     cnt1.textContent = '0';
     like.append(button1);
     like.append(cnt1);
     buttonBox.append(like);
+
+    //dislike comment button
     const dislike = document.createElement('span');
-    dislike.classList.add('dislike');
-    dislike.id = 'jsCommentDislikeBtn';
+    dislike.classList.add('dislikeCommentBtn');
     const button2 = document.createElement('button');
     button2.innerHTML = '<i class="fas fa-thumbs-down"></i>';
     const cnt2 = document.createElement('span');
     cnt2.classList.add('cnt');
-    cnt2.id = 'jsCommentDislikeCount';
     cnt2.textContent = '0';
     dislike.append(button2);
     dislike.append(cnt2);
     buttonBox.append(dislike);
+
+    //reply comment button
     const reply = document.createElement('span');
-    reply.classList.add('reply');
-    reply.id = 'jsReplyBtn';
+    reply.classList.add('replyCommentBtn');
     const button3 = document.createElement('button');
     button3.innerHTML = '<i class="fas fa-reply"></i>';
     reply.append(button3);
     buttonBox.append(reply);
+
+    //edit button
+    const _edit = document.createElement('span');
+    editBtn = _edit
+    // editBtn.addEventListener('click', handleEdit);
+    editBtn.classList.add('editCommentBtn');
+    const button4 = document.createElement('button');
+    button4.innerHTML = '<i class="fas fa-pencil-alt edit"></i>';
+    editBtn.append(button4);
+    buttonBox.append(editBtn);
+
+    //delete button
     const _delete = document.createElement('span');
     deleteBtn = _delete;
-    //_delete.addEventListener('click', handleDelete);
-    _delete.classList.add('delete');
-    _delete.id = 'jsDeleteBtn';
-    _delete.dataset.id = parsedInfo.commentId;
-    const button4 = document.createElement('button');
-    button4.innerHTML = '<i class="fas fa-minus-circle"></i>';
-    _delete.append(button4);
-    buttonBox.append(_delete);
+    // deleteBtn.addEventListener('click', handleDelete);
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.id = 'jsDeleteBtn';
+    const button5 = document.createElement('button');
+    button5.innerHTML = '<i class="fas fa-minus-circle delete"></i>';
+    deleteBtn.append(button5);
+    buttonBox.append(deleteBtn);
+    //append boxes
     rightBox.append(buttonBox);
     commentList.append(commentBlock);
-    plusViewCount();
-    console.log(deleteBtn);
 }
+
+// Add comment
 
 function plusViewCount() {
     const commentCountSpan = document.getElementById('jsCommnetCount');
@@ -105,6 +121,7 @@ const sendComment = async comment => {
     if (response.status === 200) {
         //console.log(response.data);
         makeCommentBlock(response.data);
+        plusViewCount();
     }
 };
 
@@ -127,6 +144,7 @@ if (commentContainer) {
     init();
 }
 
-if (deleteBtn) {
-    deleteBtn.addEventListener('click', handleDelete);
-}
+
+
+
+

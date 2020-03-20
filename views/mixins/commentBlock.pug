@@ -1,5 +1,5 @@
 mixin commentBlock(comment= {})
-    .commentBlock#jsCommentBlock
+    .commentBlock(id=comment.id)
         .imageBox
             img(src=comment.creator.avatarUrl)
         .rightBox    
@@ -8,20 +8,23 @@ mixin commentBlock(comment= {})
                 span.date=comment.createdAt
             .content
                 p=comment.text
-            .buttonBox
-                span.like#jsCommentLikeBtn
+            .buttonBox(data-id=comment.id)
+                span.likeCommentBtn
                     button
                         i.fas.fa-thumbs-up  
-                    span.cnt#jsCommentLikeCount=comment.like
-                span.dislike#jsCommentDislikeBtn
+                    span.cnt=comment.like
+                span.dislikeCommentBtn
                     button
-                        i.fas.fa-thumbs-down  
-                    span.cnt#jsCommentDislikeCount=comment.dislike
-                span.reply#jsReplyBtn
+                        i.fas.fa-thumbs-down 
+                    span.cnt=comment.dislike
+                span.replyCommentBtn
                     button
                         i.fas.fa-reply
                 if loggedUser && comment.creator.id === loggedUser.id
-                    span.delete#jsDeleteBtn(data-id=comment.id)
+                    span.editCommentBtn
                         button
-                            i.fas.fa-minus-circle
+                            i.fas.fa-pencil-alt.edit
+                    span.deleteCommentBtn
+                        button
+                            i.fas.fa-minus-circle.delete
 

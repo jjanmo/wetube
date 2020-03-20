@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const deleteBtn = document.getElementById('jsDeleteBtn');
+const commentContainer = document.getElementById('jsCommentContainer');
 
-function deleteCommentInPage() {
-    const commentBlock = deleteBtn.parentElement.parentElement.parentElement;
-    console.log(commentBlock);
+function deleteCommentInPage(commentBlock) {
     commentBlock.remove();
 }
 
@@ -16,8 +14,10 @@ function minusViewCount() {
 }
 
 async function deleteData(commentId) {
+
     const videoId = document.getElementById('jsVideo').dataset.id;
     const userId = JSON.parse(document.getElementById('jsCommentForm').dataset.user)._id;
+    console.log(commentId, videoId, userId);
     const response = await axios({
         method: 'post',
         url: `/api/${commentId}/delete-comment`,
@@ -27,20 +27,24 @@ async function deleteData(commentId) {
         }
     });
     if (response.status === 200) {
-        deleteCommentInPage();
         minusViewCount();
     }
 }
 
-export function handleDelete() {
-    const commentId = deleteBtn.dataset.id;
-    deleteData(commentId);
+export function handleDelete(e) {
+    const target = e.target;
+    console.log(target);
+    if (target.className.includes('delete')) {
+        const commentId = target.parentElement.parentElement.parentElement.dataset.id;
+        const commentBlock = document.getElementById(`${commentId}`);
+        deleteData(commentId);
+        deleteCommentInPage(commentBlock);
+    }
 }
 
 function init() {
-    deleteBtn.addEventListener('click', handleDelete);
+    commentContainer.addEventListener('click', handleDelete);
 }
 
-if (deleteBtn) {
-    init();
-}
+init();
+
