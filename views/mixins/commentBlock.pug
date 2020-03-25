@@ -30,3 +30,26 @@ mixin commentBlock(comment= {})
                     .btnBox
                         button#jsEditCommentCancelBtn(type="button") CANCEL
                         button#jsEditCommentSavetBtn(type="button") SAVE
+            .replyFormBox
+                .imgDiv
+                    img(src="/uploads/avatar/default_avartar.png")
+                form#jsReplyForm
+                    input#jsReplyInput(type="text" name="comment" autocomplete="off" placeholder="Add a public reply.....")
+                    .btnBox
+                        button#jsReplyCancelBtn(type="button") CANCEL
+                        button#jsReplySavetBtn(type="button") REPLY
+            .replyListBox
+                ul
+                    li
+                        div
+                            img(src="/uploads/avatar/default_avartar.png")
+                        div
+                            span.name jjanmo
+                            span.date 2020.03.24
+                        div
+                            span.replyText 이것은 대댓글
+                        div
+                            span.editBtn
+                                i.fas.fa-pencil-alt.edit
+                            span.deleteBtn
+                                i.fas.fa-minus-circle.delete
