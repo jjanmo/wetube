@@ -34,8 +34,15 @@ const UserSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Video'
         }
-    ]
+    ],
     //유저가 마음에 듭니다 혹은 마음에 들지 않습니다 한 비디오 배열
+    likeComments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
+    //유저가 좋아하는 댓글 목록을 배열에 담기
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

@@ -12,12 +12,8 @@ mixin commentBlock(comment= {})
                 .buttonBox(data-id=comment.id)
                     span.likeCommentBtn
                         button(type="button")
-                            i.fas.fa-thumbs-up  
-                        span.cnt=comment.like
-                    span.dislikeCommentBtn
-                        button(type="button")
-                            i.fas.fa-thumbs-down 
-                        span.cnt=comment.dislike
+                            i.fas.fa-heart  
+                        span.cnt=comment.like.length
                     span.replyCommentBtn
                         button(type="button")
                             i.fas.fa-reply

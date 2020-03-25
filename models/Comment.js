@@ -19,14 +19,13 @@ const CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    like: {
-        type: Number,
-        default: 0
-    },
-    dislike: {
-        type: Number,
-        default: 0
-    }
+    like: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
+    //좋아요를 표시한 유저의 아이디를 배열 담기
 });
 
 const model = mongoose.model('Comment', CommentSchema);

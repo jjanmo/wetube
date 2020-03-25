@@ -57,7 +57,7 @@
                         button {
                             all: unset;
                             i {
-                                font-size: 13px;
+                                font-size: 16px;
                                 color: #b2bec3;
                             }
                         }
@@ -67,13 +67,19 @@
                             margin-left: 10px;
                             color: black;
                         }
+                        // &:first-child i:hover {
+                        //     color: #e74c3c;
+                        // }
+                        &:nth-child(2),
                         &:nth-child(3),
-                        &:nth-child(4),
-                        &:nth-child(5) {
+                        &:nth-child(4) {
                             margin-right: 15px;
                             i {
                                 font-size: 16px;
                                 color: rgba(44, 62, 80, 0.8);
+                                &:hover {
+                                    transform: scale(1.3);
+                                }
                             }
                         }
                     }
