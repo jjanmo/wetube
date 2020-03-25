@@ -24,8 +24,15 @@ const CommentSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
-    ]
+    ],
     //좋아요를 표시한 유저의 아이디를 배열 담기
+    replies: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Reply'
+        }
+    ]
+    //댓글에 어떤 답글들이 달렸는지를 알려주는 (배열)정보
 });
 
 const model = mongoose.model('Comment', CommentSchema);
