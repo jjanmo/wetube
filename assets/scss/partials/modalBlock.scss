@@ -43,8 +43,6 @@
             z-index: 6;
             button {
                 all: unset;
-                font-size: 15px;
-                color: white;
                 padding: 6px;
                 border-radius: 5px;
                 width: 70px;
@@ -54,6 +52,11 @@
                 }
                 &:last-child {
                     background-color: #2980b9;
+                }
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 15px;
                 }
             }
         }

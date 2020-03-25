@@ -4,6 +4,7 @@ import './videoRecoder';
 import './videoPlayTimeFormat';
 import './addComment';
 import './deleteComment';
+import './editComment';
 import './changeVideoLiking';
 import './fixHeader';
 import './modalBlock';

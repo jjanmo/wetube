@@ -3,6 +3,8 @@ import axios from 'axios';
 const commentContainer = document.getElementById('jsCommentContainer');
 const commentForm = document.getElementById('jsCommentForm');
 const commentSubmitBtn = document.getElementById('jsCommentSubmitBtn');
+const commentCancelBtn = document.getElementById('jsCommentCancelBtn');
+
 const commentList = document.getElementById('jsCommentList');
 
 let deleteBtn, editBtn;
@@ -77,7 +79,7 @@ function makeCommentBlock(parsedInfo) {
 
     //edit button
     const _edit = document.createElement('span');
-    editBtn = _edit
+    editBtn = _edit;
     // editBtn.addEventListener('click', handleEdit);
     editBtn.classList.add('editCommentBtn');
     const button4 = document.createElement('button');
@@ -108,8 +110,7 @@ function plusViewCount() {
     commentCount++;
     if (commentCount === 1) {
         document.getElementById('jsLiteralComment').textContent = ' Comment';
-    }
-    else {
+    } else {
         document.getElementById('jsLiteralComment').textContent = ' Comments';
     }
     document.getElementById('jsCommentCount').textContent = commentCount;
@@ -139,18 +140,21 @@ function handleSubmit(e) {
     const comment = commentInput.value;
     sendComment(comment);
     commentInput.value = '';
+    commentInput.blur();
+}
+
+function handleCancel() {
+    const commentInput = document.getElementById('jsCommentInput');
+    commentInput.value = '';
+    commentInput.blur();
 }
 
 function init() {
     commentForm.addEventListener('submit', handleSubmit);
-    commentSubmitBtn.addEventListener('submit', handleSubmit);
+    commentSubmitBtn.addEventListener('click', handleSubmit);
+    commentCancelBtn.addEventListener('click', handleCancel);
 }
 
 if (commentContainer) {
     init();
 }
-
-
-
-
-

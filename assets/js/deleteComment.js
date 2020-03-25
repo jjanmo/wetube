@@ -13,11 +13,9 @@ function minusViewCount() {
     if (commentCount < 0) {
         commentCount = 0;
         document.getElementById('jsLiteralComment').textContent = ' Comments';
-    }
-    else if (commentCount === 1) {
+    } else if (commentCount === 1) {
         document.getElementById('jsLiteralComment').textContent = ' Comment';
-    }
-    else {
+    } else {
         document.getElementById('jsLiteralComment').textContent = ' Comments';
     }
     document.getElementById('jsCommentCount').textContent = commentCount;
@@ -39,7 +37,7 @@ async function deleteData(commentId) {
     }
 }
 
-export function handleDelete(e) {
+function handleDelete(e) {
     const target = e.target;
     if (target.className.includes('delete')) {
         const commentId = target.parentElement.parentElement.parentElement.dataset.id;
@@ -53,5 +51,4 @@ function init() {
     commentContainer.addEventListener('click', handleDelete);
 }
 
-init();
-
+if (commentContainer) init();

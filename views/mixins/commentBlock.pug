@@ -2,29 +2,35 @@ mixin commentBlock(comment= {})
     .commentBlock(id=comment.id)
         .imageBox
             img(src=comment.creator.avatarUrl)
-        .rightBox    
-            .commentInfo
-                span.name=comment.creator.name
-                span.date=comment.createdAt
-            .content
-                p=comment.text
-            .buttonBox(data-id=comment.id)
-                span.likeCommentBtn
-                    button
-                        i.fas.fa-thumbs-up  
-                    span.cnt=comment.like
-                span.dislikeCommentBtn
-                    button
-                        i.fas.fa-thumbs-down 
-                    span.cnt=comment.dislike
-                span.replyCommentBtn
-                    button
-                        i.fas.fa-reply
-                if loggedUser && comment.creator.id === loggedUser.id
-                    span.editCommentBtn
-                        button
-                            i.fas.fa-pencil-alt.edit
-                    span.deleteCommentBtn
-                        button
-                            i.fas.fa-minus-circle.delete
-
+        .right    
+            .displayBox
+                .commentInfo
+                    span.name=comment.creator.name
+                    span.date=comment.createdAt
+                .content
+                    p=comment.text
+                .buttonBox(data-id=comment.id)
+                    span.likeCommentBtn
+                        button(type="button")
+                            i.fas.fa-thumbs-up  
+                        span.cnt=comment.like
+                    span.dislikeCommentBtn
+                        button(type="button")
+                            i.fas.fa-thumbs-down 
+                        span.cnt=comment.dislike
+                    span.replyCommentBtn
+                        button(type="button")
+                            i.fas.fa-reply
+                    if loggedUser && comment.creator.id === loggedUser.id
+                        span.editCommentBtn
+                            button(type="button")
+                                i.fas.fa-pencil-alt.edit
+                        span.deleteCommentBtn
+                            button(type="button")
+                                i.fas.fa-minus-circle.delete
+            .editBox.hidden    
+                form#jsEditCommentForm
+                    input#jsEditCommentInput(type="text" name="comment" autocomplete="off")
+                    .btnBox
+                        button#jsEditCommentCancelBtn(type="button") CANCEL
+                        button#jsEditCommentSavetBtn(type="button") SAVE

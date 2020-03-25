@@ -38,6 +38,21 @@ export const postAddComment = async (req, res) => {
     }
 };
 
+export const postEditComment = async (req, res) => {
+    const {
+        params: { id },
+        body: { comment }
+    } = req;
+    console.log(id, comment);
+    try {
+        await Comment.findByIdAndUpdate({ _id: id }, { $set: { text: comment } }, { new: true });
+    } catch (error) {
+        console.log(error);
+    } finally {
+        res.end();
+    }
+};
+
 export const postDeleteComment = async (req, res) => {
     const {
         params: { id: commentId },

@@ -31,7 +31,17 @@ export const postJoin = async (req, res, next) => {
 };
 
 // Login
-export const getLogin = (req, res) => res.render('login', { pageName: 'LOGIN' });
+export const getLogin = (req, res) => {
+    const {
+        query: { url }
+    } = req;
+    // console.log(url); //videoDetail => login => videoDetail  : imcomplete
+    if (url) {
+        res.render('login', { pageName: 'LOGIN', url });
+    } else {
+        res.render('login', { pageName: 'LOGIN' });
+    }
+};
 export const postLogin = passport.authenticate('local', {
     //passport를 이용한 authentication
     successRedirect: routes.home,
@@ -70,17 +80,12 @@ export const githubCallback = async (_, __, profile, cb) => {
 
 export const postGithubLogin = (req, res) => res.redirect(routes.home);
 
-
 // Google Login
 export const getGoogleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
 
 export const googleCallback = async (_, __, profile, cb) => {
     const {
-        _json: {
-            sub,
-            name,
-            picture,
-            email }
+        _json: { sub, name, picture, email }
     } = profile;
     try {
         const user = await User.findOne({ email });
@@ -106,7 +111,6 @@ export const googleCallback = async (_, __, profile, cb) => {
 
 export const postGoogleLogin = (req, res) => res.redirect(routes.home);
 
-
 // Naver Login
 export const getNaverLogin = passport.authenticate('naver');
 
@@ -128,7 +132,7 @@ export const naverCallback = (accessToken, refreshToken, profile, done) => {
     // } catch (error) {
     //     console.log(error)
     // }
-}
+};
 
 export const postNaverLogin = (req, res) => res.redirect(routes.home);
 
@@ -141,11 +145,13 @@ export const logout = (req, res) => {
 // My Profile : 자신의 프로필에 접근할 때
 export const getMyProfile = async (req, res) => {
     res.render('userProfile', { pageName: 'My Profile', user: req.user }); //여기서 user는 로그인한 유저
-}
+};
 
 // UserDetail : 남의 프로필에 접근할 때
 export const userDetail = async (req, res) => {
-    const { params: { id } } = req;
+    const {
+        params: { id }
+    } = req;
     try {
         const user = await User.findById(id);
         res.render('userProfile', { pageName: 'Profile', user }); //여기서 user는 다른 유저를 찾는 경우
@@ -153,36 +159,34 @@ export const userDetail = async (req, res) => {
         console.log(error);
         res.redirect(routes.home);
     }
-}
+};
 
 // EditProfile
 export const getEditProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const postEditProfile = async (req, res) => {
-    const { body: { name, email }, file } = req;
+    const {
+        body: { name, email },
+        file
+    } = req;
     console.log(name, email, file);
     try {
-        await User.findByIdAndUpdate(req.user.id,
-            {
-                name,
-                email,
-                avatarUrl: file ? `/${file.path}` : req.user.avatarUrl
-            });
+        await User.findByIdAndUpdate(req.user.id, {
+            name,
+            email,
+            avatarUrl: file ? `/${file.path}` : req.user.avatarUrl
+        });
         res.redirect(`${routes.users}${routes.myProfile}`);
     } catch (error) {
         console.log(error);
         res.redirect(`${routes.users}${routes.editProfile}`);
     }
-}
+};
 
 //ChangePassword
 export const getChangePassword = (req, res) => res.render('changePassword', { pageName: 'CHANGE PASSWORD' });
 export const postChangePassword = async (req, res) => {
-    const { body:
-        {
-            currentPassword,
-            newPassword,
-            verifyPassword
-        }
+    const {
+        body: { currentPassword, newPassword, verifyPassword }
     } = req;
     try {
         if (newPassword !== verifyPassword) {
@@ -192,11 +196,11 @@ export const postChangePassword = async (req, res) => {
         }
         //console.log(Object.keys(req.user));
         await req.user.changePassword(currentPassword, newPassword);
-        //changePassword는 passport-local-mongoose에 있는 메소드임 -> req에 담겨져서 보내짐 
+        //changePassword는 passport-local-mongoose에 있는 메소드임 -> req에 담겨져서 보내짐
         res.redirect(`${routes.users}${routes.myProfile}`);
     } catch (error) {
         console.log(error);
         res.send(400);
         res.redirect(`${routes.users}${routes.changePassword}`);
     }
-}
+};

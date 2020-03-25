@@ -59,8 +59,8 @@ block content
                         img(src="/uploads/avatar/avatar.png")
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off")
                         .btnBox
-                            button#jsCommentCancelBtn CANCEL
-                            button#jsCommentSubmitBtn COMMENT
+                            button#jsCommentCancelBtn(type="button") CANCEL
+                            button#jsCommentSubmitBtn(type="button") COMMENT
                 .commentList#jsCommentList
                     each item in video.comments
                         +commentBlock({

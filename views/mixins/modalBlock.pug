@@ -5,5 +5,7 @@ mixin modalBlock
             .modalContent
                 p Sign in to make your opinion
             .modalButton
-                button#jsModalLoginBtn SIGN IN
-                button#jsModalJoinBtn JOIN                                                                                                                             
+                button#jsModalLoginBtn 
+                    a#jsModalLoginLink(href='/login') LOGIN
+                button#jsModalJoinBtn 
+                    a#jsModalJoinLink(href='/join') JOIN
