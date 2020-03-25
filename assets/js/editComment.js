@@ -28,14 +28,16 @@ async function handleSave(e) {
 }
 function initVariable(commentId) {
     commentBlock = document.getElementById(`${commentId}`);
-    console.log(commentBlock);
-    displayBox = commentBlock.querySelector('.displayBox');
-    editBox = commentBlock.querySelector('.editBox');
-    editCommentForm = editBox.querySelector('#jsEditCommentForm');
-    editCommentInput = editBox.querySelector('#jsEditCommentInput');
-    editCommentCancelBtn = editBox.querySelector('#jsEditCommentCancelBtn');
-    editCommentSavetBtn = editBox.querySelector('#jsEditCommentSavetBtn');
-    console.log('1', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSavetBtn);
+    console.log('cb', commentBlock);
+    if (commentBlock) {
+        displayBox = commentBlock.querySelector('.displayBox');
+        editBox = commentBlock.querySelector('.editBox');
+        editCommentForm = editBox.querySelector('#jsEditCommentForm');
+        editCommentInput = editBox.querySelector('#jsEditCommentInput');
+        editCommentCancelBtn = editBox.querySelector('#jsEditCommentCancelBtn');
+        editCommentSavetBtn = editBox.querySelector('#jsEditCommentSavetBtn');
+        console.log('1', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSavetBtn);
+    }
 }
 
 function handleEdit(e) {
@@ -58,4 +60,4 @@ function init() {
     commentList.addEventListener('click', handleEdit);
 }
 
-if (commentList.childElementCount !== 0) init();
+if (commentList && commentList.childElementCount !== 0) init();

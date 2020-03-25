@@ -43,7 +43,6 @@ export const postEditComment = async (req, res) => {
         params: { id },
         body: { comment }
     } = req;
-    console.log(id, comment);
     try {
         await Comment.findByIdAndUpdate({ _id: id }, { $set: { text: comment } }, { new: true });
     } catch (error) {
