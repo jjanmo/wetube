@@ -30,17 +30,17 @@ mixin commentBlock(comment= {})
             .editBox.hidden    
                 form#jsEditCommentForm
                     input#jsEditCommentInput(type="text" name="comment" autocomplete="off")
-                    .btnBox
+                    .editBtnBox
                         button#jsEditCommentCancelBtn(type="button") CANCEL
-                        button#jsEditCommentSavetBtn(type="button") SAVE
+                        button#jsEditCommentSaveBtn(type="button") SAVE
             .replyFormBox.hidden
                 .imgDiv
-                    img(src="/uploads/avatar/default_avartar.png")
+                    img(src=comment.creator.avatarUrl)
                 form#jsReplyForm
-                    input#jsReplyInput(type="text" name="comment" autocomplete="off" placeholder="Add a public reply.....")
-                    .btnBox
+                    input#jsReplyInput(type="text" name="reply" autocomplete="off" placeholder="Add a public reply.....")
+                    .replyBtnBox
                         button#jsReplyCancelBtn(type="button") CANCEL
-                        button#jsReplySavetBtn(type="button") REPLY
+                        button#jsReplySaveBtn(type="button") REPLY
             .replyListBox.hidden
                 ul
                     li

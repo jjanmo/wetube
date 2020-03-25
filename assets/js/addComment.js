@@ -11,13 +11,14 @@ function makeCommentBlock(parsedInfo) {
     const commentBlock = document.createElement('div');
     commentBlock.classList.add('commentBlock');
     commentBlock.id = parsedInfo.commentId;
+    commentList.append(commentBlock);
 
     //imageBox
     const imageBox = document.createElement('div');
     imageBox.classList.add('imageBox');
-    const image = document.createElement('img');
-    image.src = parsedInfo.avatarUrl;
-    imageBox.append(image);
+    const image1 = document.createElement('img');
+    image1.src = parsedInfo.avatarUrl;
+    imageBox.append(image1);
     commentBlock.append(imageBox);
 
     //right
@@ -61,6 +62,7 @@ function makeCommentBlock(parsedInfo) {
     button1.innerHTML = '<i class="fas fa-heart like"></i>';
     const cnt = document.createElement('span');
     cnt.classList.add('cnt');
+    cnt.id = 'jsLikeCommentCnt';
     cnt.textContent = '0';
     like.append(button1);
     like.append(cnt);
@@ -90,9 +92,99 @@ function makeCommentBlock(parsedInfo) {
     button4.innerHTML = '<i class="fas fa-minus-circle delete"></i>';
     deleteBtn.append(button4);
     buttonBox.append(deleteBtn);
-    //append boxes
     displayBox.append(buttonBox);
-    commentList.append(commentBlock);
+
+    //editBox
+    const editBox = document.createElement('div');
+    editBox.classList.add('editBox');
+    editBox.classList.add('hidden');
+    right.append(editBox);
+
+    //editForm
+    const editForm = document.createElement('form');
+    editForm.id = 'jsEditCommentForm';
+    editBox.append(editForm);
+
+    //editInput
+    const editInput = document.createElement('input');
+    editInput.id = 'jsEditCommentInput';
+    editInput.type = 'text';
+    editInput.name = 'comment';
+    editInput.autocomplete = 'off';
+    editForm.append(editInput);
+
+    //editBtnBox
+    const editBtnBox = document.createElement('div');
+    editBtnBox.classList.add('editBtnBox');
+    editForm.append(editBtnBox);
+
+    //buttons
+    const button5 = document.createElement('button');
+    button5.id = 'jsEditCommentCancelBtn';
+    button5.type = 'button';
+    button5.textContent = 'CANCEL';
+    editBtnBox.append(button5);
+
+    const button6 = document.createElement('button');
+    button6.id = 'jsEditCommentSaveBtn';
+    button6.type = 'button';
+    button6.textContent = 'REPLY';
+    editBtnBox.append(button6);
+
+    //replyFormBox
+    const replyFormBox = document.createElement('div');
+    replyFormBox.classList.add('replyFormBox');
+    replyFormBox.classList.add('hidden');
+    right.append(replyFormBox);
+
+    //imgDiv
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('imgDiv');
+    replyFormBox.append(imgDiv);
+    const image2 = document.createElement('img');
+    image2.src = parsedInfo.avatarUrl;
+    imgDiv.append(image2);
+
+    //replyForm
+    const replyForm = document.createElement('form');
+    replyForm.id = 'jsReplyForm';
+    replyFormBox.append(replyForm);
+
+    //replyInput
+    const replyInput = document.createElement('input');
+    replyInput.id = 'jsReplyInput';
+    replyInput.type = 'text';
+    replyInput.name = 'reply';
+    replyInput.autocomplete = 'off';
+    replyInput.placeholder = 'Add a public reply.....';
+    replyForm.append(replyInput);
+
+    //buttons
+    const replyBtnBox = document.createElement('div');
+    replyBtnBox.classList.add('replyBtnBox');
+    replyForm.append(replyBtnBox);
+
+    const button7 = document.createElement('button');
+    button7.id = 'jsReplyCancelBtn';
+    button7.type = 'button';
+    button7.textContent = 'CANCEL';
+    replyBtnBox.append(button7);
+
+    const button8 = document.createElement('button');
+    button8.id = 'jsReplySaveBtn';
+    button8.type = 'button';
+    button8.textContent = 'REPLY';
+    replyBtnBox.append(button8);
+
+    //replyListBox
+    const replyListBox = document.createElement('div');
+    replyListBox.classList.add('replyListBox');
+    replyListBox.classList.add('hidden');
+    right.append(replyListBox);
+
+    //ul
+    const ul = document.createElement('ul');
+    replyListBox.append(ul);
 }
 
 // Add comment

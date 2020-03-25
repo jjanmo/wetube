@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const commentList = document.getElementById('jsCommentList');
 
-let commentId, commentBlock, displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSavetBtn;
+let commentId, commentBlock, displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSaveBtn;
 
 function handleCancel() {
     displayBox.classList.remove('hidden');
     editBox.classList.add('hidden');
-    // console.log('2', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSavetBtn);
+    // console.log('2', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSaveBtn);
 }
 
 async function handleSave(e) {
@@ -35,8 +35,8 @@ function initVariable(commentId) {
         editCommentForm = editBox.querySelector('#jsEditCommentForm');
         editCommentInput = editBox.querySelector('#jsEditCommentInput');
         editCommentCancelBtn = editBox.querySelector('#jsEditCommentCancelBtn');
-        editCommentSavetBtn = editBox.querySelector('#jsEditCommentSavetBtn');
-        // console.log('1', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSavetBtn);
+        editCommentSaveBtn = editBox.querySelector('#jsEditCommentSaveBtn');
+        // console.log('1', displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSaveBtn);
     }
 }
 
@@ -52,7 +52,7 @@ function handleEdit(e) {
         //add event-listener
         editCommentForm.addEventListener('submit', handleSave);
         editCommentCancelBtn.addEventListener('click', handleCancel);
-        editCommentSavetBtn.addEventListener('click', handleSave);
+        editCommentSaveBtn.addEventListener('click', handleSave);
         //initialize
         editCommentInput.value = comment;
         editCommentInput.focus();
