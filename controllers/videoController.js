@@ -4,7 +4,9 @@ import Video from '../models/Video';
 // Home
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({}).populate('creator').sort({ _id: -1 });
+        const videos = await Video.find({})
+            .populate('creator')
+            .sort({ _id: -1 });
         // console.log(videos); // []
         res.render('home', { pageName: 'HOME', videos });
     } catch (error) {
@@ -23,7 +25,7 @@ export const search = async (req, res) => {
         videos = await Video.find({
             title: { $regex: term, $options: 'i' }
         });
-        console.log(videos);
+        //console.log(videos);
         res.render('search', { pageName: 'SEARCH', term, videos });
     } catch (error) {
         console.log(error);
@@ -62,7 +64,7 @@ export const videoDetail = async (req, res) => {
         const video = await Video.findById(id)
             .populate('creator')
             .populate({ path: 'comments', populate: { path: 'creator' } });
-        console.log(video);
+        //console.log(video);
         res.render('videoDetail', { pageName: video.title, video });
     } catch (error) {
         res.redirect(routes.home);
@@ -79,8 +81,7 @@ export const getEditVideo = async (req, res) => {
         // console.log(video.creator.id, typeof video.creator.id);
         if (req.user.id !== String(video.creator)) {
             throw Error;
-        }
-        else {
+        } else {
             res.render('editVideo', { pageName: `EDIT ${video.title}`, video });
         }
     } catch (error) {
@@ -110,8 +111,7 @@ export const deleteVideo = async (req, res) => {
     try {
         if (req.user.id !== String(video.creator)) {
             throw Error;
-        }
-        else {
+        } else {
             await Video.findOneAndRemove({ _id: id });
             res.redirect(routes.home);
         }
@@ -121,20 +121,20 @@ export const deleteVideo = async (req, res) => {
     }
 };
 
-
 // Register video view
 export const postRegisterView = async (req, res) => {
-    const { params: { id } } = req;
+    const {
+        params: { id }
+    } = req;
     try {
         const video = await Video.findById(id);
         video.views++;
         video.save();
-        res.status(200)
-    }
-    catch (error) {
+        res.status(200);
+    } catch (error) {
         console.log(error);
         res.status(400);
     } finally {
         res.end();
     }
-}
+};

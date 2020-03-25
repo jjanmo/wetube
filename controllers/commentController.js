@@ -124,3 +124,31 @@ export const postChangeVideoLiking = async (req, res) => {
         res.end();
     }
 };
+
+export const postChangeCommentLiking = async (req, res) => {
+    const {
+        params: { id: commentId },
+        body: { userId, isSelected }
+    } = req;
+    // console.log(id, userId, isSelected);
+    try {
+        const comment = await Comment.findById(commentId);
+        const user = await User.findById(userId);
+        if (isSelected) {
+            if (comment.like.indexOf(userId) !== -1) comment.like.splice(comment.like.indexOf(userId), 1);
+            if (user.likeComments.indexOf(commentId) !== -1) user.likeComments.splice(user.likeComments.indexOf(commentId), 1);
+            comment.save();
+            user.save();
+        } else {
+            if (comment.like.indexOf(userId) === -1) comment.like.push(userId);
+            if (user.likeComments.indexOf(commentId) === -1) user.likeComments.push(commentId);
+            comment.save();
+            user.save();
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400);
+    } finally {
+        res.end();
+    }
+};

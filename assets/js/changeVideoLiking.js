@@ -3,19 +3,19 @@ import axios from 'axios';
 const videoPlayer = document.getElementById('jsVideoPlayer');
 const videoLikeBtn = document.getElementById('jsVideoLikeBtn');
 const videoDislikeBtn = document.getElementById('jsVideoDislikeBtn');
-let user;
+let userId;
 let isLikeBtn, //현재 클릭한 버튼이 무엇인지?
     isSelected, //클릭한 버튼이 눌려있는지?
     isSwitching = false; //교차 클릭여부?
 
-function parseUser() {
+export function parseUser() {
     const userObj = document.getElementById('jsCommentForm').dataset.user;
     //console.log(userObj);
     if (userObj) {
         const tmpObj = JSON.parse(userObj);
         //console.log(tmpObj);
-        user = tmpObj._id;
-    } else user = null;
+        return tmpObj._id;
+    } else return null;
 }
 
 function paintLiking() {
@@ -100,7 +100,7 @@ const changeLiking = async () => {
             isLikeBtn,
             isSelected,
             isSwitching,
-            userId: user
+            userId
         }
     });
     //console.log(response);
@@ -139,8 +139,8 @@ function handleOut(e) {
 }
 
 function init() {
-    parseUser();
-    if (user) {
+    userId = parseUser();
+    if (userId) {
         videoLikeBtn.addEventListener('click', clickLikingBtn);
         videoDislikeBtn.addEventListener('click', clickLikingBtn);
     }

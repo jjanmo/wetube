@@ -12,8 +12,11 @@ mixin commentBlock(comment= {})
                 .buttonBox(data-id=comment.id)
                     span.likeCommentBtn
                         button(type="button")
-                            i.fas.fa-heart  
-                        span.cnt=comment.like.length
+                            if loggedUser && comment.like.includes(loggedUser.id)
+                                i.fas.fa-heart.like.selected
+                            else
+                                i.fas.fa-heart.like           
+                        span.cnt#jsLikeCommentCnt=comment.like.length
                     span.replyCommentBtn
                         button(type="button")
                             i.fas.fa-reply
@@ -30,7 +33,7 @@ mixin commentBlock(comment= {})
                     .btnBox
                         button#jsEditCommentCancelBtn(type="button") CANCEL
                         button#jsEditCommentSavetBtn(type="button") SAVE
-            .replyFormBox
+            .replyFormBox.hidden
                 .imgDiv
                     img(src="/uploads/avatar/default_avartar.png")
                 form#jsReplyForm
@@ -38,7 +41,7 @@ mixin commentBlock(comment= {})
                     .btnBox
                         button#jsReplyCancelBtn(type="button") CANCEL
                         button#jsReplySavetBtn(type="button") REPLY
-            .replyListBox
+            .replyListBox.hidden
                 ul
                     li
                         div

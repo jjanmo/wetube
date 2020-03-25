@@ -1,7 +1,13 @@
 import express from 'express';
 import routes from '../routes';
 import { postRegisterView } from '../controllers/videoController';
-import { postAddComment, postChangeVideoLiking, postDeleteComment, postEditComment } from '../controllers/commentController';
+import {
+    postAddComment,
+    postChangeVideoLiking,
+    postDeleteComment,
+    postEditComment,
+    postChangeCommentLiking
+} from '../controllers/commentController';
 import { onlyPrivate } from '../middlewares';
 
 const apiRouter = express.Router();
@@ -18,7 +24,10 @@ apiRouter.post(routes.editComment, onlyPrivate, postEditComment);
 // Delete Comment
 apiRouter.post(routes.deleteComment, onlyPrivate, postDeleteComment);
 
-// Change Liking
+// Change Video Liking
 apiRouter.post(routes.changeVideoLiking, onlyPrivate, postChangeVideoLiking);
+
+// Change Comment Liking
+apiRouter.post(routes.changeCommentLiking, onlyPrivate, postChangeCommentLiking);
 
 export default apiRouter;

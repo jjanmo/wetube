@@ -7,21 +7,29 @@ const commentCancelBtn = document.getElementById('jsCommentCancelBtn');
 
 const commentList = document.getElementById('jsCommentList');
 
-let deleteBtn, editBtn;
-
 function makeCommentBlock(parsedInfo) {
     const commentBlock = document.createElement('div');
     commentBlock.classList.add('commentBlock');
     commentBlock.id = parsedInfo.commentId;
+
+    //imageBox
     const imageBox = document.createElement('div');
     imageBox.classList.add('imageBox');
     const image = document.createElement('img');
     image.src = parsedInfo.avatarUrl;
     imageBox.append(image);
     commentBlock.append(imageBox);
-    const rightBox = document.createElement('div');
-    rightBox.classList.add('rightBox');
-    commentBlock.append(rightBox);
+
+    //right
+    const right = document.createElement('div');
+    right.classList.add('right');
+    commentBlock.append(right);
+
+    //displayBox
+    const displayBox = document.createElement('div');
+    displayBox.classList.add('displayBox');
+    right.append(displayBox);
+
     const commentInfo = document.createElement('div');
     commentInfo.classList.add('commentInfo');
     const name = document.createElement('span');
@@ -32,15 +40,16 @@ function makeCommentBlock(parsedInfo) {
     date.textContent = parsedInfo.date;
     commentInfo.append(name);
     commentInfo.append(date);
-    rightBox.append(commentInfo);
+    displayBox.append(commentInfo);
+
     const content = document.createElement('div');
     content.classList.add('content');
     const text = document.createElement('p');
     text.textContent = parsedInfo.comment;
     content.append(text);
-    rightBox.append(content);
+    displayBox.append(content);
 
-    //button box
+    //buttonBox
     const buttonBox = document.createElement('div');
     buttonBox.classList.add('buttonBox');
     buttonBox.dataset.id = parsedInfo.commentId;
@@ -49,56 +58,40 @@ function makeCommentBlock(parsedInfo) {
     const like = document.createElement('span');
     like.classList.add('likeCommentBtn');
     const button1 = document.createElement('button');
-    button1.innerHTML = '<i class="fas fa-thumbs-up"></i>';
-    const cnt1 = document.createElement('span');
-    cnt1.classList.add('cnt');
-    cnt1.textContent = '0';
+    button1.innerHTML = '<i class="fas fa-heart like"></i>';
+    const cnt = document.createElement('span');
+    cnt.classList.add('cnt');
+    cnt.textContent = '0';
     like.append(button1);
-    like.append(cnt1);
+    like.append(cnt);
     buttonBox.append(like);
-
-    //dislike comment button
-    const dislike = document.createElement('span');
-    dislike.classList.add('dislikeCommentBtn');
-    const button2 = document.createElement('button');
-    button2.innerHTML = '<i class="fas fa-thumbs-down"></i>';
-    const cnt2 = document.createElement('span');
-    cnt2.classList.add('cnt');
-    cnt2.textContent = '0';
-    dislike.append(button2);
-    dislike.append(cnt2);
-    buttonBox.append(dislike);
 
     //reply comment button
     const reply = document.createElement('span');
     reply.classList.add('replyCommentBtn');
-    const button3 = document.createElement('button');
-    button3.innerHTML = '<i class="fas fa-reply"></i>';
-    reply.append(button3);
+    const button2 = document.createElement('button');
+    button2.innerHTML = '<i class="fas fa-reply"></i>';
+    reply.append(button2);
     buttonBox.append(reply);
 
     //edit button
-    const _edit = document.createElement('span');
-    editBtn = _edit;
-    // editBtn.addEventListener('click', handleEdit);
+    const editBtn = document.createElement('span');
     editBtn.classList.add('editCommentBtn');
-    const button4 = document.createElement('button');
-    button4.innerHTML = '<i class="fas fa-pencil-alt edit"></i>';
-    editBtn.append(button4);
+    const button3 = document.createElement('button');
+    button3.innerHTML = '<i class="fas fa-pencil-alt edit"></i>';
+    editBtn.append(button3);
     buttonBox.append(editBtn);
 
     //delete button
-    const _delete = document.createElement('span');
-    deleteBtn = _delete;
-    // deleteBtn.addEventListener('click', handleDelete);
+    const deleteBtn = document.createElement('span');
     deleteBtn.classList.add('deleteBtn');
     deleteBtn.id = 'jsDeleteBtn';
-    const button5 = document.createElement('button');
-    button5.innerHTML = '<i class="fas fa-minus-circle delete"></i>';
-    deleteBtn.append(button5);
+    const button4 = document.createElement('button');
+    button4.innerHTML = '<i class="fas fa-minus-circle delete"></i>';
+    deleteBtn.append(button4);
     buttonBox.append(deleteBtn);
     //append boxes
-    rightBox.append(buttonBox);
+    displayBox.append(buttonBox);
     commentList.append(commentBlock);
 }
 

@@ -5,6 +5,7 @@ import './videoPlayTimeFormat';
 import './addComment';
 import './deleteComment';
 import './editComment';
+import './changeCommentLiking';
 import './changeVideoLiking';
 import './fixHeader';
 import './modalBlock';
