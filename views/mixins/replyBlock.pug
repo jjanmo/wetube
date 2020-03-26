@@ -1,0 +1,24 @@
+mixin replyBlock(reply={})
+    li(data-id=reply.id)
+        .replyDisplayBox
+            div
+                img(src=reply.avatarUrl)
+            div
+                span.name=reply.name
+                span.date=reply.date
+            div
+                span.replyText=reply.text
+            div
+                span.editBtn
+                    i.fas.fa-pencil-alt.edit
+                span.deleteBtn
+                    i.fas.fa-minus-circle.delete
+        .replyEditBox.hidden
+            form#jsReplyEditForm
+                input#jsReplyEditInput(type="text" name="reply" autocomplete="off" required)
+                .editBtnBox
+                    button#jsReplyEditCancelBtn(type="button") 
+                        i.far.fa-times-circle.cancel
+                    button#jsReplyEditSaveBtn
+                        i.far.fa-check-circle.save
+        

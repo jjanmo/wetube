@@ -31,6 +31,7 @@ const EDIT_COMMENT = '/:id/edit-comment';
 const DELETE_COMMENT = '/:id/delete-comment';
 const CHANGE_VIDEO_LIKING = '/:id/change-video-liking';
 const CHANGE_COMMENT_LIKING = '/:id/change-comment-liking';
+const ADD_REPLY = '/:id/add-reply';
 
 // Video
 const VIDEOS = '/videos';
@@ -75,7 +76,8 @@ const routes = {
     deleteComment: DELETE_COMMENT,
     editComment: EDIT_COMMENT,
     changeVideoLiking: CHANGE_VIDEO_LIKING,
-    changeCommentLiking: CHANGE_COMMENT_LIKING
+    changeCommentLiking: CHANGE_COMMENT_LIKING,
+    addReply: ADD_REPLY
 };
 
 export default routes;

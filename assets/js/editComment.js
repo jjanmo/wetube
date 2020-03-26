@@ -51,8 +51,8 @@ function handleEdit(e) {
         editBox.classList.remove('hidden');
         //add event-listener
         editCommentForm.addEventListener('submit', handleSave);
+        editCommentSaveBtn.addEventListener('submit', handleSave);
         editCommentCancelBtn.addEventListener('click', handleCancel);
-        editCommentSaveBtn.addEventListener('click', handleSave);
         //initialize
         editCommentInput.value = comment;
         editCommentInput.focus();

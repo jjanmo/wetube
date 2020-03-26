@@ -1,3 +1,5 @@
+include ./replyBlock
+
 mixin commentBlock(comment= {})
     .commentBlock(id=comment.id)
         .imageBox
@@ -20,6 +22,7 @@ mixin commentBlock(comment= {})
                     span.replyCommentBtn
                         button(type="button")
                             i.fas.fa-reply
+                        span.cnt#jsReplyCnt=comment.replies.length
                     if loggedUser && comment.creator.id === loggedUser.id
                         span.editCommentBtn
                             button(type="button")
@@ -27,32 +30,28 @@ mixin commentBlock(comment= {})
                         span.deleteCommentBtn
                             button(type="button")
                                 i.fas.fa-minus-circle.delete
-            .editBox.hidden    
-                form#jsEditCommentForm
-                    input#jsEditCommentInput(type="text" name="comment" autocomplete="off")
-                    .editBtnBox
-                        button#jsEditCommentCancelBtn(type="button") CANCEL
-                        button#jsEditCommentSaveBtn(type="button") SAVE
-            .replyFormBox.hidden
-                .imgDiv
-                    img(src=comment.creator.avatarUrl)
-                form#jsReplyForm
-                    input#jsReplyInput(type="text" name="reply" autocomplete="off" placeholder="Add a public reply.....")
-                    .replyBtnBox
-                        button#jsReplyCancelBtn(type="button") CANCEL
-                        button#jsReplySaveBtn(type="button") REPLY
-            .replyListBox.hidden
+            if loggedUser
+                .editBox.hidden    
+                    form#jsEditCommentForm
+                        input#jsEditCommentInput(type="text" name="comment" autocomplete="off" required)
+                        .editBtnBox
+                            button#jsEditCommentCancelBtn(type="button") CANCEL
+                            button#jsEditCommentSaveBtn SAVE
+                .replyFormBox.hidden
+                    .imgDiv
+                        img(src=loggedUser.avatarUrl)
+                    form#jsReplyForm
+                        input#jsReplyInput(type="text" name="reply" autocomplete="off" placeholder="Add a public reply....." required)
+                        .replyBtnBox
+                            button#jsReplyCancelBtn(type="button") CANCEL
+                            button#jsReplySaveBtn REPLY
+            .replyListBox
                 ul
-                    li
-                        div
-                            img(src="/uploads/avatar/default_avartar.png")
-                        div
-                            span.name jjanmo
-                            span.date 2020.03.24
-                        div
-                            span.replyText 이것은 대댓글
-                        div
-                            span.editBtn
-                                i.fas.fa-pencil-alt.edit
-                            span.deleteBtn
-                                i.fas.fa-minus-circle.delete
+                    each reply in comment.replies
+                        +replyBlock({
+                            id : reply._id,
+                            name : reply.creator.name,
+                            date : dateFormatter(reply.createdAt),
+                            text : reply.text,
+                            avatarUrl : reply.creator.avatarUrl
+                        })

@@ -9,6 +9,7 @@ import {
     postChangeCommentLiking
 } from '../controllers/commentController';
 import { onlyPrivate } from '../middlewares';
+import { postAddReply } from '../controllers/replyController';
 
 const apiRouter = express.Router();
 
@@ -29,5 +30,8 @@ apiRouter.post(routes.changeVideoLiking, onlyPrivate, postChangeVideoLiking);
 
 // Change Comment Liking
 apiRouter.post(routes.changeCommentLiking, onlyPrivate, postChangeCommentLiking);
+
+// Add Reply
+apiRouter.post(routes.addReply, onlyPrivate, postAddReply);
 
 export default apiRouter;

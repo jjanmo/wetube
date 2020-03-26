@@ -38,7 +38,7 @@ async function changeCommentLiking() {
 function handleCommentLiking(e) {
     userId = parseUser(); //get userId
     likeIcon = e.target;
-    if (likeIcon.className.includes('like')) {
+    if (userId && likeIcon.className.includes('like')) {
         commentId = likeIcon.parentElement.parentElement.parentElement.dataset.id; //commentId
         commentBlock = document.getElementById(`${commentId}`);
         //console.log(commentBlock, commentId);

@@ -63,8 +63,13 @@ export const videoDetail = async (req, res) => {
     try {
         const video = await Video.findById(id)
             .populate('creator')
-            .populate({ path: 'comments', populate: { path: 'creator' } });
-        //console.log(video);
+            .populate({ path: 'comments', populate: { path: 'creator' } })
+            .populate({
+                path: 'comments',
+                populate: { path: 'replies', populate: { path: 'creator' } }
+            });
+        console.log(video);
+        //res.send(video);
         res.render('videoDetail', { pageName: video.title, video });
     } catch (error) {
         res.redirect(routes.home);

@@ -111,6 +111,7 @@ function makeCommentBlock(parsedInfo) {
     editInput.type = 'text';
     editInput.name = 'comment';
     editInput.autocomplete = 'off';
+    editInput.required;
     editForm.append(editInput);
 
     //editBtnBox
@@ -127,7 +128,6 @@ function makeCommentBlock(parsedInfo) {
 
     const button6 = document.createElement('button');
     button6.id = 'jsEditCommentSaveBtn';
-    button6.type = 'button';
     button6.textContent = 'REPLY';
     editBtnBox.append(button6);
 
@@ -156,6 +156,7 @@ function makeCommentBlock(parsedInfo) {
     replyInput.type = 'text';
     replyInput.name = 'reply';
     replyInput.autocomplete = 'off';
+    replyInput.required;
     replyInput.placeholder = 'Add a public reply.....';
     replyForm.append(replyInput);
 
@@ -172,7 +173,6 @@ function makeCommentBlock(parsedInfo) {
 
     const button8 = document.createElement('button');
     button8.id = 'jsReplySaveBtn';
-    button8.type = 'button';
     button8.textContent = 'REPLY';
     replyBtnBox.append(button8);
 
@@ -189,7 +189,7 @@ function makeCommentBlock(parsedInfo) {
 
 // Add comment
 
-function plusViewCount() {
+function plusCommentCount() {
     const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount++;
@@ -213,7 +213,7 @@ const sendComment = async comment => {
     if (response.status === 200) {
         //console.log(response.data);
         makeCommentBlock(response.data);
-        plusViewCount();
+        plusCommentCount();
     }
 };
 
@@ -236,7 +236,7 @@ function handleCancel() {
 
 function init() {
     commentForm.addEventListener('submit', handleSubmit);
-    commentSubmitBtn.addEventListener('click', handleSubmit);
+    commentSubmitBtn.addEventListener('submit', handleSubmit);
     commentCancelBtn.addEventListener('click', handleCancel);
 }
 

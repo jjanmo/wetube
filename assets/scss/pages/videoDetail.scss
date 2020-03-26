@@ -1,11 +1,12 @@
 .videoWrapper {
     width: 100%;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    column-gap: 30px;
+    // display: grid;
+    // grid-template-columns: 2fr 1fr;
+    // column-gap: 30px;
     margin: 0 auto 30px;
-    &:first-child {
-        width: 90%;
+    // &:first-child {
+    .videoColumn {
+        width: 65%;
         margin: auto;
         .videoContainer {
             .videoPlayer {
@@ -146,22 +147,25 @@
                         border-radius: 10px;
                         cursor: pointer;
                         font-weight: bold;
+                        margin-left: 10px;
                         &:first-child {
                             color: #606060;
+                            &:hover {
+                                color: white;
+                                background-color: #606060;
+                            }
                         }
                         &:last-child {
                             color: white;
                             background-color: rgba(189, 195, 199, 0.7);
+                            &:hover {
+                                color: rgba(189, 195, 199, 0.7);
+                                background-color: #f5f5f5;
+                            }
                         }
                     }
                 }
             }
         }
-    }
-
-    &:last-child {
-        //videoColumn : video list
-        width: 90%;
-        margin: auto;
     }
 }
