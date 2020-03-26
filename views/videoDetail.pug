@@ -56,11 +56,15 @@ block content
                             span#jsCommentCount #{video.comments.length} 
                             span#jsLiteralComment Comments
                     form#jsCommentForm(data-user=loggedUser)
-                        img(src="/uploads/avatar/default_avartar.png")
-                        input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off")
+                        if loggedUser
+                            - var src = loggedUser.avatarUrl;
+                        else 
+                            - var src = "/uploads/avatar/default_avartar.png";
+                        img(src=src)
+                        input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off" required)
                         .btnBox
                             button#jsCommentCancelBtn(type="button") CANCEL
-                            button#jsCommentSubmitBtn(type="button") COMMENT
+                            button#jsCommentSubmitBtn COMMENT
                 .commentList#jsCommentList
                     each item in video.comments
                         +commentBlock({
