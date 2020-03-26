@@ -60,12 +60,12 @@ function makeCommentBlock(parsedInfo) {
     like.classList.add('likeCommentBtn');
     const button1 = document.createElement('button');
     button1.innerHTML = '<i class="fas fa-heart like"></i>';
-    const cnt = document.createElement('span');
-    cnt.classList.add('cnt');
-    cnt.id = 'jsLikeCommentCnt';
-    cnt.textContent = '0';
+    const cnt1 = document.createElement('span');
+    cnt1.classList.add('cnt');
+    cnt1.id = 'jsLikeCommentCnt';
+    cnt1.textContent = '0';
     like.append(button1);
-    like.append(cnt);
+    like.append(cnt1);
     buttonBox.append(like);
 
     //reply comment button
@@ -73,14 +73,19 @@ function makeCommentBlock(parsedInfo) {
     reply.classList.add('replyCommentBtn');
     const button2 = document.createElement('button');
     button2.innerHTML = '<i class="fas fa-reply"></i>';
+    const cnt2 = document.createElement('span');
+    cnt2.classList.add('cnt');
+    cnt2.id = 'jsReplyCnt';
+    cnt2.textContent = '0';
     reply.append(button2);
+    reply.append(cnt2);
     buttonBox.append(reply);
 
     //edit button
     const editBtn = document.createElement('span');
     editBtn.classList.add('editCommentBtn');
     const button3 = document.createElement('button');
-    button3.innerHTML = '<i class="fas fa-pencil-alt edit"></i>';
+    button3.innerHTML = '<i class="fas fa-pencil-alt editComment"></i>';
     editBtn.append(button3);
     buttonBox.append(editBtn);
 
@@ -89,7 +94,7 @@ function makeCommentBlock(parsedInfo) {
     deleteBtn.classList.add('deleteBtn');
     deleteBtn.id = 'jsDeleteBtn';
     const button4 = document.createElement('button');
-    button4.innerHTML = '<i class="fas fa-minus-circle delete"></i>';
+    button4.innerHTML = '<i class="fas fa-minus-circle deleteComment"></i>';
     deleteBtn.append(button4);
     buttonBox.append(deleteBtn);
     displayBox.append(buttonBox);

@@ -12,7 +12,7 @@ function handleCancel() {
 
 async function handleSave(e) {
     e.preventDefault();
-    const newComment = document.getElementById('jsEditCommentInput').value;
+    const newComment = commentBlock.querySelector('#jsEditCommentInput').value;
     const response = await axios({
         method: 'post',
         url: `/api/${commentId}/edit-comment`,
@@ -21,7 +21,7 @@ async function handleSave(e) {
         }
     });
     if (response.status === 200) {
-        displayBox.querySelector('p').innerHTML = newComment;
+        displayBox.querySelector('p').textContent = newComment;
         displayBox.classList.remove('hidden');
         editBox.classList.add('hidden');
     }
@@ -42,7 +42,7 @@ function initVariable(commentId) {
 
 function handleEdit(e) {
     const target = e.target; //editbutton
-    if (target.className.includes('edit')) {
+    if (target.className.includes('editComment')) {
         commentId = target.parentElement.parentElement.parentElement.dataset.id; //commentId
         initVariable(commentId); //assign variables
         const comment = displayBox.querySelector('p').textContent; //get comment

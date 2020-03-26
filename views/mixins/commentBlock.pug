@@ -26,10 +26,10 @@ mixin commentBlock(comment= {})
                     if loggedUser && comment.creator.id === loggedUser.id
                         span.editCommentBtn
                             button(type="button")
-                                i.fas.fa-pencil-alt.edit
+                                i.fas.fa-pencil-alt.editComment
                         span.deleteCommentBtn
                             button(type="button")
-                                i.fas.fa-minus-circle.delete
+                                i.fas.fa-minus-circle.deleteComment
             if loggedUser
                 .editBox.hidden    
                     form#jsEditCommentForm

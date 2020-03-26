@@ -39,7 +39,7 @@ async function deleteData(commentId) {
 
 function handleDelete(e) {
     const target = e.target;
-    if (target.className.includes('delete')) {
+    if (target.className.includes('deleteComment')) {
         const commentId = target.parentElement.parentElement.parentElement.dataset.id;
         const commentBlock = document.getElementById(`${commentId}`);
         deleteData(commentId);
