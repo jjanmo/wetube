@@ -15,7 +15,7 @@ export const postAddReply = async (req, res) => {
             whichComment: commentId
         });
         const comment = await Comment.findById({ _id: commentId });
-        comment.replies.push(newReply._id);
+        if (comment.replies.indexOf(newReply._id) === -1) comment.replies.push(newReply._id);
         comment.save();
 
         //send new data
@@ -26,7 +26,6 @@ export const postAddReply = async (req, res) => {
             text,
             replyId: newReply._id
         };
-        console.log(req.user.avatarUrl);
         res.json(parsedData);
     } catch (error) {
         console.log(error);
@@ -43,6 +42,24 @@ export const postEditReply = async (req, res) => {
     } = req;
     try {
         await Reply.findByIdAndUpdate({ _id: replyId }, { $set: { text } }, { new: true });
+    } catch (error) {
+        console.log(error);
+        res.status(400);
+    } finally {
+        res.end();
+    }
+};
+
+export const postDeleteReply = async (req, res) => {
+    const {
+        params: { id: replyId },
+        body: { commentId }
+    } = req;
+    try {
+        await Reply.findByIdAndDelete({ _id: replyId });
+        const comment = await Comment.findById({ _id: commentId });
+        if (comment.replies.indexOf(replyId) !== -1) comment.replies.splice(comment.replies.indexOf(replyId), 1);
+        comment.save();
     } catch (error) {
         console.log(error);
         res.status(400);

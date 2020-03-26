@@ -6,7 +6,7 @@ function deleteCommentInPage(commentBlock) {
     commentBlock.remove();
 }
 
-function minusViewCount() {
+function minusCommentCount() {
     const commentCountSpan = document.getElementById('jsCommentCount');
     let commentCount = Number(commentCountSpan.textContent);
     commentCount--;
@@ -33,7 +33,7 @@ async function deleteData(commentId) {
         }
     });
     if (response.status === 200) {
-        minusViewCount();
+        minusCommentCount();
     }
 }
 

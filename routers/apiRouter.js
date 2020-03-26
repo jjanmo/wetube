@@ -9,7 +9,7 @@ import {
     postChangeCommentLiking
 } from '../controllers/commentController';
 import { onlyPrivate } from '../middlewares';
-import { postAddReply, postEditReply } from '../controllers/replyController';
+import { postAddReply, postEditReply, postDeleteReply } from '../controllers/replyController';
 
 const apiRouter = express.Router();
 
@@ -36,5 +36,8 @@ apiRouter.post(routes.addReply, onlyPrivate, postAddReply);
 
 // Edit Reply
 apiRouter.post(routes.editReply, onlyPrivate, postEditReply);
+
+// Delete Reply
+apiRouter.post(routes.deleteReply, onlyPrivate, postDeleteReply);
 
 export default apiRouter;

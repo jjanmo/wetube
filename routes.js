@@ -33,6 +33,7 @@ const CHANGE_VIDEO_LIKING = '/:id/change-video-liking';
 const CHANGE_COMMENT_LIKING = '/:id/change-comment-liking';
 const ADD_REPLY = '/:id/add-reply';
 const EDIT_REPLY = '/:id/edit-reply';
+const DELETE_REPLY = '/:id/delete-reply';
 
 // Video
 const VIDEOS = '/videos';
@@ -79,7 +80,8 @@ const routes = {
     changeVideoLiking: CHANGE_VIDEO_LIKING,
     changeCommentLiking: CHANGE_COMMENT_LIKING,
     addReply: ADD_REPLY,
-    editReply: EDIT_REPLY
+    editReply: EDIT_REPLY,
+    deleteReply: DELETE_REPLY
 };
 
 export default routes;

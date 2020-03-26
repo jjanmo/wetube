@@ -11,3 +11,4 @@ import './editComment';
 import './changeCommentLiking';
 import './addReply';
 import './editReply';
+import './deleteReply';
