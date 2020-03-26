@@ -9,11 +9,6 @@ const modalOverlay = document.getElementById('jsModalLayout');
 const commentList = document.getElementById('jsCommentList');
 let likeCommentBtns, replyCommentBtns;
 
-if (commentList && commentList.childElementCount !== 0) {
-    likeCommentBtns = document.querySelectorAll('.likeCommentBtn');
-    replyCommentBtns = document.querySelectorAll('.replyCommentBtn');
-}
-
 function handleModal() {
     modalBlock.classList.remove('hidden');
 }
@@ -39,8 +34,12 @@ function init() {
         commentInput.addEventListener('focus', handleModal);
         modalOverlay.addEventListener('click', exitModal);
         // addLoginLink();
-        likeCommentBtns.forEach(ele => ele.addEventListener('click', handleModal));
-        replyCommentBtns.forEach(ele => ele.addEventListener('click', handleModal));
+        if (commentList && commentList.childElementCount !== 0) {
+            likeCommentBtns = document.querySelectorAll('.likeCommentBtn');
+            replyCommentBtns = document.querySelectorAll('.replyCommentBtn');
+            likeCommentBtns.forEach(ele => ele.addEventListener('click', handleModal));
+            replyCommentBtns.forEach(ele => ele.addEventListener('click', handleModal));
+        }
     }
 }
 

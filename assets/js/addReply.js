@@ -109,7 +109,7 @@ async function sendReply(text) {
         }
     });
     if (response.status === 200) {
-        console.log(response.data);
+        //console.log(response.data);
         paintReply(response.data);
         toggleReplyform(replyFormBox);
         plusReplyCount();

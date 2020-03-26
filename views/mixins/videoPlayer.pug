@@ -1,21 +1,27 @@
 mixin videoPlayer( video = {})
     .videoPlayer#jsVideoPlayer
         video#jsVideo(src=`/${video.file}` data-id=video.id)
-        .progressBar#jsProgressBar
         .videoPlayerControl#jsVideoController
-            .videoPlayerColumn
-                span#jsPlayBtn
-                    i.fas.fa-play
-                span 
-                    span#jsCurrentTime 00:00:00 / 
-                    span#jsTotalTime 00:00:00
-            .videoPlayerColumn
-                span#jsVolumeBtn
-                    i.fas.fa-volume-up 
-                span
-                    input#jsVolumeBar(type="range" max="1" min="0" step="0.01" value="1")
-            .videoPlayerColumn
-                span#jsFullScreenBtn
-                    i.fas.fa-expand
+            .progressBar#jsProgressBar
+                .filled#jsFilledBar
+            .controller    
+                .videoPlayerColumn
+                    span#jsPlayBtn
+                        i.fas.fa-play
+                    span#jsBackwardBtn(data-skip="-15")
+                        i.fas.fa-backward
+                    span#jsForwardBtn(data-skip="15")
+                        i.fas.fa-forward
+                    span 
+                        span#jsCurrentTime 00:00:00 / 
+                        span#jsTotalTime 00:00:00
+                .videoPlayerColumn
+                    span#jsVolumeBtn
+                        i.fas.fa-volume-up 
+                    span
+                        input#jsVolumeBar(type="range" max="1" min="0" step="0.01" value="1")
+                .videoPlayerColumn
+                    span#jsFullScreenBtn
+                        i.fas.fa-expand
 
     
