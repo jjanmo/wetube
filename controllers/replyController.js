@@ -35,3 +35,18 @@ export const postAddReply = async (req, res) => {
         res.end();
     }
 };
+
+export const postEditReply = async (req, res) => {
+    const {
+        params: { id: replyId },
+        body: { text }
+    } = req;
+    try {
+        await Reply.findByIdAndUpdate({ _id: replyId }, { $set: { text } }, { new: true });
+    } catch (error) {
+        console.log(error);
+        res.status(400);
+    } finally {
+        res.end();
+    }
+};

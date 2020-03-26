@@ -9,10 +9,11 @@ mixin replyBlock(reply={})
             div
                 span.replyText=reply.text
             div
-                span.editBtn
-                    i.fas.fa-pencil-alt.editReply(data-id=reply.id)
-                span.deleteBtn
-                    i.fas.fa-minus-circle.deleteReply(data-id=reply.id)
+                if loggedUser && loggedUser.id === reply.creatorId
+                    span.editBtn
+                        i.fas.fa-pencil-alt.editReply(data-id=reply.id)
+                    span.deleteBtn
+                        i.fas.fa-minus-circle.deleteReply(data-id=reply.id)
         .replyEditBox.hidden
             form#jsReplyEditForm
                 input#jsReplyEditInput(type="text" name="reply" autocomplete="off" required)

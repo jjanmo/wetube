@@ -95,7 +95,7 @@ function paintReply(data) {
 
     const button2 = document.createElement('button');
     button2.id = 'jsReplyEditSaveBtn';
-    button2.textContent = '<i class="far fa-check-circle save"></i>';
+    button2.innerHTML = '<i class="far fa-check-circle save"></i>';
     editBtnBox.append(button2);
 }
 

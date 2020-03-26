@@ -51,6 +51,7 @@ mixin commentBlock(comment= {})
                         +replyBlock({
                             id : reply._id,
                             name : reply.creator.name,
+                            creatorId : reply.creator.id,
                             date : dateFormatter(reply.createdAt),
                             text : reply.text,
                             avatarUrl : reply.creator.avatarUrl
