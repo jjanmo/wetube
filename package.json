@@ -48,6 +48,7 @@
         "passport-naver": "^1.0.6",
         "postcss-loader": "^3.0.0",
         "pug": "^2.0.4",
+        "rd": "^2.0.1",
         "sass-loader": "^8.0.2",
         "webpack": "^4.41.6",
         "webpack-cli": "^3.3.11"
@@ -58,12 +59,13 @@
         "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
         "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
         "build": "npm run build:server && npm run build:assets && npm run copyAll",
-        "copyAll": "xcopy .\\src\\static .\\build\\static /s /y && xcopy .\\src\\views .\\build\\views /s /y",
-        "prebuild": "rd /s /q build",
+        "copyAll": "shx cp -R src/static build && shx cp -R src/views build",
+        "prebuild": "shx rm -rf build",
         "start": "node build/init.js"
     },
     "devDependencies": {
         "eslint": "^6.8.0",
-        "nodemon": "^2.0.2"
+        "nodemon": "^2.0.2",
+        "shx": "^0.3.2"
     }
 }
