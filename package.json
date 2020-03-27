@@ -61,7 +61,8 @@
         "build": "npm run build:server && npm run build:assets && npm run copyAll",
         "copyAll": "shx cp -R src/static build && shx cp -R src/views build",
         "prebuild": "shx rm -rf build",
-        "start": "node build/init.js"
+        "start": "PRODUCTION=true node build/init.js",
+        "prestart": "npm run build"
     },
     "devDependencies": {
         "eslint": "^6.8.0",
