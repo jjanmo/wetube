@@ -6,11 +6,19 @@ dotenv.config();
 // 2) process.env.key 형태로 모두 저장
 // -> process.env.key형태로 원하는 값을 불러올수있음
 
-mongoose.connect(process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL_PROD, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
 });
+
+// var MongoClient = require('mongodb').MongoClient;
+
+// MongoClient.connect(process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL, {
+//     useNewUrlParser: true,
+//     useFindAndModify: false,
+//     useUnifiedTopology: true
+// });
 
 const db = mongoose.connection;
 
