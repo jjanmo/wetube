@@ -31,6 +31,7 @@
         "css-loader": "^3.4.2",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
+        "express-flash": "0.0.2",
         "express-session": "^1.17.0",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "get-blob-duration": "^1.1.0",
@@ -59,8 +60,8 @@
         "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
         "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
         "build": "npm run build:server && npm run build:assets && npm run copyAll",
-        "copyAll": "cp -R src/static build && cp -R src/views build",
-        "prebuild": "rm -rf build",
+        "copyAll": "xcopy .\\src\\static .\\build\\static /s /y && xcopy .\\src\\views .\\build\\views /s /y",
+        "prebuild": "rd /s /q build",
         "start": "PRODUCTION=true node build/init.js",
         "prestart": "npm run build"
     },

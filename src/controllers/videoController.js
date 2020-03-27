@@ -26,6 +26,7 @@ export const search = async (req, res) => {
             title: { $regex: term, $options: 'i' }
         });
         //console.log(videos);
+        if (videos.length === 0) req.flash('info', 'No result found 😭');
         res.render('search', { pageName: 'SEARCH', term, videos });
     } catch (error) {
         console.log(error);
@@ -52,6 +53,7 @@ export const postUpload = async (req, res) => {
     req.user.videos.push(newVideo.id);
     req.user.save();
     //newVideo.id : document가 생성되면서 자동으로 부여되는듯...
+    req.flash('success', 'Upload 📷 Complete');
     res.redirect(`${routes.videos}${routes.videoDetail(newVideo.id)}`); //등록한 영상의 상세페이지로 이동
 };
 
@@ -68,7 +70,7 @@ export const videoDetail = async (req, res) => {
                 path: 'comments',
                 populate: { path: 'replies', populate: { path: 'creator' } }
             });
-        console.log(video);
+        //console.log(video);
         //res.send(video);
         res.render('videoDetail', { pageName: video.title, video });
     } catch (error) {
@@ -101,6 +103,7 @@ export const postEditVideo = async (req, res) => {
     } = req;
     try {
         await Video.findByIdAndUpdate({ _id: id }, { $set: { title, description } }, { new: true });
+        req.flash('success', 'Edit ✂ Complete');
         res.redirect(`${routes.videos}${routes.videoDetail(id)}`);
     } catch (error) {
         res.redirect(routes.home);
@@ -118,6 +121,7 @@ export const deleteVideo = async (req, res) => {
             throw Error;
         } else {
             await Video.findOneAndRemove({ _id: id });
+            req.flash('success', 'Delete 📌 Complete');
             res.redirect(routes.home);
         }
     } catch (error) {

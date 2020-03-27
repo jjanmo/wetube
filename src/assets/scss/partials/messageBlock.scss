@@ -1,0 +1,38 @@
+.messageBlock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    z-index: 10;
+    font-family: 'Roboto Slab', serif;
+    color: white;
+    padding: 1rem;
+    animation: flashAnimation 2s ease-in-out forwards;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 5px 10px rgba(0, 0, 0, 0.23);
+    &.info {
+        background-color: #2ecc71;
+    }
+    &.error {
+        background-color: #8e44ad;
+    }
+    &.success {
+        background-color: #f39c12;
+    }
+}
+
+@keyframes flashAnimation {
+    0% {
+        transform: translateY(-70px);
+    }
+    5% {
+        transform: translateY(0px);
+    }
+    95% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-70px);
+    }
+}

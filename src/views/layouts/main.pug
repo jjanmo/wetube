@@ -1,3 +1,5 @@
+include ../mixins/messageBlock
+
 doctype html
 html
     head
@@ -8,7 +10,23 @@ html
         link(rel="shortcut icon" href="#")
         link(rel="stylesheet", href="/static/styles.css")
         link(href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet")
     body
+        if messages.error
+            +messageBlock({
+                type:'error',
+                text:messages.error
+            })
+        else if messages.info
+            +messageBlock({
+                type:'info',
+                text:messages.info
+            })
+        else if messages.success
+            +messageBlock({
+                type:'success',
+                text:messages.success
+            })
         include ../partials/header
         main#jsMain
             block content

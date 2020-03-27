@@ -1,8 +1,8 @@
 .socialButtons {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     margin: auto;
-    max-width: 700px;
+    max-width: 600px;
     button {
         all: unset;
         width: 100%;

@@ -37,10 +37,15 @@
                 .icon {
                     color: $red;
                     font-size: 30px;
+                    transition: transform 0.5s ease-in-out;
+                    &:hover {
+                        transform: scale(1.2);
+                    }
                 }
                 span {
                     font-size: 25px;
                     padding: 3px;
+                    margin-left: 5px;
                 }
             }
             &:nth-child(2) {

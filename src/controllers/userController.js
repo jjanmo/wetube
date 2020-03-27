@@ -9,6 +9,7 @@ export const postJoin = async (req, res, next) => {
         body: { name, email, password, verifyPassword }
     } = req;
     if (password !== verifyPassword) {
+        req.flash('error', "Passwords don't match");
         res.status(400);
         res.render('join', { pageName: 'JOIN' });
     } else {
@@ -32,24 +33,21 @@ export const postJoin = async (req, res, next) => {
 
 // Login
 export const getLogin = (req, res) => {
-    const {
-        query: { url }
-    } = req;
-    // console.log(url); //videoDetail => login => videoDetail  : imcomplete
-    if (url) {
-        res.render('login', { pageName: 'LOGIN', url });
-    } else {
-        res.render('login', { pageName: 'LOGIN' });
-    }
+    res.render('login', { pageName: 'LOGIN' });
 };
 export const postLogin = passport.authenticate('local', {
     //passport를 이용한 authentication
     successRedirect: routes.home,
-    failureRedirect: routes.login
+    failureRedirect: routes.login,
+    successFlash: 'Welcome to Wetube',
+    failureFlash: 'Check email or password'
 });
 
 // Github Login
-export const getGithubLogin = passport.authenticate('github');
+export const getGithubLogin = passport.authenticate('github', {
+    successFlash: 'Welcome to Wetube',
+    failureFlash: "Can't LOGIN"
+});
 //->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
 
 export const githubCallback = async (_, __, profile, cb) => {
@@ -81,7 +79,11 @@ export const githubCallback = async (_, __, profile, cb) => {
 export const postGithubLogin = (req, res) => res.redirect(routes.home);
 
 // Google Login
-export const getGoogleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
+export const getGoogleLogin = passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    successFlash: 'Welcome to Wetube',
+    failureFlash: "Can't LOGIN"
+});
 
 export const googleCallback = async (_, __, profile, cb) => {
     const {
@@ -111,7 +113,7 @@ export const googleCallback = async (_, __, profile, cb) => {
 
 export const postGoogleLogin = (req, res) => res.redirect(routes.home);
 
-// Naver Login
+// Naver Login : not yet!!
 export const getNaverLogin = passport.authenticate('naver');
 
 export const naverCallback = (accessToken, refreshToken, profile, done) => {
@@ -138,6 +140,7 @@ export const postNaverLogin = (req, res) => res.redirect(routes.home);
 
 // Logout
 export const logout = (req, res) => {
+    req.flash('info', 'Bye Bye 🎈 See you');
     req.logout();
     res.redirect(routes.home);
 };
@@ -157,6 +160,7 @@ export const userDetail = async (req, res) => {
         res.render('userProfile', { pageName: 'Profile', user }); //여기서 user는 다른 유저를 찾는 경우
     } catch (error) {
         console.log(error);
+        req.flash('info', "Can't access profile");
         res.redirect(routes.home);
     }
 };
@@ -175,9 +179,11 @@ export const postEditProfile = async (req, res) => {
             email,
             avatarUrl: file ? file.location : req.user.avatarUrl
         });
+        req.flash('success', 'Complete 🎯');
         res.redirect(`${routes.users}${routes.myProfile}`);
     } catch (error) {
         console.log(error);
+        req.flash('failure', "Can't update profile");
         res.redirect(`${routes.users}${routes.editProfile}`);
     }
 };
@@ -190,6 +196,7 @@ export const postChangePassword = async (req, res) => {
     } = req;
     try {
         if (newPassword !== verifyPassword) {
+            req.flash('failure', "Passwords don't match");
             res.send(400);
             res.redirect(`${routes.users}${routes.changePassword}`);
             return;
@@ -197,9 +204,11 @@ export const postChangePassword = async (req, res) => {
         //console.log(Object.keys(req.user));
         await req.user.changePassword(currentPassword, newPassword);
         //changePassword는 passport-local-mongoose에 있는 메소드임 -> req에 담겨져서 보내짐
+        req.flash('success', 'Complete 🎯');
         res.redirect(`${routes.users}${routes.myProfile}`);
     } catch (error) {
         console.log(error);
+        req.flash('failure', "Can't change password");
         res.send(400);
         res.redirect(`${routes.users}${routes.changePassword}`);
     }

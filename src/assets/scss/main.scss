@@ -19,7 +19,28 @@ main {
     // max-width: 1600px;
     // margin: 0 auto;
     min-height: 80vh;
-    // padding-bottom: 2.5rem;
+    // padding-bottom: 2.5rem
+    .searchTerm {
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-left: 4%;
+        span {
+            font-weight: bold;
+            padding: 10px;
+            quotes: '“' '”' '‘' '’';
+            font-size: 2rem;
+        }
+        span::before {
+            content: open-quote;
+            font-size: 2rem;
+            padding: 5px;
+        }
+        span::after {
+            content: close-quote;
+            font-size: 2rem;
+            padding: 5px;
+        }
+    }
 }
 
 a,

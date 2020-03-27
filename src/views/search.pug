@@ -2,9 +2,10 @@ extends ./layouts/main
 include ./mixins/videoBlock
 
 block content   
-    p Searching for #{term}
-    .videosContainer
-        if videos.length !== 0
+    p.searchTerm Searching for 
+        span #{term}
+    if videos.length !== 0
+        .videosContainer
             each video in videos
                 +videoBlock({
                     id : video.id,
@@ -15,6 +16,6 @@ block content
                     createdAt : dateFormatter(video.createdAt),
                     creator : video.creator
                 })
-        else 
-            h3 No results found
-            h5 Try different keywords or remove search filters
+    else
+        .notFound 
+            img(src="https://cdn.dribbble.com/users/1554526/screenshots/3399669/no_results_found.png")
