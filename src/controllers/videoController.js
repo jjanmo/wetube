@@ -24,7 +24,7 @@ export const search = async (req, res) => {
     try {
         videos = await Video.find({
             title: { $regex: term, $options: 'i' }
-        });
+        }).populate('creator');
         //console.log(videos);
         if (videos.length === 0) req.flash('info', 'No result found 😭');
         res.render('search', { pageName: 'SEARCH', term, videos });
