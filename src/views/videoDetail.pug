@@ -56,10 +56,12 @@ block content
                             span#jsLiteralComment Comments
                     form#jsCommentForm(data-user=loggedUser)
                         if loggedUser
-                            - var src = loggedUser.avatarUrl;
-                        else 
-                            - var src = "/static/image/default_avartar.png";
-                        img(src=src)
+                            if loggedUser.avatarUrl
+                                img(src=loggedUser.avatarUrl)
+                            else 
+                                img.default(src=defaultAvatar)
+                        else if !loggedUser 
+                            img.default(src=defaultAvatar)
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off" required)
                         .btnBox
                             button#jsCommentCancelBtn(type="button") CANCEL

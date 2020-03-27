@@ -12,14 +12,6 @@ mongoose.connect(process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.e
     useUnifiedTopology: true
 });
 
-// var MongoClient = require('mongodb').MongoClient;
-
-// MongoClient.connect(process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL, {
-//     useNewUrlParser: true,
-//     useFindAndModify: false,
-//     useUnifiedTopology: true
-// });
-
 const db = mongoose.connection;
 
 const handleOpen = () => console.log('★ Connected to db★');
