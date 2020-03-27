@@ -19,7 +19,7 @@ passport.use(
         {
             clientID: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
-            callbackURL: `http://127.0.0.1:3000${routes.githubCallback}`
+            callbackURL: `https://damp-fjord-68683.herokuapp.com/${routes.githubCallback}`
         },
         githubCallback
     )
@@ -31,17 +31,17 @@ passport.use(
         {
             clientID: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
-            callbackURL: `http://127.0.0.1:3000${routes.googleCallback}`
+            callbackURL: `https://damp-fjord-68683.herokuapp.com/${routes.googleCallback}`
         },
         googleCallback
     )
 );
 
-passport.use(new NaverStrategy(
-    {
-        clientID: process.env.NAVER_ID,
-        clientSecret: process.env.NAVER_SERCERT,
-        callbackURL: `http://localhost:3000${routes.naverCallback}`
-    },
-    naverCallback
-));
+// passport.use(new NaverStrategy(
+//     {
+//         clientID: process.env.NAVER_ID,
+//         clientSecret: process.env.NAVER_SERCERT,
+//         callbackURL: `http://localhost:3000${routes.naverCallback}`
+//     },
+//     naverCallback
+// ));
