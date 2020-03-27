@@ -1,6 +1,6 @@
 mixin videoPlayer( video = {})
     .videoPlayer#jsVideoPlayer
-        video#jsVideo(src=`/${video.file}` data-id=video.id)
+        video#jsVideo(src=video.file data-id=video.id)
         .videoPlayerControl#jsVideoController
             .progressBar#jsProgressBar
                 .filled#jsFilledBar

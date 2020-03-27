@@ -41,12 +41,12 @@ export const postUpload = async (req, res) => {
     //영상은 서버에 있고 그 서버의 url을 가지고 와서 연결시키는것
     const {
         body: { title, description },
-        file: { path }
+        file: { location }
     } = req;
     const newVideo = await Video.create({
         title,
         description,
-        fileUrl: path,
+        fileUrl: location,
         creator: req.user.id
     });
     req.user.videos.push(newVideo.id);
