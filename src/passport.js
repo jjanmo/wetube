@@ -19,7 +19,7 @@ passport.use(
         {
             clientID: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
-            callbackURL: `https://damp-fjord-68683.herokuapp.com/${routes.githubCallback}`
+            callbackURL: `https://damp-fjord-68683.herokuapp.com${routes.githubCallback}`
         },
         githubCallback
     )
@@ -31,7 +31,7 @@ passport.use(
         {
             clientID: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
-            callbackURL: `https://damp-fjord-68683.herokuapp.com/${routes.googleCallback}`
+            callbackURL: `https://damp-fjord-68683.herokuapp.com${routes.googleCallback}`
         },
         googleCallback
     )
