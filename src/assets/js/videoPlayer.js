@@ -1,4 +1,5 @@
 import { playtimeFormatter } from './videoPlayTimeFormat';
+import getBlobDuration from 'get-blob-duration';
 
 const videoPlayer = document.getElementById('jsVideoPlayer');
 const video = document.getElementById('jsVideo');
@@ -93,8 +94,10 @@ function handleFullScreen() {
     fullScreenBtn.addEventListener('click', handleExitScreen);
 }
 
-function handlePlaytime() {
-    const totalPlaytime = playtimeFormatter(video.duration);
+async function handlePlaytime() {
+    const blob = await fetch(video.src).then(response => response.blob());
+    const duration = await getBlobDuration(blob);
+    const totalPlaytime = playtimeFormatter(duration);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {

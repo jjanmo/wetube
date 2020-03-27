@@ -7,7 +7,7 @@ dotenv.config();
 // -> process.env.key형태로 원하는 값을 불러올수있음
 
 mongoose.connect(
-    process.env.MONGO_URL,
+    process.env.MONOG_URL_PROD,
     //(.env에 넣기 전) [mongodb://localhost:포트번호/프로젝트이름]
     {
         useNewUrlParser: true,

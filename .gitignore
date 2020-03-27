@@ -1,7 +1,8 @@
 /node_modules
-/uploads/videos
-/uploads/avatar
-/static
+/src/uploads/videos
+/src/uploads/avatar
+/src/static
+/build
 
 # Logs
 logs
