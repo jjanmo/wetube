@@ -6,15 +6,11 @@ dotenv.config();
 // 2) process.env.key 형태로 모두 저장
 // -> process.env.key형태로 원하는 값을 불러올수있음
 
-mongoose.connect(
-    process.env.MONOG_URL_PROD,
-    //(.env에 넣기 전) [mongodb://localhost:포트번호/프로젝트이름]
-    {
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true
-    }
-);
+mongoose.connect(process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+});
 
 const db = mongoose.connection;
 
