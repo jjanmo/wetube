@@ -47,10 +47,7 @@ export const postLogin = passport.authenticate('local', {
 });
 
 // Github Login
-export const getGithubLogin = passport.authenticate('github', {
-    successFlash: 'Welcome to Wetube',
-    failureFlash: "Can't LOGIN"
-});
+export const getGithubLogin = passport.authenticate('github');
 //->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
 
 export const githubCallback = async (_, __, profile, cb) => {
