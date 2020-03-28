@@ -2,6 +2,8 @@ import routes from '../routes';
 import User from '../models/User';
 import passport from 'passport';
 
+const DEFAULT_AVATAR = 'https://f0.pngfuel.com/png/348/800/man-wearing-blue-shirt-illustration-png-clip-art-thumbnail.png';
+
 // Join
 export const getJoin = (req, res) => res.render('join', { pageName: 'JOIN' });
 export const postJoin = async (req, res, next) => {
@@ -17,7 +19,8 @@ export const postJoin = async (req, res, next) => {
         try {
             const user = await User({
                 name,
-                email
+                email,
+                avatarUrl: DEFAULT_AVATAR
             });
             await User.register(user, password);
         } catch (error) {

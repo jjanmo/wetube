@@ -44,6 +44,7 @@ block content
                 .videoDescription                                
                     .videoCreator Uploaded by 
                         a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)=video.creator.name
+                    p.description=video.description
             .commentContainer#jsCommentContainer
                 .commentHeader
                     if video.comments.length === 1
@@ -56,12 +57,9 @@ block content
                             span#jsLiteralComment Comments
                     form#jsCommentForm(data-user=loggedUser)
                         if loggedUser
-                            if loggedUser.avatarUrl
-                                img(src=loggedUser.avatarUrl)
-                            else 
-                                img.default(src=defaultAvatar)
-                        else if !loggedUser 
-                            img.default(src=defaultAvatar)
+                            img(src=loggedUser.avatarUrl)
+                        else
+                            img(src=nonLoggedAvater)
                         input#jsCommentInput(type="text" name="comment" placeholder="Add a public comment....." autocomplete="off" required)
                         .btnBox
                             button#jsCommentCancelBtn(type="button") CANCEL

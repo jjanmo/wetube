@@ -4,10 +4,7 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
-    avatarUrl: {
-        type: String,
-        default: null
-    },
+    avatarUrl: String,
     googleId: String,
     githubId: String,
     naverId: String,

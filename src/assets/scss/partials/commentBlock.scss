@@ -1,4 +1,7 @@
 .commentList {
+    & i {
+        cursor: pointer;
+    }
     .commentBlock {
         width: 100%;
         padding: 10px;

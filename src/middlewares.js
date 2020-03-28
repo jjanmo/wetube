@@ -42,10 +42,9 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
     res.locals.loggedUser = req.user || null;
     res.locals.dateFormatter = dateFormatter;
-    res.locals.defaultProfile =
-        'https://f0.pngfuel.com/png/348/800/man-wearing-blue-shirt-illustration-png-clip-art-thumbnail.png';
-    res.locals.defaultAvatar =
+    res.locals.nonLoggedAvater =
         'https://i7.pngguru.com/preview/811/233/212/computer-icons-user-login-desktop-wallpaper-others.jpg';
+    //비로그인 상태의 이미지
     res.locals.googleLogo =
         'https://img.favpng.com/4/11/17/g-suite-pearl-river-middle-school-google-software-suite-email-png-favpng-bjAdXPLu2XCPzWQP9Y4KZsBkV.jpg';
     res.locals.githubLogo = 'https://i.ya-webdesign.com/images/github-logo-png-15.png';

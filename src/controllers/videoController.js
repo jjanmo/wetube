@@ -72,7 +72,6 @@ export const videoDetail = async (req, res) => {
             });
         //console.log(video);
         //res.send(video);
-        console.log(req.user);
         res.render('videoDetail', { pageName: video.title, video });
     } catch (error) {
         res.redirect(routes.home);
