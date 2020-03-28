@@ -47,7 +47,10 @@ export const postLogin = passport.authenticate('local', {
 });
 
 // Github Login
-export const getGithubLogin = passport.authenticate('github');
+export const getGithubLogin = passport.authenticate('github', {
+    successFlash: 'Welcome to Wetube',
+    failureFlash: "Can't LOGIN"
+});
 //->client가 github 인증을 받기위해서 들어오는 route -> passport.js의 github strategy를 사용하기 위해 접근
 
 export const githubCallback = async (_, __, profile, cb) => {
@@ -58,7 +61,7 @@ export const githubCallback = async (_, __, profile, cb) => {
     try {
         const user = await User.findOne({ email });
         if (user) {
-            user.avatarUrl = avatar_url;
+            user.avatarUrl = user.avatarUrl || avatar_url;
             user.githubId = id;
             user.save();
             return cb(null, user);
@@ -91,7 +94,6 @@ export const googleCallback = async (_, __, profile, cb) => {
     } = profile;
     try {
         const user = await User.findOne({ email });
-        console.log(user);
         if (user) {
             user.googleId = sub;
             user.avatarUrl = user.avatarUrl || picture;
@@ -117,7 +119,6 @@ export const postGoogleLogin = (req, res) => res.redirect(routes.home);
 export const getNaverLogin = passport.authenticate('naver');
 
 export const naverCallback = (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
     // try {
     //     const user = await User.findOne({ 'naverId': profile.id });
     //     if (user) {
