@@ -184,7 +184,6 @@ function makeCommentBlock(parsedInfo) {
     //replyListBox
     const replyListBox = document.createElement('div');
     replyListBox.classList.add('replyListBox');
-    replyListBox.classList.add('hidden');
     right.append(replyListBox);
 
     //ul
