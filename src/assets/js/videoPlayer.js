@@ -98,6 +98,7 @@ async function handlePlaytime() {
     const blob = await fetch(video.src).then(response => response.blob());
     const duration = await getBlobDuration(blob);
     const totalPlaytime = playtimeFormatter(duration);
+    console.log(blob, duration, totalPlaytime);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {
