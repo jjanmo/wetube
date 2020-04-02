@@ -103,11 +103,13 @@ async function handlePlaytime() {
     if (!isFinite(video.duration)) {
         const blob = await fetch(video.src).then(response => response.blob());
         duration = await getBlobDuration(blob);
-        console.log(blob, duration);
+        console.log('if', blob, duration);
     } else {
         duration = video.duration;
+        console.log('else', duration);
     }
     const totalPlaytime = playtimeFormatter(duration);
+    console.log('parse', totalPlaytime);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {
