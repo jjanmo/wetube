@@ -94,11 +94,12 @@ function handleFullScreen() {
     fullScreenBtn.addEventListener('click', handleExitScreen);
 }
 
-async function handlePlaytime() {
-    const blob = await fetch(video.src).then(response => response.blob());
-    const duration = await getBlobDuration(blob);
-    const totalPlaytime = playtimeFormatter(duration);
-    console.log(blob, duration, totalPlaytime);
+function handlePlaytime() {
+    // const blob = await fetch(video.src).then(response => response.blob());
+    // const duration = await getBlobDuration(blob);
+    // const totalPlaytime = playtimeFormatter(duration);
+    // console.log(blob, duration, totalPlaytime);
+    const totalPlaytime = playtimeFormatter(video.duration);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {
