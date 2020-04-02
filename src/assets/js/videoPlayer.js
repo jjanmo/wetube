@@ -94,12 +94,19 @@ function handleFullScreen() {
     fullScreenBtn.addEventListener('click', handleExitScreen);
 }
 
-function handlePlaytime() {
+async function handlePlaytime() {
     // const blob = await fetch(video.src).then(response => response.blob());
     // const duration = await getBlobDuration(blob);
     // const totalPlaytime = playtimeFormatter(duration);
     // console.log(blob, duration, totalPlaytime);
-    const totalPlaytime = playtimeFormatter(video.duration);
+    let duration;
+    if (!isFinite(videoPlayer.duration)) {
+        const blob = await fetch(video.src).then(response => response.blob());
+        duration = await getBlobDuration(blob);
+    } else {
+        duration = video.duration;
+    }
+    const totalPlaytime = playtimeFormatter(duration);
     totalTimeSpan.innerHTML = totalPlaytime;
     let currentPlaytime;
     player = setInterval(() => {
