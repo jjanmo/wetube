@@ -183,7 +183,7 @@ function init() {
     //fullscreen
     fullScreenBtn.addEventListener('click', handleFullScreen);
     //playtime
-    video.addEventListener('loadeddata', handlePlaytime);
+    video.addEventListener('loadedmetadata', handlePlaytime);
     video.addEventListener('ended', handleEndtime);
     //update progressbar(playbar)
     video.addEventListener('timeupdate', handlePlaybarUpdate);
