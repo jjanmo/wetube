@@ -100,9 +100,10 @@ async function handlePlaytime() {
     // const totalPlaytime = playtimeFormatter(duration);
     // console.log(blob, duration, totalPlaytime);
     let duration;
-    if (!isFinite(videoPlayer.duration)) {
+    if (!isFinite(video.duration)) {
         const blob = await fetch(video.src).then(response => response.blob());
         duration = await getBlobDuration(blob);
+        console.log(blob, duration);
     } else {
         duration = video.duration;
     }
