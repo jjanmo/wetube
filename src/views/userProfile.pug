@@ -7,6 +7,6 @@ block content
             img.avatar(src=`${user.avatarUrl}`)
         h3.name= user.name
         h3.email= user.email
-        if user.id === loggedUser.id
+        if loggedUser && user.id === loggedUser.id
             a.editBtn(href=`${routes.users}${routes.editProfile}`) EDIT PROFILE
             a.changeBtn(href=`${routes.users}${routes.changePassword}`) CHANGE PASSWORD      
