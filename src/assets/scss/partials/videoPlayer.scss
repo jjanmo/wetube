@@ -25,12 +25,6 @@
         // &:hover {
         //     opacity: 1;
         // }
-        @media (min-width: 1281px) {
-            bottom: 3.6rem;
-        }
-        @media (min-width: 1025px) and (max-width: 1280px) {
-            bottom: 3.7rem;
-        }
         .progressBar {
             position: absolute;
             left: 0;
@@ -40,16 +34,18 @@
             height: 0.5rem;
             background-color: #bdc3c7;
             cursor: pointer;
+            @media (min-width: 1281px) {
+                height: 0.4rem;
+                bottom: 3.6rem;
+            }
+            @media (min-width: 1025px) and (max-width: 1280px) {
+                height: 0.3rem;
+                bottom: 3.7rem;
+            }
             .filled {
                 width: 0;
                 height: 0.5rem;
                 background-color: rgba(214, 48, 49, 1);
-            }
-            @media (min-width: 1281px) {
-                height: 0.4rem;
-            }
-            @media (min-width: 1025px) and (max-width: 1280px) {
-                height: 0.3rem;
             }
         }
         .controller {
