@@ -4,7 +4,8 @@ mixin replyBlock(reply={})
             div
                 img(src=reply.avatarUrl)
             div
-                span.name=reply.name
+                span.name
+                    a(href=`${routes.users}${routes.userDetail(reply.creatorId)}`)= reply.name
                 span.date=reply.date
             div
                 span.replyText=reply.text

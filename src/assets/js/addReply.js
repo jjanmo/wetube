@@ -38,7 +38,10 @@ function paintReply(data) {
     replyDisplayBox.append(div2);
     const nameSpan = document.createElement('span');
     nameSpan.classList.add('name');
-    nameSpan.textContent = data.name;
+    const link = document.createElement('a');
+    link.href = `/users/${data.creatorId}`;
+    link.textContent = data.name;
+    nameSpan.append(link);
     div2.append(nameSpan);
 
     const dateSpan = document.createElement('span');

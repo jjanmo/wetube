@@ -7,7 +7,8 @@ mixin commentBlock(comment= {})
         .right    
             .displayBox
                 .commentInfo
-                    span.name=comment.creator.name
+                    span.name
+                        a(href=`${routes.users}${routes.userDetail(comment.creator.id)}`)= comment.creator.name
                     span.date=comment.createdAt
                 .content
                     p=comment.text

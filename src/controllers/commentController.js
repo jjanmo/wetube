@@ -22,6 +22,7 @@ export const postAddComment = async (req, res) => {
         const user = await User.findById(newComment.creator);
         user.comments.push(newComment.id);
         const parsedInfo = {
+            creatorId: newComment.creator,
             name: user.name,
             date: dateFormatter(newComment.createdAt),
             avatarUrl: user.avatarUrl,
