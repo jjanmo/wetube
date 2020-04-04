@@ -8,7 +8,7 @@ block content
                 label(for="avatar") Avatar Image
                 input(type="file" name="avatarFile" id="avatar" accept="image/*" value=loggedUser.avatarUrl)
             input(type="text" name="name" value=loggedUser.name maxlength="15")
-            input(type="email" name="email" value=loggedUser.email) 
+            input(type="email" name="email" value=loggedUser.email readonly) 
             textarea(maxlength="100" placeholder="Set your bio" name="bio") #{loggedUser.bio}
             input.editBtn(type="submit" value="Edit now")
     a.changePasswordLink(href=`${routes.users}${routes.changePassword}`) Change Password 

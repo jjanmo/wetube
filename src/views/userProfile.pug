@@ -20,9 +20,9 @@ block content
         .profile#jsProfile(data-id=user.id)
             .profileCard
                 .blinder
-                if loggedUser && user.id === loggedUser.id
-                    a(href=`${routes.users}${routes.editCoverImage}`)
-                        i.fas.fa-cog
+                    if loggedUser && user.id === loggedUser.id
+                        a(href=`${routes.users}${routes.editCoverImage}`)
+                            i.fas.fa-cog
                 .info
                     img.profileImg(src=user.avatarUrl)
                     .name#jsName=user.name
