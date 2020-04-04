@@ -20,7 +20,6 @@ export const postAddReply = async (req, res) => {
 
         //send new data
         const parsedData = {
-            creatorId: userId,
             name: req.user.name,
             date: dateFormatter(newReply.createdAt),
             avatarUrl: req.user.avatarUrl,

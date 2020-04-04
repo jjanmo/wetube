@@ -16,11 +16,25 @@ const multerVideo = multer({
         bucket: 'jjantube/video'
     })
 });
+const multerProfileArt = multer({
+    storage: multerS3({
+        s3,
+        acl: 'public-read',
+        bucket: 'jjantube/profileArt'
+    })
+});
 const multerAvatar = multer({
     storage: multerS3({
         s3,
         acl: 'public-read',
         bucket: 'jjantube/avatar'
+    })
+});
+const multerCoverImage = multer({
+    storage: multerS3({
+        s3,
+        acl: 'public-read',
+        bucket: 'jjantube/coverImage'
     })
 });
 
@@ -34,7 +48,10 @@ const multerAvatar = multer({
 // const multerAvatar = multer({ dest: 'uploads/avatar/' });
 
 export const uploadVideo = multerVideo.single('videoFile');
+export const uploadProfileArt = multerProfileArt.single('profileArtFile');
 export const uploadAvatar = multerAvatar.single('avatarFile');
+export const uploadCoverImage = multerCoverImage.single('coverImageFile');
+
 //전역적으로 "뷰나 템플릿"에 변수를 추가하기 위한 미들웨어
 //-> 이 변수는 뷰나 탬플릿에서 접근 가능한것(여기선 pug파일)
 export const localsMiddleware = (req, res, next) => {
@@ -42,9 +59,10 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
     res.locals.loggedUser = req.user || null;
     res.locals.dateFormatter = dateFormatter;
-    res.locals.nonLoggedAvater =
+    res.locals.nonLoggedAvater = //비로그인 상태의 댓글 아바타 이미지
         'https://i7.pngguru.com/preview/811/233/212/computer-icons-user-login-desktop-wallpaper-others.jpg';
-    //비로그인 상태의 이미지
+    res.locals.defaultCoverImage = //유저의 커버기본 이미지
+        'https://cdn4.iconfinder.com/data/icons/computer-science-with-outline-and-color-iconset/48/coder-512.png';
     res.locals.googleLogo =
         'https://img.favpng.com/4/11/17/g-suite-pearl-river-middle-school-google-software-suite-email-png-favpng-bjAdXPLu2XCPzWQP9Y4KZsBkV.jpg';
     res.locals.githubLogo = 'https://i.ya-webdesign.com/images/github-logo-png-15.png';

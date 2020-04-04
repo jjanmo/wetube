@@ -1,0 +1,42 @@
+.userProfileVideoBlock {
+    width: 100%;
+    max-width: 275px;
+    padding-top: 56.25%;
+    height: 0px;
+    position: relative;
+    background-color: black;
+    border-radius: 5px;
+    a {
+        text-decoration: none;
+        color: $black;
+    }
+    video {
+        // @media (min-width: 1281px) {
+        //     max-width: 250px;
+        // }
+        // @media (min-width: 1025px) and (max-width: 1280px) {
+        //     max-width: 200px;
+        // }
+        height: auto;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .videoInfo {
+        margin-top: 0.8rem;
+        h3,
+        h4 {
+            padding-left: 10px;
+        }
+        h4 > span {
+            color: rgba(0, 0, 0, 0.6);
+        }
+        .videoBlockTitle {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    }
+}

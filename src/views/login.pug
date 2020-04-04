@@ -4,7 +4,6 @@ block content
     .formContainer
         h2 LOGIN
         form(action=routes.login, method="post" data-url=`${url}` required)
-            input(type="hidden" name="url" value=`${url}`)
             input(type="email" name="email" placeholder="Email" required)
             input(type="password" name="password" placeholder="Password" required)
             input(type="submit" value="LOGIN NOW")

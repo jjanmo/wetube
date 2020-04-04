@@ -36,7 +36,7 @@ function makeCommentBlock(parsedInfo) {
     const name = document.createElement('span');
     name.classList.add('name');
     const link = document.createElement('a');
-    link.href = `/users/${parsedInfo.creatorId}`;
+    link.href = '/users/myprofile';
     link.textContent = parsedInfo.name;
     name.append(link);
 

@@ -4,7 +4,7 @@ block content
     .formContainer
         h2 JOIN US
         form(action=routes.join, method="post")
-            input(type="text" name="name" placeholder="Full Name" required)
+            input(type="text" name="name" placeholder="Fullname or Nickname Max Length 15" maxlength="15" required)
             input(type="email" name="email" placeholder="Email" required)
             input(type="password" name="password" placeholder="Password" required)
             input(type="password" name="verifyPassword" placeholder="Verify Password" required)

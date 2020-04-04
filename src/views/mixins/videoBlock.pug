@@ -4,7 +4,13 @@ mixin videoBlock( video = {})
             video.videoBlockThumbnail(src=video.file)
         .videoInfo
             h3.videoBlockTitle= video.title
-            h4.videoBlockCreator Uploaded by 
-                a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)= video.creator.name
+                h4.videoBlockCreator Uploaded by 
+                    if loggedUser  
+                        if loggedUser.id === video.creator.id 
+                            a(href=`${routes.users}${routes.myProfile}`)= video.creator.name
+                        else
+                            a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)= video.creator.name
+                    else
+                        a(href=`${routes.users}${routes.userDetail(video.creator.id)}`)= video.creator.name
             h4 
                 span.videoBlockViews= `VIEWS ${video.views} • ${video.createdAt}`

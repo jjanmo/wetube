@@ -39,7 +39,7 @@ function paintReply(data) {
     const nameSpan = document.createElement('span');
     nameSpan.classList.add('name');
     const link = document.createElement('a');
-    link.href = `/users/${data.creatorId}`;
+    link.href = '/users/myprofile';
     link.textContent = data.name;
     nameSpan.append(link);
     div2.append(nameSpan);

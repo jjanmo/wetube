@@ -5,7 +5,13 @@ mixin replyBlock(reply={})
                 img(src=reply.avatarUrl)
             div
                 span.name
-                    a(href=`${routes.users}${routes.userDetail(reply.creatorId)}`)= reply.name
+                    if loggedUser  
+                        if loggedUser.id === reply.creatorId 
+                            a(href=`${routes.users}${routes.myProfile}`)= reply.name
+                        else
+                            a(href=`${routes.users}${routes.userDetail(reply.creatorId)}`)= reply.name
+                    else
+                            a(href=`${routes.users}${routes.userDetail(reply.creatorId)}`)= reply.name    
                 span.date=reply.date
             div
                 span.replyText=reply.text
@@ -22,5 +28,4 @@ mixin replyBlock(reply={})
                     button#jsReplyEditCancelBtn(type="button") 
                         i.far.fa-times-circle.cancel
                     button#jsReplyEditSaveBtn
-                        i.far.fa-check-circle.save
-        
+                        i.far.fa-check-circle.save       

@@ -148,7 +148,16 @@ export const logout = (req, res) => {
 
 // My Profile : 자신의 프로필에 접근할 때
 export const getMyProfile = async (req, res) => {
-    res.render('userProfile', { pageName: 'My Profile', user: req.user }); //여기서 user는 로그인한 유저
+    try {
+        const videosOfUser = await User.findById(req.user.id)
+            .populate('videos')
+            .populate('likeVideos');
+        const uploadedVideos = videosOfUser.videos;
+        const likedVideos = videosOfUser.likeVideos;
+        res.render('userProfile', { pageName: 'My Profile', user: req.user, uploadedVideos, likedVideos }); //여기서 user는 로그인한 유저
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 // UserDetail : 남의 프로필에 접근할 때
@@ -157,8 +166,12 @@ export const userDetail = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const user = await User.findById(id);
-        res.render('userProfile', { pageName: 'Profile', user }); //여기서 user는 다른 유저를 찾는 경우
+        const user = await User.findById(id)
+            .populate('videos')
+            .populate('likeVideos');
+        const uploadedVideos = user.videos;
+        const likedVideos = user.likeVideos;
+        res.render('userProfile', { pageName: 'Profile', user, uploadedVideos, likedVideos }); //여기서 user는 다른 유저를 찾는 경우
     } catch (error) {
         console.log(error);
         req.flash('info', "Can't access profile");
@@ -170,14 +183,17 @@ export const userDetail = async (req, res) => {
 export const getEditProfile = (req, res) => res.render('editProfile', { pageName: 'EDIT PROFILE' });
 export const postEditProfile = async (req, res) => {
     const {
-        body: { name, email },
+        body: { name, email, bio },
         file
     } = req;
-    console.log(name, email, file);
+    console.log(bio);
+    //parse textarea
+
     try {
-        await User.findByIdAndUpdate(req.user.id, {
+        await User.findByIdAndUpdate(req.user._id, {
             name,
             email,
+            bio,
             avatarUrl: file ? file.location : req.user.avatarUrl
         });
         req.flash('success', 'Complete 🎯');
@@ -212,5 +228,38 @@ export const postChangePassword = async (req, res) => {
         req.flash('failure', "Can't change password");
         res.send(400);
         res.redirect(`${routes.users}${routes.changePassword}`);
+    }
+};
+
+// Add Profile Art
+export const postAddProfileArt = async (req, res) => {
+    const { file } = req;
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            profileArtUrl: file.location
+        });
+        req.flash('success', 'Updated Profile Art ✨');
+        res.redirect(`${routes.users}${routes.myProfile}`);
+    } catch (error) {
+        console.log(error);
+        req.flash('failure', "Can't update profile art");
+    }
+};
+
+//EditCoverImage
+export const getEditCoverImage = (req, res) => res.render('editCoverImage', { pageName: 'EDIT COVER IMAGE' });
+export const postEditCoverImage = async (req, res) => {
+    const { file } = req;
+    console.log(file);
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            coverImageUrl: file.location
+        });
+        req.flash('success', 'Complete 🎯');
+        res.redirect(`${routes.users}${routes.myProfile}`);
+    } catch (error) {
+        console.log(error);
+        req.flash('failure', "Can't update cover image");
+        res.redirect(`${routes.users}${routes.editProfile}`);
     }
 };
