@@ -25,7 +25,7 @@ block content
                             i.fas.fa-cog
                 .info
                     img.profileImg(src=user.avatarUrl)
-                    .name#jsName=user.name
+                    .profileName#jsName=user.name
                     .email#jsEmail=user.email
                     if loggedUser && user.id === loggedUser.id
                         .bio.jsBio
