@@ -27,7 +27,7 @@ Cloning Youtube with Vanilla JS and Node.js for learning Node.js
 - [X] Edit profile
 - [X] Show liked videos/uploaded videos
 - [X] Change password 
-- [X] Customize video-
+- [X] Customize video-player
 - [X] Check/uncheck liked videos
 - [X] Add/Edit/Delete comments 
 - [X] Check/uncheck liked comments
