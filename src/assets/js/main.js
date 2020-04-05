@@ -12,3 +12,4 @@ import './changeCommentLiking';
 import './addReply';
 import './editReply';
 import './deleteReply';
+import './userProfile';

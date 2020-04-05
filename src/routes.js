@@ -14,6 +14,8 @@ const USER_DETAIL = '/:id';
 const MYPROFILE = '/myprofile';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
+const ADD_PROFILE_ART = '/add-profile-art';
+const EDIT_COVER_IMAGE = '/edit-cover-image';
 
 // Social Login
 const GITHUB_LOGIN = '/auth/github';
@@ -55,6 +57,8 @@ const routes = {
     },
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
+    addProfileArt: ADD_PROFILE_ART,
+    editCoverImage: EDIT_COVER_IMAGE,
     videos: VIDEOS,
     upload: UPLOAD,
     videoDetail: id => {

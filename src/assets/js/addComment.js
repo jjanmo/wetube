@@ -35,7 +35,11 @@ function makeCommentBlock(parsedInfo) {
     commentInfo.classList.add('commentInfo');
     const name = document.createElement('span');
     name.classList.add('name');
-    name.textContent = parsedInfo.name;
+    const link = document.createElement('a');
+    link.href = '/users/myprofile';
+    link.textContent = parsedInfo.name;
+    name.append(link);
+
     const date = document.createElement('span');
     date.classList.add('date');
     date.textContent = parsedInfo.date;

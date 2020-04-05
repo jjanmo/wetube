@@ -1,0 +1,10 @@
+extends ./layouts/main
+
+block content
+    h2 Edit Cover Image  
+    .editFormContainer
+        form(action=`${routes.users}${routes.editCoverImage}` method="post" enctype="multipart/form-data")
+            .fileContainer  
+                label(for="cover") Cover Image
+                input(type="file" name="coverImageFile" id="cover" accept="image/*" )
+            input.editBtn(type="submit" value="Edit now")

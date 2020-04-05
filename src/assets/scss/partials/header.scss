@@ -55,6 +55,18 @@
             &:last-child {
                 justify-self: end;
                 font-size: 20px;
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                // ul > li:nth-child(2) {
+                //     display: flex;
+                //     flex-direction: row;
+                //     img.headerImage {
+                //         width: 20px;
+                //         height: 20px;
+                //         border-radius: 50%;
+                //     }
+                // }
             }
             ul {
                 display: flex;

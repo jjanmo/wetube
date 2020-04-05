@@ -35,6 +35,10 @@
                         font-size: 14px;
                         &:first-child {
                             font-weight: 600;
+                            a {
+                                text-decoration: none;
+                                color: black;
+                            }
                         }
                         &:last-child {
                             color: #030303;

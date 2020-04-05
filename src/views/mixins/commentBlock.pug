@@ -7,7 +7,14 @@ mixin commentBlock(comment= {})
         .right    
             .displayBox
                 .commentInfo
-                    span.name=comment.creator.name
+                    span.name
+                        if loggedUser  
+                            if loggedUser.id === comment.creator.id 
+                                a(href=`${routes.users}${routes.myProfile}`)= comment.creator.name
+                            else
+                                a(href=`${routes.users}${routes.userDetail(comment.creator.id)}`)= comment.creator.name
+                        else
+                            a(href=`${routes.users}${routes.userDetail(comment.creator.id)}`)= comment.creator.name
                     span.date=comment.createdAt
                 .content
                     p=comment.text

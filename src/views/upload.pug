@@ -7,8 +7,7 @@ block content
             video#jsVideoPreview
             button#jsRecorderBtn START RECORDING
         form(action=`${routes.videos}${routes.upload}` method="post" enctype="multipart/form-data")
-            label(for="videoFile")
-            input(type="file" name="videoFile" accept="video/*" required) 
+            input(type="file" name="videoFile" accept="video/*" placeholder="Avatar" required) 
             input(type="text" name="title" placeholder="Title" required)
             input(type="text" name="description" placeholder="Description" required)
             input(type="submit" value="UPLOAD")

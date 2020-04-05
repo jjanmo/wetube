@@ -1,12 +1,84 @@
 extends ./layouts/main
+include ./mixins/userProfileVideoBlock
 
 block content   
-    h1.profileTitle Profile
-    .profileContainer
-        .avatarBox
-            img.avatar(src=`${user.avatarUrl}`)
-        h3.name= user.name
-        h3.email= user.email
-        if user.id === loggedUser.id
-            a.editBtn(href=`${routes.users}${routes.editProfile}`) EDIT PROFILE
-            a.changeBtn(href=`${routes.users}${routes.changePassword}`) CHANGE PASSWORD      
+    .profileContainer#jsProfileContainer
+        .profileArt
+            if loggedUser && user.id === loggedUser.id
+                .addProfileArtBtn#jsAddProfileArtBtn Add Profile Art
+                form.addProfileArtForm.hidden#jsAddProfileArtForm(action=`${routes.users}${routes.addProfileArt}` method="post" enctype="multipart/form-data")
+                    label(for="profileArt") Profile Art
+                    input(type="file" name="profileArtFile" id="profileArt" accept="image/*" required) 
+                    input.submitBtn(type="submit" value="UPLOAD")
+                    input.cancelBtn(type="button" value="CANCEL")
+                if user.profileArtUrl
+                    img.profileArtImage(src=user.profileArtUrl)
+                else 
+                    | Hover Here 🎈
+            else
+                img.profileArtImage(src=user.profileArtUrl)            
+        .profile#jsProfile(data-id=user.id)
+            .profileCard
+                .blinder
+                if loggedUser && user.id === loggedUser.id
+                    a.configBtn(href=`${routes.users}${routes.editCoverImage}`)
+                        i.fas.fa-cog
+                .info
+                    img.profileImg(src=user.avatarUrl)
+                    .profileName#jsName=user.name
+                    .email#jsEmail=user.email
+                    if loggedUser && user.id === loggedUser.id
+                        .bio.jsBio
+                            if user.bio
+                                textarea(readOnly)=user.bio
+                            else  
+                                .bioPlaceholder Click edit button, 
+                                    br 
+                                    | set your bio.
+                    else
+                        if user.bio
+                            .bio.jsBio
+                                textarea(readOnly)=user.bio
+
+                    if loggedUser && user.id === loggedUser.id        
+                        .buttonBox
+                            a.editBtn(href=`${routes.users}${routes.editProfile}`) EDIT PROFILE
+                            a.changePasswordBtn(href=`${routes.users}${routes.changePassword}`) CHANGE PASSWORD
+                if user
+                    if user.coverImageUrl 
+                        img.coverImg(src=user.coverImageUrl)
+                    else
+                        img.coverImg(src=defaultCoverImage)
+                else
+                    img.coverImg(src=defaultCoverImage)
+            .videoBox
+                .nav
+                    ul
+                        li#jsUploadedVideosBtn 
+                            a.selected Uploaded Videos
+                        li#jsLikedVideosBtn 
+                            a Liked Videos
+                .uploadedVideosBox#jsUploadedVideoBox
+                    if uploadedVideos 
+                        each video in uploadedVideos
+                            +userProfileVideoBlock({
+                                id : video.id,
+                                file : video.fileUrl,
+                                title : video.title,
+                                description : video.description,
+                                views : video.views,
+                                createdAt : dateFormatter(video.createdAt),
+                                creator : video.creator
+                            })
+                .likedVideosBox.hidden#jsLikedVideoBox
+                    if likedVideos 
+                        each video in likedVideos
+                            +userProfileVideoBlock({
+                                id : video.id,
+                                file : video.fileUrl,
+                                title : video.title,
+                                description : video.description,
+                                views : video.views,
+                                createdAt : dateFormatter(video.createdAt),
+                                creator : video.creator
+                            })

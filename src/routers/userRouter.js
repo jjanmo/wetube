@@ -3,8 +3,19 @@
 
 import express from 'express';
 import routes from '../routes';
-import { getMyProfile, userDetail, getEditProfile, postEditProfile, getChangePassword, postChangePassword, } from '../controllers/userController';
-import { onlyPrivate, uploadAvatar } from '../middlewares';
+import {
+    getMyProfile,
+    userDetail,
+    getEditProfile,
+    postEditProfile,
+    getChangePassword,
+    postChangePassword,
+    postAddProfileArt,
+    postAddCoverImage,
+    getEditCoverImage,
+    postEditCoverImage
+} from '../controllers/userController';
+import { onlyPrivate, uploadAvatar, uploadProfileArt, uploadCoverImage } from '../middlewares';
 
 const userRouter = express.Router();
 //-> userRouter is middleware
@@ -17,8 +28,14 @@ userRouter.post(routes.editProfile, onlyPrivate, uploadAvatar, postEditProfile);
 userRouter.get(routes.changePassword, onlyPrivate, getChangePassword);
 userRouter.post(routes.changePassword, onlyPrivate, postChangePassword);
 
+//add profile art
+userRouter.post(routes.addProfileArt, onlyPrivate, uploadProfileArt, postAddProfileArt);
 
-userRouter.get(routes.myProfile, onlyPrivate, getMyProfile);
-userRouter.get(routes.userDetail(), onlyPrivate, userDetail);
+//edit cover image
+userRouter.get(routes.editCoverImage, onlyPrivate, getEditCoverImage);
+userRouter.post(routes.editCoverImage, onlyPrivate, uploadCoverImage, postEditCoverImage);
+
+userRouter.get(routes.myProfile, getMyProfile);
+userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter;

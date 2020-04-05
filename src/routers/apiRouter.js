@@ -14,7 +14,7 @@ import { postAddReply, postEditReply, postDeleteReply } from '../controllers/rep
 const apiRouter = express.Router();
 
 // Register video view
-apiRouter.post(routes.registerView, onlyPrivate, postRegisterView);
+apiRouter.post(routes.registerView, postRegisterView);
 
 // Add Comment
 apiRouter.post(routes.addComment, onlyPrivate, postAddComment);

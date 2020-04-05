@@ -32,7 +32,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views')); //build 할 때 추가
 
 //static file 제공
-//app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); //로컬에서 사용할 때만!!
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); //로컬에서 사용할 때만!!
 //express.static('string') : 정해진 디렉토리 안의 정적파일(static file)을 전달해주는 목적(주로 js,css,image file을 전달함)
 //-> 엄밀하게 말해서 업로드 영상은 정적파일이 아님 : not good practice
 //-> 생성된 컨텐츠(여기선 업로드된 영상)와 같은 것들은 서버와 분리되어야함, 서버안에 저장되어있으면 안됨!!
