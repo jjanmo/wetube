@@ -376,9 +376,9 @@
             }
             .uploadedVideosBox {
                 display: grid;
-                margin: auto;
                 width: 93%;
-                height: 50%;
+                height: 75%;
+                margin: auto;
                 overflow: auto;
                 @media (min-width: 1281px) {
                     grid-template-columns: repeat(4, 1fr);
@@ -397,20 +397,19 @@
             .likedVideosBox {
                 display: grid;
                 width: 93%;
-                height: 50%;
+                height: 75%;
+                margin: auto;
+                overflow: auto;
                 @media (min-width: 1281px) {
                     grid-template-columns: repeat(4, 1fr);
                     grid-column-gap: 20px;
                     grid-row-gap: 4.5rem;
-                    margin: auto;
                 }
                 @media (min-width: 1025px) and (max-width: 1280px) {
                     grid-template-columns: repeat(4, 0.7fr);
                     grid-column-gap: 15px;
                     grid-row-gap: 4rem;
-                    margin: auto;
                 }
-                margin: auto;
                 &.hidden {
                     display: none;
                 }
