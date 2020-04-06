@@ -1,5 +1,6 @@
 const header = document.getElementById('jsHeader');
 const headerHeight = header.offsetHeight;
+const headerWidth = header.offsetWidth;
 
 function fixHeader() {
     if (window.scrollY >= headerHeight) {
@@ -8,7 +9,12 @@ function fixHeader() {
     }
     else {
         header.classList.remove('headerFixed');
-        header.style.marginBottom = 30 + 'px';
+        if (headerWidth > 1281) {
+            header.style.marginBottom = 30 + 'px';
+        }
+        else if (headerWidth > 1025 && headerWidth <= 1280) {
+            header.style.marginBottom = 15 + 'px';
+        }
     }
 }
 
