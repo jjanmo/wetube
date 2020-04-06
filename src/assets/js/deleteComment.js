@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { addMessageModal } from './addMessageModal';
 
 const commentContainer = document.getElementById('jsCommentContainer');
 
@@ -34,6 +35,7 @@ async function deleteData(commentId) {
     });
     if (response.status === 200) {
         minusCommentCount();
+        addMessageModal('Comment', 'Deleted');
     }
 }
 

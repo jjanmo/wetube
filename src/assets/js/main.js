@@ -13,3 +13,4 @@ import './addReply';
 import './editReply';
 import './deleteReply';
 import './userProfile';
+import './addMessageModal';

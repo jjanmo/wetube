@@ -4,6 +4,7 @@
     // grid-template-columns: 2fr 1fr;
     // column-gap: 30px;
     margin: 0 auto 30px;
+    position: relative;
     // &:first-child {
     .videoColumn {
         width: 65%;
@@ -178,6 +179,33 @@
                     }
                 }
             }
+        }
+    }
+    .messageModal {
+        &.hidden {
+            display: none;
+        }
+        position: absolute;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media (min-width: 1281px) {
+            bottom: 0;
+            left: 5%;
+            width: 230px;
+            height: 40px;
+            font-size: 16px;
+        }
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            bottom: 0;
+            left: 3%;
+            width: 180px;
+            height: 40px;
+            font-size: 14px;
         }
     }
 }

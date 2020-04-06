@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { parseUser } from './changeVideoLiking';
+import { addMessageModal } from './addMessageModal';
 
 const commentList = document.getElementById('jsCommentList');
 let userId, replyId, replyDisplayBox, replyEditBox, replyEditForm, replyEditInput, replyEditCancelBtn, replyEditSaveBtn;
@@ -30,6 +31,7 @@ async function sendReply() {
         //change reply text
         replyDisplayBox.querySelector('.replyText').textContent = text;
         closeEditBox();
+        addMessageModal('Reply', 'Edited');
     }
 }
 

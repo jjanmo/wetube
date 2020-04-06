@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { addMessageModal } from './addMessageModal';
 
 const commentList = document.getElementById('jsCommentList');
 
@@ -24,6 +25,7 @@ async function handleSave(e) {
         displayBox.querySelector('p').textContent = newComment;
         displayBox.classList.remove('hidden');
         editBox.classList.add('hidden');
+        addMessageModal('Comment', 'Edited');
     }
 }
 function initVariable(commentId) {

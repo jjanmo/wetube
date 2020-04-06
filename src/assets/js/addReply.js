@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { parseUser } from './changeVideoLiking';
+import { addMessageModal } from './addMessageModal';
+
 
 const commentList = document.getElementById('jsCommentList');
 
@@ -116,6 +118,7 @@ async function sendReply(text) {
         paintReply(response.data);
         toggleReplyform(replyFormBox);
         plusReplyCount();
+        addMessageModal('Reply', 'Added');
     }
 }
 
@@ -138,6 +141,8 @@ function handleReply(e) {
         toggleReplyform(replyFormBox);
         //replyForm
         replyForm = replyFormBox.firstChild.nextSibling;
+        const jsReplyInput = replyForm.firstChild;
+        jsReplyInput.focus();
         //replylist > ul tag
         replyListBox =
             target.parentElement.parentElement.parentElement.parentElement.nextSibling.nextSibling.nextSibling.firstChild;

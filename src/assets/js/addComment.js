@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { addMessageModal } from './addMessageModal';
 
 const commentContainer = document.getElementById('jsCommentContainer');
 const commentForm = document.getElementById('jsCommentForm');
@@ -222,6 +223,7 @@ const sendComment = async comment => {
         //console.log(response.data);
         makeCommentBlock(response.data);
         plusCommentCount();
+        addMessageModal('Comment', 'Added');
     }
 };
 

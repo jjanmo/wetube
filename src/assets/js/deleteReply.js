@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { parseUser } from './changeVideoLiking';
+import { addMessageModal } from './addMessageModal';
 
 const commentList = document.getElementById('jsCommentList');
 let userId,
@@ -36,6 +37,7 @@ async function deleteReply() {
     if (response.status === 200) {
         deleteReplyInPage();
         minusReplyCount();
+        addMessageModal('Reply', 'Deleted');
     }
 }
 
