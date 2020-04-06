@@ -69,4 +69,4 @@ function init() {
     commentList.addEventListener('click', handleDeleteReply);
 }
 
-if (commentList && commentList.childElementCount !== 0) init();
+if (commentList) init();

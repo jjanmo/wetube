@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { parseUser } from './changeVideoLiking';
 
-const commentList = document.getElementById('jsCommentList');
+// const commentList = document.getElementById('jsCommentList');
+const commentContainer = document.getElementById('jsCommentContainer');
 let userId, likeIcon, commentId, commentBlock;
 //flag
 let isSelected; //클릭한 버튼이 눌려있는지?
@@ -53,7 +54,10 @@ function handleCommentLiking(e) {
 }
 
 function init() {
-    commentList.addEventListener('click', handleCommentLiking);
+    // commentList.addEventListener('click', handleCommentLiking);
+    commentContainer.addEventListener('click', handleCommentLiking);
+
 }
 
-if (commentList && commentList.childElementCount !== 0) init();
+if (commentContainer) init();
+// if (commentList && commentList.childElementCount !== 0) init();

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { parseUser } from './changeVideoLiking';
 import { addMessageModal } from './addMessageModal';
 
-
+const commentContainer = document.getElementById('jsCommentContainer');
 const commentList = document.getElementById('jsCommentList');
 
 let userId, commentId, commentBlock, replyFormBox, replyForm, replyListBox, replySaveButton, replyCancelButton;
@@ -158,7 +158,7 @@ function handleReply(e) {
 }
 
 function init() {
-    commentList.addEventListener('click', handleReply);
+    commentContainer.addEventListener('click', handleReply);
 }
 
-if (commentList && commentList.childElementCount !== 0) init();
+if (commentContainer) init();

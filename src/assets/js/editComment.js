@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { addMessageModal } from './addMessageModal';
 
-const commentList = document.getElementById('jsCommentList');
+// const commentList = document.getElementById('jsCommentList');
+const commentContainer = document.getElementById('jsCommentContainer');
 
 let commentId, commentBlock, displayBox, editBox, editCommentForm, editCommentInput, editCommentCancelBtn, editCommentSaveBtn;
 
@@ -62,7 +63,9 @@ function handleEdit(e) {
 }
 
 function init() {
-    commentList.addEventListener('click', handleEdit);
+    // commentList.addEventListener('click', handleEdit);
+    commentContainer.addEventListener('click', handleEdit);
 }
 
-if (commentList && commentList.childElementCount !== 0) init();
+if (commentContainer) init();
+// if (commentList && commentList.childElementCount !== 0) init();

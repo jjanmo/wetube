@@ -57,6 +57,7 @@ function handleEditReply(e) {
         replyEditForm.addEventListener('submit', handleSaveEditReply);
         //console.log(replyEditBox, replyEditInput, replyEditCancelBtn, replyEditSaveBtn);
         showEditBox();
+        replyEditInput.focus();
     }
 }
 
@@ -64,4 +65,4 @@ function init() {
     commentList.addEventListener('click', handleEditReply);
 }
 
-if (commentList && commentList.childElementCount !== 0) init();
+if (commentList) init();

@@ -138,7 +138,7 @@ function makeCommentBlock(parsedInfo) {
 
     const button6 = document.createElement('button');
     button6.id = 'jsEditCommentSaveBtn';
-    button6.textContent = 'REPLY';
+    button6.textContent = 'SAVE';
     editBtnBox.append(button6);
 
     //replyFormBox
