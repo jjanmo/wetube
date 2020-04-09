@@ -53,6 +53,7 @@ function handleVolumeBtn() {
 
 function handleVolumeBar(e) {
     const currentVolume = Number(e.target.value);
+    video.muted = false;
     video.volume = currentVolume;
     if (currentVolume >= 0.6) {
         volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
@@ -101,7 +102,7 @@ async function handlePlaytime() {
     // console.log(blob, duration, totalPlaytime);
     let duration;
     if (!isFinite(video.duration)) {
-        const blob = await fetch(video.src).then(response => response.blob());
+        const blob = await fetch(video.src).then((response) => response.blob());
         duration = await getBlobDuration(blob);
         // console.log('if', blob, duration);
     } else {
